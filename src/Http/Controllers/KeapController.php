@@ -20,6 +20,6 @@ class KeapController extends Controller
 
         $url .= '?' . Arr::query($data);
 
-        return redirect($url);
+        return redirect(urldecode($url));
     }
 }

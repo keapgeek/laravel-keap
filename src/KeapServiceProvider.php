@@ -17,8 +17,8 @@ class KeapServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-keap')
-            ->hasConfigFile()
-            ->hasViews()
+            ->hasConfigFile('keap')
+            ->hasRoute('routes')
             ->hasMigration('create_laravel-keap_table')
             ->hasCommand(KeapCommand::class);
     }

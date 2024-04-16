@@ -41,6 +41,7 @@
         <env name="DOMAIN_BASE" value="localhost.test"/>
         <env name="BCRYPT_ROUNDS" value="12"/>
         <env name="KEAP_CLIENT_KEY" value="0123456789"/>
+        <env name="KEAP_CLIENT_KEY" value="9876543210"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>

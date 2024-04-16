@@ -32,6 +32,7 @@ class RefreshToken extends Command
         Cache::put('keap.access_token', $data['access_token'], $data['expires_in'] - 1);
         Cache::put('keap.refresh_token', $data['refresh_token'], $data['expires_in'] - 1);
 
+        $this->info('Successfully refreshed access and refresh tokens.');
         return self::SUCCESS;
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Azzarip\Keap\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class KeapCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-keap';
 
     public $description = 'My command';
 

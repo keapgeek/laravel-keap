@@ -5,6 +5,28 @@ Barely any support for modern version of PHP and all the laravel packages, such 
 
 I jump in to ensure a Laravel 11+ support for this package that completely ignores the PHP SDK and builds it's own wrapper using Laravel helpers and architectures.
 
+## Keap preparation
+
+Before we start installing the package, we need to create a Keap developer account and get our API credentials.
+For more information look at the Keap documentation ([Click here to get started](https://developer.keap.com/get-started/))
+In shorts the steps are repeated here below:
+
+### Create a new account
+
+Create a keap developer account: [Click here](https://keys.developer.keap.com/accounts/create)
+
+### Create a sandbox
+
+The sandbox account is useful for testing the API calls before using the application on your Keap production app.
+Create a new sandbox account: [Click here](https://sandbox.keap.com/)
+
+### Create new APP to access the sandbox version
+
+To create a new app, once logged in with the developer account, access this page: [Click here](https://keys.developer.keap.com/my-apps/new-app)
+
+Add a `name`, a `description` and activate the API, then click on `SAVE`.
+You will finally have a `Client Key` and a `Client Secret`.
+
 ## Installation
 
 ## Usage

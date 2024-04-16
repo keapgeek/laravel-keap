@@ -4,7 +4,9 @@
     "keywords": [
         "Azzarip",
         "laravel",
-        "laravel-keap"
+        "keap",
+        "infusionsoft",
+        "rest api"
     ],
     "homepage": "https://github.com/azzarip/laravel-keap",
     "license": "MIT",

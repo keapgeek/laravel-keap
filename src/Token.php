@@ -44,6 +44,6 @@ class Token
 
     public function check(): bool
     {
-        return (! Cache::has('keap.access_token') || ! Cache::has('keap.refresh_token'));
+        return (Cache::has('keap.access_token') && Cache::has('keap.refresh_token'));
     }
 }

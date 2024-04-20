@@ -1,6 +1,7 @@
 <?php
 namespace Azzarip\Keap;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 
 class Client
@@ -21,10 +22,17 @@ class Client
         return $this;
     }
 
-    public static function v1() {
-        return new self('/crm/rest/v1');
+    public static function v1($uri = null) {
+        return new self('/crm/rest/v1/' . ltrim($uri, '/'));
     }
 
+    public function get($uri = null)
+    {
+        $response = $this->request->post($this->url . $uri);
+        $data = $response->getBody()->getContents();
+        $data = json_decode($data, true);
+        return $data;
+    }
     public function post($uri, $postData) {
         $this->buildUrl($uri);
         $response = $this->request->post($this->url, $postData);
@@ -35,8 +43,13 @@ class Client
 
     protected function buildUrl(string $uri = '')
     {
-        if(! empty($uri)){
-            $this->url .=  '/'. ltrim($uri, '/');
+
+        if(empty($uri)){ return; }
+
+        $uri = ltrim($uri, '/');
+        if(Str::startsWith($uri, 'v1'))
+        {
+            $this->url .=  '/crm/rest/v1/'. trim($uri, '/');
         }
     }
 

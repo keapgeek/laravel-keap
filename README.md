@@ -53,6 +53,17 @@ KEAP_CLIENT_SECRET = "Secret from the developer account"
 ```
 ## Usage
 
+After installation and having setup the environment variables in the .env file. You can access the `/keap/auth` uri in your browser, even in the local version, to access the
+login page of Keap. Once logged in you can authorize the access to a specific app.
+Automatically keap will redirect you to a confirmation page that will simply say `Access granted!`. From there you can start using the keap service.
+
+### Access Code
+Keap will transmit an access and refresh token that are stored in the cache, therefore pay attention when you clear it.
+The refresh code can be used only for 24 hours. You can refresh the code with the artisan command
+```
+php artisan keap:refresh
+```
+You can set up this command in the `Kernel.php` console file to run twice or thrice a day to prevent the code from expiring.
 ## Testing
 
 ```bash

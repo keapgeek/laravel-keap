@@ -2,12 +2,18 @@
 
 namespace Azzarip\Keap;
 
-use Illuminate\Support\Facades\Cache;
+use Azzarip\Keap\Services\TokenService;
+use Azzarip\Keap\Services\ContactService;
 
 class Keap
 {
-    public static function token() {
-        return new Token();
+    public static function token()
+    {
+        return new TokenService();
     }
 
+    public function contact()
+    {
+        return new ContactService();
+    }
 }

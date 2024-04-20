@@ -4,6 +4,7 @@ namespace Azzarip\Keap;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
+use Azzarip\Keap\Exceptions\InvalidTokenException;
 
 class Client
 {
@@ -52,7 +53,7 @@ class Client
         $uri = trim($uri, '/');
         if(Str::startsWith($uri, 'v1'))
         {
-            $this->url .=  '/crm/rest/v1/'. trim($uri, '/');
+            $this->url .=  '/crm/rest/'. $uri;
         }
 
     }
@@ -62,7 +63,7 @@ class Client
         $status = $response->getStatusCode();
 
         if($status === 401){
-            throw new InvalidTokenException();
+            throw new InvalidTokenException('Expired Token: go to /keap/auth');
         }
 
         $content = $response->getBody()->getContents();

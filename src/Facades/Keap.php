@@ -1,6 +1,8 @@
 <?php
 
-namespace Azzarip\Keap;
+namespace Azzarip\Keap\Facades;
+
+use Azzarip\Keap\Services;
 
 class Keap
 {

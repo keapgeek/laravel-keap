@@ -1,5 +1,5 @@
 <?php
 
-namespace Azzarip\Keap;
+namespace Azzarip\Keap\Exceptions;
 
 class InvalidTokenException extends KeapException {}

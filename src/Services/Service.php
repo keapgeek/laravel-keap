@@ -3,8 +3,8 @@
 namespace Azzarip\Keap\Services;
 
 use Azzarip\Keap\Client;
-use Azzarip\Keap\InvalidTokenException;
-use Azzarip\Keap\Services\TokenService;
+use Azzarip\Keap\Services\Token;
+use Azzarip\Keap\Exceptions\InvalidTokenException;
 
 class Service
 {
@@ -13,12 +13,12 @@ class Service
     protected $uri = '';
     public function __construct()
     {
-        if(!TokenService::check())
+        if(!Token::check())
         {
-            throw new InvalidTokenException();
+            throw new InvalidTokenException('Access Token is Missing: go to /keap/auth');
         }
 
-        $this->client = new Client(TokenService::getToken());
+        $this->client = new Client(Token::getToken());
 
         $this->client->setUri($this->uri);
     }

@@ -5,7 +5,7 @@ namespace Azzarip\Keap\Services;
 use Azzarip\Keap\Client;
 use Illuminate\Support\Facades\Cache;
 
-class TokenService
+class Token
 {
     protected $client;
     public function __construct()

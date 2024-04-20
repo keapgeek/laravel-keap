@@ -2,9 +2,7 @@
 
 namespace Azzarip\Keap\Services;
 
-use Azzarip\Keap\Client;
-
-class ContactService extends Service
+class Contact extends Service
 {
     protected $uri = '/v1/contacts';
 

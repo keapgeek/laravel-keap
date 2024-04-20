@@ -41,7 +41,9 @@ class Client
 
     protected function call($method, $uri = '', $data = null)
     {
-        $response = $this->request->$method($this->url . $uri, $data);
+        $url = $this->url . '/' . trim($uri, '/');
+
+        $response = $this->request->$method($url, $data);
 
         return $this->checkResponse($response);
     }

@@ -9,7 +9,7 @@ class Token
     protected $client;
     public function __construct()
     {
-        $this->client = Client::token();
+        $this->client = new Client();
     }
 
     public function request(string $code)

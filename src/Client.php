@@ -9,7 +9,7 @@ class Client
 
     protected $request;
 
-    protected function __construct($uri = '')
+    public function __construct($uri = '')
     {
         $this->request = Http::asForm();
         $this->url = 'https://api.infusionsoft.com';
@@ -25,9 +25,6 @@ class Client
         return new self('/crm/rest/v1');
     }
 
-    public static function token() {
-        return new self();
-    }
     public function post($uri, $postData) {
         $this->buildUrl($uri);
         $response = $this->request->post($this->url, $postData);

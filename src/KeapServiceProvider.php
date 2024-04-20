@@ -25,5 +25,7 @@ class KeapServiceProvider extends PackageServiceProvider
             ->hasInstallCommand(function(InstallCommand $command) {
                 $command
                     ->publishConfigFile()
-            });    }
+                    ->askToStarRepoOnGitHub('azzarip/laravel-keap');
+            });
+    }
 }

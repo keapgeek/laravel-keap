@@ -6,10 +6,8 @@ use Illuminate\Support\Facades\Cache;
 
 class Keap
 {
-
-
-    public static function contact()
-    {
-        return Client::v1()->post('')
+    public static function token() {
+        return new Token();
     }
+
 }

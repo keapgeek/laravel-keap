@@ -2,9 +2,8 @@
 
 namespace Azzarip\Keap\Commands;
 
-use Azzarip\Keap\Facades\Keap;
+use Azzarip\Keap\Keap;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
 
 class RefreshToken extends Command
 {

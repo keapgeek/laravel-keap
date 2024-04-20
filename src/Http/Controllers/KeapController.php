@@ -2,8 +2,8 @@
 
 namespace Azzarip\Keap\Http\Controllers;
 
+use Azzarip\Keap\Keap;
 use Illuminate\Support\Arr;
-use Azzarip\Keap\Facades\Keap;
 use Illuminate\Routing\Controller;
 
 class KeapController extends Controller

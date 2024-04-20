@@ -8,7 +8,7 @@ class Contact extends Service
 
     public function list()
     {
-        return $this->client->get('');
+        return $this->client->get();
     }
 
     public function get(int $id)

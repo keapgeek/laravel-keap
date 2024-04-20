@@ -3,16 +3,10 @@
 namespace Azzarip\Keap\Services;
 
 use Azzarip\Keap\Client;
-use Illuminate\Support\Facades\Cache;
 
-class ContactService
+class ContactService extends Service
 {
-    protected $client;
-    public function __construct()
-    {
-        $this->client = new Client('/v1/contacts');
-    }
-
+    protected $uri = '/v1/contacts';
 
     public function list()
     {

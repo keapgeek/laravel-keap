@@ -12,7 +12,7 @@ class Keap
         return new TokenService();
     }
 
-    public function contact()
+    public static function contact()
     {
         return new ContactService();
     }

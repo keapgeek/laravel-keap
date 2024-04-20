@@ -43,8 +43,13 @@ class TokenService
         Cache::put('keap.refresh_token', $response['refresh_token'], $response['expires_in'] - 1);
     }
 
-    public function check(): bool
+    public static function check(): bool
     {
         return (Cache::has('keap.access_token') && Cache::has('keap.refresh_token'));
+    }
+
+    public static function getToken(): string
+    {
+        return Cache::get('keap.access_token');
     }
 }

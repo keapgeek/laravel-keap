@@ -45,7 +45,7 @@ php artisan keap:install
 
 In the environment file add the following lines
 
-````
+```
 // .env
 
 KEAP_CLIENT_KEY = "Keap from the developer account"

@@ -5,6 +5,7 @@ namespace Azzarip\Keap;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Azzarip\Keap\Commands\RefreshToken;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 
 class KeapServiceProvider extends PackageServiceProvider
 {
@@ -20,6 +21,9 @@ class KeapServiceProvider extends PackageServiceProvider
             ->hasConfigFile('keap')
             ->hasRoute('routes')
             ->hasMigration('create_laravel-keap_table')
-            ->hasCommand(RefreshToken::class);
-    }
+            ->hasCommand(RefreshToken::class)
+            ->hasInstallCommand(function(InstallCommand $command) {
+                $command
+                    ->publishConfigFile()
+            });    }
 }

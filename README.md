@@ -31,13 +31,33 @@ You will finally have a `Client Key` and a `Client Secret`.
 
 ## Installation
 
+To install the package you can use the following command
+
+```
+composer require azzarip/laravel-keap
+```
+
+then install the package to publish the configuration
+
+```
+php artisan keap:install
+```
+
+In the environment file add the following lines
+
+````
+// .env
+
+KEAP_CLIENT_KEY = "Keap from the developer account"
+KEAP_CLIENT_SECRET = "Secret from the developer account"
+```
 ## Usage
 
 ## Testing
 
 ```bash
 composer test
-```
+````
 
 ## Credits
 

@@ -11,8 +11,8 @@ class Contact extends Service
         return $this->client->get('');
     }
 
-    public function retrieve(int $id)
+    public function get(int $id)
     {
-        $this->client->get($id);
+        return $this->client->get($id);
     }
 }

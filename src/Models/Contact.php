@@ -3,12 +3,11 @@
 namespace Azzarip\Keap\Models;
 
 use Azzarip\Keap\Exceptions\KeapException;
-use Illuminate\Database\Eloquent\Model;
 
 class Contact
 {
-
     public ?int $id;
+
     public ?array $addresses;
 
     public ?string $anniversary;
@@ -79,6 +78,7 @@ class Contact
         foreach ($data as $key => $value) {
             $contact->$key = $value;
         }
+
         return $contact;
     }
 }

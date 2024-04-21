@@ -25,9 +25,7 @@ class Client
             ]);
         }
 
-        $this->request = $this->request->retry(config('keap.retry_times'), config('keap.retry_delay'), function (\Exception $exception) {
-            return $exception instanceof ServerErrorException;
-        });
+        $this->request = $this->request->retry(config('keap.retry_times'), config('keap.retry_delay'));
 
         $this->url = 'https://api.infusionsoft.com';
     }
@@ -58,9 +56,17 @@ class Client
     {
         $url = $this->url.'/'.trim($uri, '/');
 
-        $response = $this->request->$method($url, $data);
+        $response = retry(config('keap.retry_times'),
+            function () use ($method, $url, $data) {
+                $response = $this->request->$method($url, $data);
 
-        return $this->checkResponse($response);
+                return $this->checkResponse($response);
+            }, config('keap.retry_delay'),
+            function (\Exception $e) {
+                return $e instanceof ServerErrorException;
+            });
+
+        return $response;
     }
 
     public function setUri(string $uri = '')

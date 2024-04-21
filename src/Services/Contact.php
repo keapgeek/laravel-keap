@@ -1,6 +1,7 @@
 <?php
 
 namespace Azzarip\Keap\Services;
+
 use Azzarip\Keap\Exceptions\KeapException;
 
 class Contact extends Service
@@ -19,11 +20,23 @@ class Contact extends Service
 
     public function create(array $data)
     {
-        if (!array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
+        if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
         return $this->client->post('/', $data);
+
+    }
+
+    public function createOrUpdate(array $data, $duplicate_option = 'Email')
+    {
+        if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
+            throw new KeapException('Missing Email addresses and/or phone numbers');
+        }
+
+        $data['duplicated_option'] = $duplicate_option;
+
+        return $this->client->put('/', $data);
 
     }
 }

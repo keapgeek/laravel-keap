@@ -3,22 +3,18 @@
 namespace Azzarip\Keap\Tests;
 
 use Azzarip\Keap\KeapServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Cache;
+use Azzarip\Keap\Tests\Classes\Contact;
+use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
+    public $contact;
+
     protected function setUp(): void
     {
         parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Azzarip\\Keap\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-
-        Cache::put('keap.access_token', '::access_token::', '3600');
-        Cache::put('keap.refresh_token', '::refresh_token::', '3600');
+        $this->setUpDatabase(app());
 
     }
 
@@ -33,9 +29,17 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-keap_table.php.stub';
-        $migration->up();
-        */
+    }
+
+    protected function setUpDatabase($app)
+    {
+        $schema = $app['db']->connection()->getSchemaBuilder();
+
+        $schema->create('contacts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->foreignId('keap_id')->nullable();
+        });
     }
 }

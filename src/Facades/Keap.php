@@ -3,8 +3,10 @@
 namespace Azzarip\Keap\Facades;
 
 use Azzarip\Keap\Services;
+use Azzarip\Keap\Mock\FakeFacade;
+use Illuminate\Support\Facades\Facade;
 
-class Keap
+class Keap extends Facade
 {
     public static function token()
     {
@@ -20,4 +22,12 @@ class Keap
     {
         return new Services\Campaign();
     }
+
+    public static function fake()
+    {
+        $fake = new FakeFacade();
+
+        static::swap($fake);
+    }
+
 }

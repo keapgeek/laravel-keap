@@ -15,4 +15,9 @@ class Keap
     {
         return new Services\Contact();
     }
+
+    public static function campaign()
+    {
+        return new Services\Campaign();
+    }
 }

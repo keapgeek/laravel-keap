@@ -13,14 +13,16 @@ class RefreshToken extends Command
 
     public function handle(): int
     {
-        if(! Keap::token()->check()) {
+        if (! Keap::token()->check()) {
             $this->error('Access and refresh tokens not found in cache. Please login at /keap/auth');
+
             return self::FAILURE;
         }
 
         Keap::token()->refresh();
 
         $this->info('Successfully refreshed access and refresh tokens.');
+
         return self::SUCCESS;
     }
 }

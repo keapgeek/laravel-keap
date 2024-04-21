@@ -2,9 +2,10 @@
 
 namespace Azzarip\Keap\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Azzarip\Keap\KeapServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Cache;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -15,6 +16,10 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Azzarip\\Keap\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        Cache::put('keap.access_token', '::access_token::', '3600');
+        Cache::put('keap.refresh_token', '::refresh_token::', '3600');
+
     }
 
     protected function getPackageProviders($app)

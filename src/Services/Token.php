@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 class Token
 {
     protected $client;
+
     public function __construct()
     {
         $this->client = new Client();
@@ -45,7 +46,7 @@ class Token
 
     public static function check(): bool
     {
-        return (Cache::has('keap.access_token') && Cache::has('keap.refresh_token'));
+        return Cache::has('keap.access_token') && Cache::has('keap.refresh_token');
     }
 
     public static function getToken(): string

@@ -3,8 +3,8 @@
 namespace Azzarip\Keap\Http\Controllers;
 
 use Azzarip\Keap\Keap;
-use Illuminate\Support\Arr;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Arr;
 
 class KeapController extends Controller
 {
@@ -19,7 +19,7 @@ class KeapController extends Controller
             'scope' => 'full',
         ];
 
-        $url .= '?' . Arr::query($data);
+        $url .= '?'.Arr::query($data);
 
         return redirect(urldecode($url));
     }
@@ -28,10 +28,12 @@ class KeapController extends Controller
     {
         $code = request('code');
 
-        if(empty($code)) {return 'Missing callback code!';}
+        if (empty($code)) {
+            return 'Missing callback code!';
+        }
 
         Keap::token()->request($code);
 
-        return "Access granted!";
+        return 'Access granted!';
     }
 }

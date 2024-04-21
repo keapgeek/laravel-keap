@@ -49,6 +49,11 @@ class Client
         return $this->call('post', $uri, $data);
     }
 
+    public function put($uri, $data)
+    {
+        return $this->call('put', $uri, $data);
+    }
+
     protected function call($method, $uri = '', $data = null)
     {
         $url = $this->url.'/'.trim($uri, '/');

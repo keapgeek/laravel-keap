@@ -9,10 +9,6 @@ class Contact extends Model
 {
     use KeapTrait;
 
-    protected $keap = [
-        'given_name' => 'name',
-    ];
-
     protected $guarded = '';
 
     public $timestamps = false;

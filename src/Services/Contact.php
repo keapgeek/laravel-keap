@@ -24,6 +24,7 @@ class Contact extends Service
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
+        $data['opt_in_reason'] = config('keap.opt_in_reason');
         return $this->client->post('/', $data);
 
     }
@@ -35,6 +36,7 @@ class Contact extends Service
         }
 
         $data['duplicate_option'] = $duplicate_option;
+        $data['opt_in_reason'] = config('keap.opt_in_reason');
 
         return $this->client->put('/', $data);
 

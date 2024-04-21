@@ -2,8 +2,8 @@
 
 namespace Azzarip\Keap\Facades;
 
-use Azzarip\Keap\Services;
 use Azzarip\Keap\Mock\FakeFacade;
+use Azzarip\Keap\Services;
 use Illuminate\Support\Facades\Facade;
 
 class Keap extends Facade
@@ -29,5 +29,4 @@ class Keap extends Facade
 
         static::swap($fake);
     }
-
 }

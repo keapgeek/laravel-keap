@@ -36,9 +36,10 @@ return [
         'given_name' => 'name',
         // include all other firles
     ],
+
     /**
      * Opt In Reason
      * Needed to have marketable emails in Keap. It is a personalizable string field.
      */
-    'opt_in_reason' => 'Opted In via App Webform.'
+    'opt_in_reason' => 'Opted In via App Webform.',
 ];

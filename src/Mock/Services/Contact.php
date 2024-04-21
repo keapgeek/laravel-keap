@@ -18,6 +18,7 @@ class Contact
         $data['id'] = fake()->random(0, 100);
         $data['date_created'] = now();
         $data['last_updated'] = now();
+
         return $data;
     }
 }

@@ -25,6 +25,7 @@ class Contact extends Service
         }
 
         $data['opt_in_reason'] = config('keap.opt_in_reason');
+
         return $this->client->post('/', $data);
 
     }

@@ -3,7 +3,6 @@
 namespace Azzarip\Keap\Tests;
 
 use Azzarip\Keap\KeapServiceProvider;
-use Azzarip\Keap\Tests\Classes\Contact;
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 

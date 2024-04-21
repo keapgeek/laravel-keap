@@ -2,10 +2,11 @@
 
 namespace Azzarip\Keap;
 
-use Azzarip\Keap\Exceptions\InvalidTokenException;
-use Azzarip\Keap\Exceptions\ServerErrorException;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
+use Azzarip\Keap\Exceptions\ServerErrorException;
+use Azzarip\Keap\Exceptions\InvalidTokenException;
+use Azzarip\Keap\Notifications\KeapLogoutNotification;
 
 class Client
 {
@@ -54,19 +55,34 @@ class Client
 
     protected function call($method, $uri = '', $data = null)
     {
-        $url = $this->url.'/'.trim($uri, '/');
 
-        $response = retry(config('keap.retry_times'),
-            function () use ($method, $url, $data) {
-                $response = $this->request->$method($url, $data);
+        try {
+            $response = retry(config('keap.retry_times'),
 
-                return $this->checkResponse($response);
-            }, config('keap.retry_delay'),
-            function (\Exception $e) {
-                return $e instanceof ServerErrorException;
-            });
+                function () use ($method, $uri, $data) {
+                    return $this->sendRequest($method, $uri, $data);
+                },
+
+                config('keap.retry_delay'),
+
+                function (\Exception $e) {
+                    return $e instanceof ServerErrorException;
+                });
+
+        } catch (InvalidTokenException $e) {
+            config('keap.logout.user')->notify(new KeapLogoutNotification);
+        }
 
         return $response;
+    }
+
+    protected function sendRequest($method, $uri, $data): array
+    {
+        $url = $this->url.'/'.trim($uri, '/');
+
+        $response = $this->request->$method($url, $data);
+
+        return $this->checkResponse($response);
     }
 
     public function setUri(string $uri = '')

@@ -42,4 +42,13 @@ return [
      * Needed to have marketable emails in Keap. It is a personalizable string field.
      */
     'opt_in_reason' => 'Opted In via App Webform.',
+
+    /**
+     * Logout Notification
+     * In case of expired token the following user
+     */
+    'logout' => [
+        'user' => \App\Models\User::first(),
+        'via' => ['mail'],
+    ],
 ];

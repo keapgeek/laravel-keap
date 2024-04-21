@@ -48,7 +48,7 @@ return [
      * In case of expired token the following user
      */
     'logout' => [
-        'user' => \App\Models\User::first(),
+        'user' => 1,
         'via' => ['mail'],
     ],
 ];

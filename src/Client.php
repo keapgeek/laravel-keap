@@ -70,7 +70,7 @@ class Client
                 });
 
         } catch (InvalidTokenException $e) {
-            config('keap.logout.user')->notify(new KeapLogoutNotification);
+            \App\Models\User::find(config('keap.logout.user'))->notify(new KeapLogoutNotification);
         }
 
         return $response;

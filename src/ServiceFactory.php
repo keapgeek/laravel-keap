@@ -18,4 +18,9 @@ class ServiceFactory
     {
         return new Services\Campaign();
     }
+
+    public function job()
+    {
+        return new Services\Job();
+    }
 }

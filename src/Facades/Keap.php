@@ -2,8 +2,8 @@
 
 namespace Azzarip\Keap\Facades;
 
-use Azzarip\Keap\ServiceFactory;
 use Azzarip\Keap\Mock\FakeFacade;
+use Azzarip\Keap\ServiceFactory;
 use Illuminate\Support\Facades\Facade;
 
 class Keap extends Facade

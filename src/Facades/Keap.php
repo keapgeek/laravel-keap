@@ -8,21 +8,10 @@ use Illuminate\Support\Facades\Facade;
 
 class Keap extends Facade
 {
-    public static function token()
+    protected static function getFacadeAccessor()
     {
-        return new Services\Token();
+        return ServiceFactory::class;
     }
-
-    public static function contact()
-    {
-        return new Services\Contact();
-    }
-
-    public static function campaign()
-    {
-        return new Services\Campaign();
-    }
-
     public static function fake()
     {
         $fake = new FakeFacade();

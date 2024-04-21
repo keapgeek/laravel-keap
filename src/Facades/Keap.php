@@ -3,7 +3,6 @@
 namespace Azzarip\Keap\Facades;
 
 use Azzarip\Keap\Mock\FakeFacade;
-use Azzarip\Keap\Services;
 use Illuminate\Support\Facades\Facade;
 
 class Keap extends Facade
@@ -12,6 +11,7 @@ class Keap extends Facade
     {
         return ServiceFactory::class;
     }
+
     public static function fake()
     {
         $fake = new FakeFacade();

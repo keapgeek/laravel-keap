@@ -2,7 +2,6 @@
 
 namespace Azzarip\Keap;
 
-use Azzarip\Keap\Services;
 class ServiceFactory
 {
     public function token()
@@ -19,5 +18,4 @@ class ServiceFactory
     {
         return new Services\Campaign();
     }
-
 }

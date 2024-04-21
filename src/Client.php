@@ -3,6 +3,7 @@
 namespace Azzarip\Keap;
 
 use Azzarip\Keap\Exceptions\InvalidTokenException;
+use Azzarip\Keap\Exceptions\ServerErrorException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -23,6 +24,10 @@ class Client
                 'Content-Type' => 'application/json',
             ]);
         }
+
+        $this->request = $this->request->retry(config('keap.retry_times'), config('keap.retry_delay'), function (\Exception $exception) {
+            return $exception instanceof ServerErrorException;
+        });
 
         $this->url = 'https://api.infusionsoft.com';
     }
@@ -73,6 +78,10 @@ class Client
 
         if ($status === 401) {
             throw new InvalidTokenException('Expired Token: go to /keap/auth');
+        }
+
+        if ($response->serverError()) {
+            throw new ServerErrorException("Server Error (Status Code: {$status})");
         }
 
         $content = $response->getBody()->getContents();

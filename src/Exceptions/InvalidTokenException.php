@@ -2,4 +2,6 @@
 
 namespace Azzarip\Keap\Exceptions;
 
-class InvalidTokenException extends KeapException {}
+class InvalidTokenException extends KeapException
+{
+}

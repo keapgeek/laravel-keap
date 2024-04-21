@@ -14,10 +14,11 @@ class Client
 
     public function __construct($bearer = null)
     {
+
         $this->request = Http::asForm();
 
         if ($bearer) {
-            $this->request = $this->request->withHeaders([
+            $this->request = Http::withHeaders([
                 'Authorization' => 'Bearer '.$bearer,
                 'Content-Type' => 'application/json',
             ]);

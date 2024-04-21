@@ -2,12 +2,10 @@
 
 namespace Azzarip\Keap;
 
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Auth\User;
-use Illuminate\Support\Facades\Http;
-use Azzarip\Keap\Exceptions\ServerErrorException;
 use Azzarip\Keap\Exceptions\InvalidTokenException;
-use Azzarip\Keap\Notifications\KeapLogoutNotification;
+use Azzarip\Keap\Exceptions\ServerErrorException;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class Client
 {
@@ -67,6 +65,7 @@ class Client
             function (\Exception $e) {
                 return $e instanceof ServerErrorException;
             });
+
         return $response;
     }
 

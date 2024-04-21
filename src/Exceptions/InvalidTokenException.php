@@ -2,7 +2,7 @@
 
 namespace Azzarip\Keap\Exceptions;
 
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
 use Azzarip\Keap\Notifications\KeapLogoutNotification;
 
 class InvalidTokenException extends KeapException

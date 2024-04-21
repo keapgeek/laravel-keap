@@ -3,6 +3,7 @@
 namespace Azzarip\Keap;
 
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Http;
 use Azzarip\Keap\Exceptions\ServerErrorException;
 use Azzarip\Keap\Exceptions\InvalidTokenException;
@@ -55,24 +56,17 @@ class Client
 
     protected function call($method, $uri = '', $data = null)
     {
+        $response = retry(config('keap.retry_times'),
 
-        try {
-            $response = retry(config('keap.retry_times'),
+            function () use ($method, $uri, $data) {
+                return $this->sendRequest($method, $uri, $data);
+            },
 
-                function () use ($method, $uri, $data) {
-                    return $this->sendRequest($method, $uri, $data);
-                },
+            config('keap.retry_delay'),
 
-                config('keap.retry_delay'),
-
-                function (\Exception $e) {
-                    return $e instanceof ServerErrorException;
-                });
-
-        } catch (InvalidTokenException $e) {
-            \App\Models\User::find(config('keap.logout.user'))->notify(new KeapLogoutNotification);
-        }
-
+            function (\Exception $e) {
+                return $e instanceof ServerErrorException;
+            });
         return $response;
     }
 

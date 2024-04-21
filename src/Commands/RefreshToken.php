@@ -2,6 +2,7 @@
 
 namespace Azzarip\Keap\Commands;
 
+use Azzarip\Keap\Exceptions\InvalidTokenException;
 use Azzarip\Keap\Keap;
 use Illuminate\Console\Command;
 
@@ -15,8 +16,7 @@ class RefreshToken extends Command
     {
         if (! Keap::token()->check()) {
             $this->error('Access and refresh tokens not found in cache. Please login at /keap/auth');
-
-            return self::FAILURE;
+            throw new InvalidTokenException;
         }
 
         Keap::token()->refresh();

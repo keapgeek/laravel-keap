@@ -2,6 +2,7 @@
 
 namespace Azzarip\Keap\Facades;
 
+use Azzarip\Keap\ServiceFactory;
 use Azzarip\Keap\Mock\FakeFacade;
 use Illuminate\Support\Facades\Facade;
 

@@ -17,6 +17,7 @@ class RefreshToken extends Command
         if (! Keap::token()->check()) {
             $this->error('Access and refresh tokens not found in cache. Please login at /keap/auth');
             (new InvalidTokenException)->report();
+
             return self::FAILURE;
         }
 

@@ -2,6 +2,7 @@
 
 namespace Azzarip\Keap\Jobs;
 
+use Azzarip\Keap\Interfaces\KeapInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,7 +16,7 @@ class AchieveGoal implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(private $contact, private string $callName)
+    public function __construct(private KeapInterface $contact, private string $callName)
     {
     }
 

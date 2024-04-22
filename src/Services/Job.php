@@ -8,6 +8,6 @@ class Job
 {
     public function contactGoal($contact, string $callName)
     {
-        return AchieveGoal::dispatch($contact, $callName);
+        return AchieveGoal::dispatchAfterResponse($contact->id, $callName);
     }
 }

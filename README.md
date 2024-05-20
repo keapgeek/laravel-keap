@@ -5,32 +5,11 @@ Barely any support for modern version of PHP and all the laravel packages, such 
 
 I jump in to ensure a Laravel 11+ support for this package that completely ignores the PHP SDK and builds it's own wrapper using Laravel helpers and architectures.
 
-This package uses OAuth 2 with the REST API, to know more you [can visit this website](https://developer.infusionsoft.com/getting-started-oauth-keys/)
-
+This package uses OAuth 2 with the REST API v1 of Keap, **WITHOUT** relying on the SDK of infusionsoft.
 
 ## Installation
 
-### Keap set up
-
-Before we start installing the package, we need to create a Keap developer account and get our API credentials.
-For more information look at the Keap documentation ([Click here to get started](https://developer.keap.com/get-started/))
-In shorts the steps are repeated here below:
-
-#### Create a new account
-
-Create a keap developer account: [Click here](https://keys.developer.keap.com/accounts/create)
-
-#### Create a sandbox
-
-The sandbox account is useful for testing the API calls before using the application on your Keap production app.
-Create a new sandbox account: [Click here](https://sandbox.keap.com/)
-
-#### Create new APP to access the sandbox version
-
-To create a new app, once logged in with the developer account, access this page: [Click here](https://keys.developer.keap.com/my-apps/new-app)
-
-Add a `name`, a `description` and activate the API, then click on `SAVE`.
-You will finally have a `Client Key` and a `Client Secret`.
+To install this package, we need to install the Laravel part and create the API credentials to connect to your Keap Application.
 
 ### Laravel set up
 To install the package you can use the following command
@@ -52,10 +31,20 @@ In the environment file add the following lines
 KEAP_CLIENT_KEY="Client from the developer account"
 KEAP_CLIENT_SECRET="Secret from the developer account"
 ```
+### Keap set up
+Before we start installing the package, we need to create a Keap developer account and get our API credentials.
+For more information look at the Keap documentation [Visit this website](https://www.laravelkeap.com/get-started)
+In shorts the steps are repeated here below:
+- Create a Developer Account
+- Generate the Api Keys
+- Authenticate
 
 ## First Usage
 After installation and having setup the environment variables in the .env file. You can access the `/keap/auth` uri in your browser, even in the local version, to access the
-login page of Keap. Once logged in you can authorize the access to a specific app.
+login page of Keap. Once logged in you can authorize the access to a specific app. 
+
+I strongly suggest to have a sandbox version of Keap, to test your Api before connecting it to your real app with your clients data. 
+
 Automatically keap will redirect you to a confirmation page that will simply say `Access granted!`. From there you can start using the keap service.
 
 ### Access Code
@@ -65,10 +54,13 @@ The refresh code can be used only for 24 hours. You can refresh the code with th
 php artisan keap:refresh
 ```
 You can set up this command in the console `Kernel.php` file to run twice or thrice a day to prevent the code from expiring.
-
-
-## Keap API
-
+```php
+    protected function schedule(Schedule $schedule): void
+    {
+        // Other scheduled commands
+        $schedule->command('keap:refresh')->twiceDaily(1, 13);
+    }
+```
 
 ## Testing
 

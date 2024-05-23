@@ -15,7 +15,7 @@ class Keap extends Facade
 
     public static function fake()
     {
-        $fake = new FakeFacade();
+        $fake = new MockFactory();
 
         static::swap($fake);
     }

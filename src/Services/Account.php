@@ -13,6 +13,10 @@ class Account extends Service
 
     public function update(array $data)
     {
+        $original = $this->retrieve();
+
+        $data = array_merge($original, $data);
+
         return $this->client->put('/', $data);
     }
 

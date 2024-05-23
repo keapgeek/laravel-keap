@@ -13,9 +13,9 @@ class Account
             'phone' => fake()->phoneNumber(),
             'address' => [
                 'line1' => fake()->streetAddress(),
-                'line2' => fake()->secondaryAddress(),
+                'line2' => null,
                 'locality' => fake()->city(),
-                'region' => fake()->state(),
+                'region' => null,
                 'field' => 'BILLING',
                 'postal_code' => fake()->postcode(),
                 'zip_code' => fake()->postcode(),

@@ -2,10 +2,12 @@
 
 namespace Azzarip\Keap;
 
-use Azzarip\Keap\Exceptions\InvalidTokenException;
-use Azzarip\Keap\Exceptions\ServerErrorException;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\RequestException;
+use Azzarip\Keap\Exceptions\ServerErrorException;
+use Azzarip\Keap\Exceptions\InvalidTokenException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class Client
 {
@@ -73,7 +75,14 @@ class Client
     {
         $url = $this->url.'/'.trim($uri, '/');
 
-        $response = $this->request->$method($url, $data);
+        try {
+            $response = $this->request->$method($url, $data);
+        } catch (RequestException $e) {
+            if($e->getCode() == 400) {
+                $message = json_decode($e->response->body(), true)['message'];
+                throw new BadRequestException($message);
+            }
+        }
 
         return $this->checkResponse($response);
     }

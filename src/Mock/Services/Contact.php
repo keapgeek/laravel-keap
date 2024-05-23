@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Mock\Services;
+namespace KeapGeek\Keap\Mock\Services;
 
-use Azzarip\Keap\Exceptions\KeapException;
+use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Database\Factories;
+namespace KeapGeek\Keap\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

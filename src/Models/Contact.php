@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Models;
+namespace KeapGeek\Keap\Models;
 
-use Azzarip\Keap\Exceptions\KeapException;
+use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact
 {

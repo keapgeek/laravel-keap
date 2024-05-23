@@ -1,6 +1,6 @@
 <?php
 
-use Azzarip\Keap\Http\Controllers\KeapController;
+use KeapGeek\Keap\Http\Controllers\KeapController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(KeapController::class)->group(function () {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Http\Controllers;
+namespace KeapGeek\Keap\Http\Controllers;
 
-use Azzarip\Keap\Keap;
+use KeapGeek\Keap\Keap;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 

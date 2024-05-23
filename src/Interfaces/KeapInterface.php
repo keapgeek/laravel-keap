@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Interfaces;
+namespace KeapGeek\Keap\Interfaces;
 
 interface KeapInterface
 {

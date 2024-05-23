@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Tests\Classes;
+namespace KeapGeek\Keap\Tests\Classes;
 
-use Azzarip\Keap\Traits\KeapTrait;
+use KeapGeek\Keap\Traits\KeapTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model

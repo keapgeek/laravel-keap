@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Exceptions;
+namespace KeapGeek\Keap\Exceptions;
 
 class BadRequestException extends KeapException
 {

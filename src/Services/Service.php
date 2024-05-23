@@ -1,9 +1,9 @@
 <?php
 
-namespace Azzarip\Keap\Services;
+namespace KeapGeek\Keap\Services;
 
-use Azzarip\Keap\Client;
-use Azzarip\Keap\Exceptions\InvalidTokenException;
+use KeapGeek\Keap\Client;
+use KeapGeek\Keap\Exceptions\InvalidTokenException;
 
 class Service
 {

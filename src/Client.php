@@ -1,13 +1,13 @@
 <?php
 
-namespace Azzarip\Keap;
+namespace KeapGeek\Keap;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\RequestException;
-use Azzarip\Keap\Exceptions\BadRequestException;
-use Azzarip\Keap\Exceptions\ServerErrorException;
-use Azzarip\Keap\Exceptions\InvalidTokenException;
+use KeapGeek\Keap\Exceptions\BadRequestException;
+use KeapGeek\Keap\Exceptions\ServerErrorException;
+use KeapGeek\Keap\Exceptions\InvalidTokenException;
 
 class Client
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Azzarip\Keap\Exceptions;
+namespace KeapGeek\Keap\Exceptions;
 
 use App\Models\User;
-use Azzarip\Keap\Notifications\KeapLogoutNotification;
+use KeapGeek\Keap\Notifications\KeapLogoutNotification;
 
 class InvalidTokenException extends KeapException
 {

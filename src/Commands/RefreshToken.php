@@ -1,9 +1,9 @@
 <?php
 
-namespace Azzarip\Keap\Commands;
+namespace KeapGeek\Keap\Commands;
 
-use Azzarip\Keap\Exceptions\InvalidTokenException;
-use Azzarip\Keap\Keap;
+use KeapGeek\Keap\Exceptions\InvalidTokenException;
+use KeapGeek\Keap\Keap;
 use Illuminate\Console\Command;
 
 class RefreshToken extends Command

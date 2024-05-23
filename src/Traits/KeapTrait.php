@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Traits;
+namespace KeapGeek\Keap\Traits;
 
-use Azzarip\Keap\Facades\Keap;
+use KeapGeek\Keap\Facades\Keap;
 
 trait KeapTrait
 {

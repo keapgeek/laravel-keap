@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Services;
+namespace KeapGeek\Keap\Services;
 
-use Azzarip\Keap\Client;
+use KeapGeek\Keap\Client;
 use Illuminate\Support\Facades\Cache;
 
 class Token

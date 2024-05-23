@@ -1,9 +1,9 @@
 <?php
 
-namespace Azzarip\Keap\Services;
+namespace KeapGeek\Keap\Services;
 
-use Azzarip\Keap\Jobs\AchieveGoal;
-use Azzarip\Keap\Interfaces\KeapInterface;
+use KeapGeek\Keap\Jobs\AchieveGoal;
+use KeapGeek\Keap\Interfaces\KeapInterface;
 
 class Job
 {

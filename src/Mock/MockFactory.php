@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Mock;
+namespace KeapGeek\Keap\Mock;
 
 class MockFactory
 {

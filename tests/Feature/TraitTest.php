@@ -1,7 +1,7 @@
 <?php
 
-use Azzarip\Keap\Facades\Keap;
-use Azzarip\Keap\Tests\Classes\Contact;
+use KeapGeek\Keap\Facades\Keap;
+use KeapGeek\Keap\Tests\Classes\Contact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);

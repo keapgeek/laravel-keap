@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Mock\Services;
+namespace KeapGeek\Keap\Mock\Services;
 
 class Account
 {

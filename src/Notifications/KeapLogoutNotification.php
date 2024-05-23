@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Notifications;
+namespace KeapGeek\Keap\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;

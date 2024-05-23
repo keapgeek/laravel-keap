@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Jobs;
+namespace KeapGeek\Keap\Jobs;
 
-use Azzarip\Keap\Interfaces\KeapInterface;
+use KeapGeek\Keap\Interfaces\KeapInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

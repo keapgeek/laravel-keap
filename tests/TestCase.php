@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Tests;
+namespace KeapGeek\Keap\Tests;
 
-use Azzarip\Keap\KeapServiceProvider;
+use KeapGeek\Keap\KeapServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 

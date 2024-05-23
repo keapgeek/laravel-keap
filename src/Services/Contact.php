@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap\Services;
+namespace KeapGeek\Keap\Services;
 
-use Azzarip\Keap\Exceptions\KeapException;
+use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact extends Service
 {

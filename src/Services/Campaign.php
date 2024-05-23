@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap\Services;
+namespace KeapGeek\Keap\Services;
 
 class Campaign extends Service
 {

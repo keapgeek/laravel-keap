@@ -1,9 +1,9 @@
 <?php
 
-namespace Azzarip\Keap\Facades;
+namespace KeapGeek\Keap\Facades;
 
-use Azzarip\Keap\ServiceFactory;
-use Azzarip\Keap\Mock\MockFactory;
+use KeapGeek\Keap\ServiceFactory;
+use KeapGeek\Keap\Mock\MockFactory;
 use Illuminate\Support\Facades\Facade;
 
 class Keap extends Facade

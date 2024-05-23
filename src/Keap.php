@@ -1,6 +1,6 @@
 <?php
 
-namespace Azzarip\Keap;
+namespace KeapGeek\Keap;
 
 class Keap
 {

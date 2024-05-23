@@ -1,9 +1,9 @@
 <?php
 
-use Azzarip\Keap\Facades\Keap;
-use Azzarip\Keap\Jobs\AchieveGoal;
-use Azzarip\Keap\Services\Job;
-use Azzarip\Keap\Tests\Classes\Contact;
+use KeapGeek\Keap\Facades\Keap;
+use KeapGeek\Keap\Jobs\AchieveGoal;
+use KeapGeek\Keap\Services\Job;
+use KeapGeek\Keap\Tests\Classes\Contact;
 use Illuminate\Support\Facades\Bus;
 
 it('returns Job Service instance', function () {

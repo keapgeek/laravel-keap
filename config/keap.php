@@ -1,6 +1,6 @@
 <?php
 
-// config for Azzarip/Keap
+// config for KeapGeek/Keap
 return [
     /**
      * The Keap client KEY.

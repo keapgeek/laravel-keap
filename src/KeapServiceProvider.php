@@ -1,8 +1,8 @@
 <?php
 
-namespace Azzarip\Keap;
+namespace KeapGeek\Keap;
 
-use Azzarip\Keap\Commands\RefreshToken;
+use KeapGeek\Keap\Commands\RefreshToken;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -25,7 +25,7 @@ class KeapServiceProvider extends PackageServiceProvider
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
-                    ->askToStarRepoOnGitHub('azzarip/laravel-keap');
+                    ->askToStarRepoOnGitHub('keapgeek/laravel-keap');
             });
     }
 }

@@ -14,10 +14,11 @@ You can find a whole website with the documentation for this package at [https:/
 To install this package, we need to install the Laravel part and create the API credentials to connect to your Keap Application.
 
 ### Laravel set up
+
 To install the package you can use the following command
 
 ```bash
-composer require azzarip/laravel-keap
+composer require keapgeek/laravel-keap
 ```
 
 then install the package to publish the configuration
@@ -33,29 +34,37 @@ In the environment file add the following lines
 KEAP_CLIENT_KEY="Client from the developer account"
 KEAP_CLIENT_SECRET="Secret from the developer account"
 ```
+
 ### Keap set up
+
 Before we start installing the package, we need to create a Keap developer account and get our API credentials.
 For more information look at the Keap documentation [Visit this website](https://www.laravelkeap.com/get-started)
 In shorts the steps are repeated here below:
-- Create a Developer Account
-- Generate the Api Keys
-- Authenticate
+
+-   Create a Developer Account
+-   Generate the Api Keys
+-   Authenticate
 
 ## First Usage
-After installation and having setup the environment variables in the .env file. You can access the `/keap/auth` uri in your browser, even in the local version, to access the
-login page of Keap. Once logged in you can authorize the access to a specific app. 
 
-I strongly suggest to have a sandbox version of Keap, to test your Api before connecting it to your real app with your clients data. 
+After installation and having setup the environment variables in the .env file. You can access the `/keap/auth` uri in your browser, even in the local version, to access the
+login page of Keap. Once logged in you can authorize the access to a specific app.
+
+I strongly suggest to have a sandbox version of Keap, to test your Api before connecting it to your real app with your clients data.
 
 Automatically keap will redirect you to a confirmation page that will simply say `Access granted!`. From there you can start using the keap service.
 
 ### Access Code
+
 Keap will transmit an access and refresh token that are stored in the cache, therefore pay attention when you clear it.
 The refresh code can be used only for 24 hours. You can refresh the code with the artisan command
+
 ```
 php artisan keap:refresh
 ```
+
 You can set up this command in the console `Kernel.php` file to run twice or thrice a day to prevent the code from expiring.
+
 ```php
     protected function schedule(Schedule $schedule): void
     {
@@ -68,7 +77,7 @@ You can set up this command in the console `Kernel.php` file to run twice or thr
 
 ```bash
 composer test
-````
+```
 
 ## Credits
 

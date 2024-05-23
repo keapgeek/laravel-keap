@@ -5,9 +5,9 @@ namespace Azzarip\Keap;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\RequestException;
+use Azzarip\Keap\Exceptions\BadRequestException;
 use Azzarip\Keap\Exceptions\ServerErrorException;
 use Azzarip\Keap\Exceptions\InvalidTokenException;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class Client
 {
@@ -75,14 +75,7 @@ class Client
     {
         $url = $this->url.'/'.trim($uri, '/');
 
-        try {
-            $response = $this->request->$method($url, $data);
-        } catch (RequestException $e) {
-            if($e->getCode() == 400) {
-                $message = json_decode($e->response->body(), true)['message'];
-                throw new BadRequestException($message);
-            }
-        }
+        $this->tryRequest($method, $url, $data);
 
         return $this->checkResponse($response);
     }
@@ -99,6 +92,17 @@ class Client
             $this->url .= '/crm/rest/'.$uri;
         }
 
+    }
+
+    protected function tryRequest($method, $url, $data){
+        try {
+            return $this->request->$method($url, $data);
+        } catch (RequestException $e) {
+            if($e->getCode() == 400) {
+                $message = json_decode($e->response->body(), true)['message'];
+                throw new BadRequestException($message);
+            }
+        }
     }
 
     protected function checkResponse($response)

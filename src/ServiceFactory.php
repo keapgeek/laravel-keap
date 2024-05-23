@@ -4,6 +4,10 @@ namespace Azzarip\Keap;
 
 class ServiceFactory
 {
+    public function account()
+    {
+        return new Services\Account();
+    }
     public function token()
     {
         return new Services\Token();

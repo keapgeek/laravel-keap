@@ -38,7 +38,7 @@ KEAP_CLIENT_SECRET="Secret from the developer account"
 ### Keap set up
 
 Before we start installing the package, we need to create a Keap developer account and get our API credentials.
-For more information look at the Keap documentation [Visit this website](https://www.laravelkeap.com/get-started)
+For more information look at the Keap documentation [Visit the Laravel Keap Docs](https://www.laravelkeap.com/get-started?utm_source=github&utm_medium=repository&utm_campaign=readme)
 In shorts the steps are repeated here below:
 
 -   Create a Developer Account
@@ -54,7 +54,7 @@ I strongly suggest to have a sandbox version of Keap, to test your Api before co
 
 Automatically keap will redirect you to a confirmation page that will simply say `Access granted!`. From there you can start using the keap service.
 
-### Access Code
+### Automatically refresh the Oath token
 
 Keap will transmit an access and refresh token that are stored in the cache, therefore pay attention when you clear it.
 The refresh code can be used only for 24 hours. You can refresh the code with the artisan command
@@ -72,6 +72,28 @@ You can set up this command in the console `Kernel.php` file to run twice or thr
         $schedule->command('keap:refresh')->twiceDaily(1, 13);
     }
 ```
+
+## Accessing the API
+
+To access the REST API, you can use the `Keap` Facade:
+
+```php
+use KeapGeek\Keap\Facades\Keap;
+
+// To access the contacts
+Keap::contact();
+
+//To access the campaigns
+Keap::campaign();
+
+//To manage the Oauth tokens
+Keap::token();
+
+```
+
+The methods of the Keap Facade allow you to automatically call the API endpoints.
+
+A list of all the available methods are can be found in the [Laravel Keap API Docs](https://www.laravelkeap.com/docs/api?utm_source=github&utm_medium=repository&utm_campaign=readme)
 
 ## Testing
 

@@ -8,6 +8,10 @@ class ServiceFactory
     {
         return new Services\Account();
     }
+    public function company()
+    {
+        return new Services\Company();
+    }
     public function token()
     {
         return new Services\Token();

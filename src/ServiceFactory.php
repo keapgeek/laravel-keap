@@ -8,6 +8,10 @@ class ServiceFactory
     {
         return new Services\Account();
     }
+    public function affiliate()
+    {
+        return new Services\Affiliate();
+    }
     public function company()
     {
         return new Services\Company();

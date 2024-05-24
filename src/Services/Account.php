@@ -6,14 +6,14 @@ class Account extends Service
 {
     protected $uri = '/v1/account/profile';
 
-    public function retrieve()
+    public function info()
     {
         return $this->client->get();
     }
 
     public function update(array $data)
     {
-        $original = $this->retrieve();
+        $original = $this->info();
 
         $data = array_merge($original, $data);
 

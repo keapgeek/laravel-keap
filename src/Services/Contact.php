@@ -42,4 +42,9 @@ class Contact extends Service
         return $this->client->put('/', $data);
 
     }
+
+    public function model()
+    {
+        return $this->client->get('/model');
+    }
 }

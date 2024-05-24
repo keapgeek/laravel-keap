@@ -56,10 +56,12 @@ class Client
 
     protected function call($method, $uri = '', $data = null)
     {
-        $response = retry(config('keap.retry_times'),
+        return retry(config('keap.retry_times'),
 
             function () use ($method, $uri, $data) {
+
                 return $this->sendRequest($method, $uri, $data);
+
             },
 
             config('keap.retry_delay'),
@@ -68,16 +70,15 @@ class Client
                 return $e instanceof ServerErrorException;
             });
 
-        return $response;
     }
 
     protected function sendRequest($method, $uri, $data): array
     {
         $url = $this->url.'/'.trim($uri, '/');
 
-        $this->tryRequest($method, $url, $data);
+        $response = $this->tryRequest($method, $url, $data);
 
-        return $this->checkResponse($response);
+        return $this->checkResponse($response) ?? [];
     }
 
     public function setUri(string $uri = '')
@@ -96,12 +97,16 @@ class Client
 
     protected function tryRequest($method, $url, $data){
         try {
+
             return $this->request->$method($url, $data);
+
         } catch (RequestException $e) {
+
             if($e->getCode() == 400) {
                 $message = json_decode($e->response->body(), true)['message'];
                 throw new BadRequestException($message);
             }
+
         }
     }
 

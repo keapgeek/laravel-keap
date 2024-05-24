@@ -53,4 +53,12 @@ class ServiceFactory
     {
         return new Services\Token();
     }
+    public function oauth()
+    {
+        return new Services\Oauth();
+    }
+    public function user()
+    {
+        return new Services\User();
+    }
 }

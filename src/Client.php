@@ -72,13 +72,13 @@ class Client
 
     }
 
-    protected function sendRequest($method, $uri, $data): array
+    protected function sendRequest($method, $uri, $data)
     {
         $url = $this->url.'/'.trim($uri, '/');
 
         $response = $this->tryRequest($method, $url, $data);
 
-        return $this->checkResponse($response) ?? [];
+        return $this->checkResponse($response);
     }
 
     public function setUri(string $uri = '')

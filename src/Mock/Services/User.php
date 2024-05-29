@@ -2,9 +2,7 @@
 
 namespace KeapGeek\Keap\Mock\Services;
 
-use function Symfony\Component\String\b;
-
-class Task
+class User
 {
     public function emailSignature()
     {
@@ -12,22 +10,22 @@ class Task
         return $htmlString;
     }
 
-    public function create(array $data)
+    public function create(string $email, string $given_name, bool $admin = false, bool $partner = false)
     {
         $id = fake()->randomNumber(5);
         return [
         "address" => null,
         "website" => null,
-        "partner" => $data['partner'] ?? false,
+        "partner" => $partner,
         "status" => "Invited",
         "company_name" => "",
-        "email_address" => $data['email'],
+        "email_address" => $email,
         "phone_numbers" => [],
         "fax_numbers" => [],
-        "given_name" => $data['given_name'],
+        "given_name" => $given_name,
         "family_name" => "",
         "middle_name" => null,
-        "preferred_name" => $data['given_name'],
+        "preferred_name" => $given_name,
         "time_zone" => null,
         "job_title" => null,
         "infusionsoft_id" => fake()->bothify('???###-') . fake()->md5(),

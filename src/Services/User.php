@@ -18,8 +18,13 @@ class User extends Service
         return $this->client->get("/$userId/signature");
     }
 
-    public function create(array $data)
+    public function create(string $email, string $given_name, bool $admin = false, bool $partner = false)
     {
-        return $this->client->post("/", $data);
+        return $this->client->post("/", [
+            'email' => $email,
+            'given_name' => $given_name,
+            'admin' => $admin,
+            'partner' => $partner,
+        ]);
     }
 }

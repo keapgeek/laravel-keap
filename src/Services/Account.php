@@ -13,7 +13,7 @@ class Account extends Service
 
     public function update(array $data)
     {
-        $original = $this->info();
+        $original = $this->info() ?? [];
 
         $data = array_merge($original, $data);
 

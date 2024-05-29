@@ -102,11 +102,10 @@ class Client
 
         } catch (RequestException $e) {
 
-            if($e->getCode() == 400) {
+            if($e->getCode() == 400 || $e->getCode() == 500) {
                 $message = json_decode($e->response->body(), true)['message'];
                 throw new BadRequestException($message);
             }
-
         }
     }
 
@@ -118,11 +117,19 @@ class Client
             throw new InvalidTokenException('Expired Token: go to /keap/auth');
         }
 
+        if ($status === 404) {
+            return null;
+        }
+
         if ($response->serverError()) {
             throw new ServerErrorException("Server Error (Status Code: {$status})");
         }
 
         $content = $response->getBody()->getContents();
+
+        if(strpos($response->getHeaderLine('Content-Type'),  'text/plain') !== false) {
+            return $content;
+        }
 
         return json_decode($content, true);
     }

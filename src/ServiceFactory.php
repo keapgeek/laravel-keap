@@ -57,6 +57,10 @@ class ServiceFactory
     {
         return new Services\Oauth();
     }
+    public function setting()
+    {
+        return new Services\Setting();
+    }
     public function tag()
     {
         return new Services\Tag();

@@ -11,7 +11,8 @@ class Setting extends Service
 
     public function status()
     {
-        return $this->client->get('/application/enabled');
+        $value = $this->client->get('/application/enabled')['value'];
+        return $value === 'yes';
     }
 
     public function config()

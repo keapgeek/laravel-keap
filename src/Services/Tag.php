@@ -14,6 +14,16 @@ class Tag extends Service
         return $this->client->get('/');
     }
 
+    public function create(string $name, string $description = '', ?int $categoryId = null)
+    {
+        $category = $categoryId ? ['id' => $categoryId] : null;
+        return $this->client->post('/', [
+            'name' => $name,
+            'description' => $description,
+            'category' => $category,
+        ]);
+    }
+
     public function createCategory(string $name, string $description = '')
     {
         return $this->client->post('/categories', [

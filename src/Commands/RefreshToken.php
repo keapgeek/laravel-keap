@@ -2,9 +2,9 @@
 
 namespace KeapGeek\Keap\Commands;
 
-use KeapGeek\Keap\Exceptions\InvalidTokenException;
-use KeapGeek\Keap\Keap;
 use Illuminate\Console\Command;
+use KeapGeek\Keap\Facades\Keap;
+use KeapGeek\Keap\Exceptions\InvalidTokenException;
 
 class RefreshToken extends Command
 {

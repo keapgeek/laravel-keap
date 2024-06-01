@@ -31,6 +31,3 @@ test('creates makes a POST request', function () {
               $request->method() === 'POST';
     });
 });
-test('creates with wrong status throws exception', function () {
-    Keap::affiliate()->create('::code::', 111, '::password::', status: '::wrong::');
-})->throws(ValidationException::class);

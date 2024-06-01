@@ -14,12 +14,11 @@ class Affiliate extends Service
         bool $notify_on_lead = true,
         bool $notify_on_sale = true,
         ?int $parent_id = null,
-        string $status = 'active',
+        bool $active = true,
         ?int $track_leads_for = null )
     {
-        if(!($status == 'active' || $status == 'inactive')) {
-            throw new ValidationException('Invalid status');
-        }
+
+        $status = $active ? 'active' : 'inactive';
 
         return $this->client->post('/', [
             'code' => $code,

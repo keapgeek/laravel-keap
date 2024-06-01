@@ -74,12 +74,14 @@ class Client
 
     protected function sendRequest($method, $uri, $data)
     {
-        $url = $this->url.'/'.trim($uri, '/');
+        $url = $this->prepareUrl($uri);
 
         $response = $this->tryRequest($method, $url, $data);
 
         return $this->checkResponse($response);
     }
+
+
 
     public function setUri(string $uri = '')
     {
@@ -105,6 +107,11 @@ class Client
             if($e->getCode() == 400 || $e->getCode() == 500) {
                 $message = json_decode($e->response->body(), true)['message'];
                 throw new BadRequestException($message);
+            }
+
+            if($e->getCode() == 403) {
+                $message = json_decode($e->response->body(), true)['message'];
+                throw new BadRequestException($message . '. Wrong Keap version.');
             }
         }
     }
@@ -132,5 +139,11 @@ class Client
         }
 
         return json_decode($content, true);
+    }
+
+
+    protected function prepareUrl(string $uri): string
+    {
+        return $this->url.'/'.trim($uri, '/');
     }
 }

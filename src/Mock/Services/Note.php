@@ -17,12 +17,13 @@ class Note
         if(!in_array($type, $types)) {
             throw new ValidationException('Type must be one of the following: '. implode(', ', $types));
         }
+
         return [
             'body' => $body,
             'contact_id' => $contact_id,
             'title' => $title,
             'type' => $type ?? 'Appointement',
-            'user' => $user_id ?? 0,
+            'user_id' => $user_id ?? 0,
         ];
     }
 

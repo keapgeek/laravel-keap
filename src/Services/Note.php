@@ -12,7 +12,7 @@ class Note extends Service
         int $contact_id,
         ?string $title = null,
         ?string $body = null,
-        ?string $type = 'Appointment',
+        string $type = 'Appointment',
         ?int $user_id = null,
     ){
         $types = ['Appointment', 'Call', 'Email', 'Fax', 'Letter', 'Other'];

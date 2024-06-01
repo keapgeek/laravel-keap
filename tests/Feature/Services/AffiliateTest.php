@@ -22,3 +22,15 @@ test('model makes a GET request', function () {
               $request->method() === 'GET';
     });
 });
+
+test('creates makes a POST request', function () {
+    Keap::affiliate()->create('::code::', 111, '::password::');
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+              $request->method() === 'POST';
+    });
+});
+test('creates with wrong status throws exception', function () {
+    Keap::affiliate()->create('::code::', 111, '::password::', status: '::wrong::');
+})->throws(ValidationException::class);

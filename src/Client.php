@@ -78,24 +78,9 @@ class Client
 
         $response = $this->tryRequest($method, $url, $data);
 
-        return $this->checkResponse($response);
+        return $this->getResponse($response);
     }
 
-
-
-    public function setUri(string $uri = '')
-    {
-
-        if (empty($uri)) {
-            return;
-        }
-
-        $uri = trim($uri, '/');
-        if (Str::startsWith($uri, 'v1')) {
-            $this->url .= '/crm/rest/'.$uri;
-        }
-
-    }
 
     protected function tryRequest($method, $url, $data){
         try {
@@ -109,28 +94,24 @@ class Client
                 throw new BadRequestException($message);
             }
 
+            if($e->getCode() == 401) {
+                throw new InvalidTokenException('Expired Token: go to /keap/auth');
+            }
+
             if($e->getCode() == 403) {
                 $message = json_decode($e->response->body(), true)['message'];
                 throw new BadRequestException($message . '. Wrong Keap version.');
             }
+
+            if($e->getCode() == 404) {
+                return null;
+            }
         }
     }
 
-    protected function checkResponse($response)
+    protected function getResponse($response)
     {
-        $status = $response->getStatusCode();
-
-        if ($status === 401) {
-            throw new InvalidTokenException('Expired Token: go to /keap/auth');
-        }
-
-        if ($status === 404) {
-            return null;
-        }
-
-        if ($response->serverError()) {
-            throw new ServerErrorException("Server Error (Status Code: {$status})");
-        }
+        if(is_null($response)) return null;
 
         $content = $response->getBody()->getContents();
 
@@ -140,6 +121,7 @@ class Client
 
         return json_decode($content, true);
     }
+
 
 
     protected function prepareUrl(string $uri): string

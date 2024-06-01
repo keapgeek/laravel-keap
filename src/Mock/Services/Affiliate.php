@@ -14,9 +14,8 @@ class Affiliate
     {
         $status = $active ? 'active' : 'inactive';
 
-        return [
-            'id' => fake()->randomNumber(3),
-            'contact_id' => $contact_id,
+        return $this->fakeAffiliate([
+   'contact_id' => $contact_id,
             'code' => $code,
             'name' => $name ?? fake()->name(),
             'notify_on_lead' => $notify_on_lead,
@@ -24,10 +23,10 @@ class Affiliate
             'parent_id' => $parent_id,
             'status' => $status,
             'track_leads_for' => $track_leads_for,
-        ];
+        ]);
     }
 
-        public function model()
+    public function model()
     {
         return [
             'custom_fields' => [],
@@ -35,4 +34,21 @@ class Affiliate
         ];
     }
 
+    public function find(int $id) {
+        return $this->fakeAffiliate(['id' => $id]);
+    }
+
+    protected function fakeAffiliate(array $data){
+        return array_merge([
+            'id' => fake()->randomNumber(3),
+            'contact_id' => fake()->randomNumber(3),
+            'code' => fake()->word(),
+            'name' => fake()->name(),
+            'notify_on_lead' => fake()->boolean(),
+            'notify_on_sale' => fake()->boolean(),
+            'parent_id' => fake()->randomNumber(2),
+            'status' => fake()->boolean() ? 'active' : 'inactive',
+            'track_leads_for' => 0,
+            ], $data);
+    }
 }

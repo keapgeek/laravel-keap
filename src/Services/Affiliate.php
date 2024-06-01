@@ -8,6 +8,10 @@ class Affiliate extends Service
 {
     protected $uri = '/v1/affiliates';
 
+    public function find(int $id)
+    {
+        return $this->client->get("/$id");
+    }
 
     public function create(string $code, int $contact_id, string $password,
         ?string $name = null,

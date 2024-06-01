@@ -128,4 +128,16 @@ class Client
     {
         return $this->url.'/'.trim($uri, '/');
     }
+
+    public function setUri(string $uri = '')
+    {
+
+        if (empty($uri)) return;
+
+        $uri = trim($uri, '/');
+        if (Str::startsWith($uri, 'v1')) {
+            $this->url .= '/crm/rest/'.$uri;
+        }
+
+    }
 }

@@ -18,26 +18,21 @@ class Note extends Service
         return $this->client->delete("/$id");
     }
 
-    public function create(
-        int $contact_id,
-        ?string $title = null,
-        ?string $body = null,
-        string $type = 'Appointment',
-        ?int $user_id = null,
-    ){
-        $types = ['Appointment', 'Call', 'Email', 'Fax', 'Letter', 'Other'];
-        if(!in_array($type, $types)) {
-            throw new ValidationException('Type must be one of the following: '. implode(', ', $types));
-        }
-
-            return $this->client->post('/', [
-            'contact_id' => $contact_id,
-            'title' => $title,
-            'body' => $body,
-            'type' => $type,
-            'user_id' => $user_id,
-        ]);
+    public function update(int $note_id, array $data)
+    {
+        return $this->client->patch("/$note_id", $data);
     }
+
+    public function replace(int $note_id, array $data)
+    {
+        return $this->client->put("/$note_id", $data);
+    }
+
+    public function create(array $data){
+            return $this->client->post('/', $data);
+    }
+
+
     public function model()
     {
         return $this->client->get('/model');

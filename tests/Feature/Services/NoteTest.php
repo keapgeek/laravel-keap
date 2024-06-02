@@ -15,16 +15,13 @@ test('facade returns a Note Service', function () {
 });
 
 test('create makes a POST request', function () {
-    Keap::note()->create(111);
+    Keap::note()->create(['contact_id' => 1, 'body' => '::body::']);
 
     Http::assertSent(function ($request) {
        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/notes/' &&
               $request->method() === 'POST';
     });
 });
-test('wrong type on create returns Exception', function () {
-    Keap::note()->create(111, type: '::wrong::');
-})->throws(ValidationException::class);
 
 test('model makes a GET request', function () {
     Keap::note()->model();
@@ -50,5 +47,24 @@ test('delete makes a DELETE request', function () {
     Http::assertSent(function ($request) {
        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/notes/1' &&
               $request->method() === 'DELETE';
+    });
+});
+
+test('update makes a PATCH request', function () {
+    Keap::note()->update(1, ['title' => '::title::']);
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/notes/1' &&
+              $request->method() === 'PATCH';
+    });
+});
+
+
+test('replace makes a PUT request', function () {
+    Keap::note()->replace(1, ['body' => '::body::']);
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/notes/1' &&
+              $request->method() === 'PUT';
     });
 });

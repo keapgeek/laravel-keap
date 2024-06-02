@@ -16,25 +16,20 @@ class Note
         return true;
     }
 
-    public function create(
-        int $contact_id,
-        ?string $title = null,
-        ?string $body = null,
-        ?string $type = null,
-        ?int $user_id = null,
-    ){
+    public function update(int $id, array $data) {
+        return $this->fakeNote(['id' => $id] + $data);
+    }
+
+    public function create(array $data){
         $types = ['Appointment', 'Call', 'Email', 'Fax', 'Letter', 'Other'];
-        if(!in_array($type, $types)) {
+        if(!in_array($data['type'], $types)) {
             throw new ValidationException('Type must be one of the following: '. implode(', ', $types));
         }
 
-        return [
-            'body' => $body,
-            'contact_id' => $contact_id,
-            'title' => $title,
-            'type' => $type ?? 'Appointement',
-            'user_id' => $user_id ?? 0,
-        ];
+        return array_merge([
+                'user_id' => 0,
+                'type' => 'Appointment',
+            ], $data);
     }
 
     public function model()

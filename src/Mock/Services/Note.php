@@ -12,6 +12,10 @@ class Note
         return $this->fakeNote(['id' => $id]);
     }
 
+    public function delete(int $id) {
+        return true;
+    }
+
     public function create(
         int $contact_id,
         ?string $title = null,

@@ -13,6 +13,11 @@ class Note extends Service
         return $this->client->get("/$id");
     }
 
+    public function delete(int $id)
+    {
+        return $this->client->delete("/$id");
+    }
+
     public function create(
         int $contact_id,
         ?string $title = null,

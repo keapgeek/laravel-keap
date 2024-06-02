@@ -54,6 +54,11 @@ class Client
         return $this->call('put', $uri, $data);
     }
 
+    public function delete($uri, $data = null)
+    {
+        return $this->call('delete', $uri, $data);
+    }
+
     protected function call($method, $uri = '', $data = null)
     {
         return retry(config('keap.retry_times'),

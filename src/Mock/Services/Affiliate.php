@@ -15,7 +15,7 @@ class Affiliate
         $status = $active ? 'active' : 'inactive';
 
         return $this->fakeAffiliate([
-   'contact_id' => $contact_id,
+            'contact_id' => $contact_id,
             'code' => $code,
             'name' => $name ?? fake()->name(),
             'notify_on_lead' => $notify_on_lead,

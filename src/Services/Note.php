@@ -8,6 +8,11 @@ class Note extends Service
 {
     protected $uri = '/v1/notes';
 
+    public function find(int $id)
+    {
+        return $this->client->get("/$id");
+    }
+
     public function create(
         int $contact_id,
         ?string $title = null,
@@ -25,7 +30,7 @@ class Note extends Service
             'title' => $title,
             'body' => $body,
             'type' => $type,
-            'user' => $user_id,
+            'user_id' => $user_id,
         ]);
     }
     public function model()

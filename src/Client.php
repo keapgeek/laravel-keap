@@ -118,6 +118,8 @@ class Client
     {
         if(is_null($response)) return null;
 
+        if($response->status() == 204) return true;
+
         $content = $response->getBody()->getContents();
 
         if(strpos($response->getHeaderLine('Content-Type'),  'text/plain') !== false) {

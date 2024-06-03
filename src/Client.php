@@ -39,7 +39,7 @@ class Client
         return $this;
     }
 
-    public function get($uri = null, array $data = null)
+    public function get($uri = '/', array $data = null)
     {
         return $this->call('get', $uri, $data);
     }

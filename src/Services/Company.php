@@ -31,6 +31,15 @@ class Company extends Service
         return $this->client->post('/', $data);
     }
 
+    public function update(int $company_id, array $data)
+    {
+        if (!array_key_exists('company_name', $data) || is_null($data['company_name'])) {
+            throw new ValidationException('Required: company_name');
+        }
+
+        return $this->client->patch("/$company_id", $data);
+    }
+
     public function model()
     {
         return $this->client->get('/model');

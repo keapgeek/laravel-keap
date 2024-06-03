@@ -58,6 +58,20 @@ test('find has optional_properties', function () {
     });
 });
 
+test('update makes a GET request', function () {
+    Keap::company()->update(1, ['company_name' => '::company_name::']);
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies/1' &&
+              $request->method() === 'PATCH';
+    });
+});
+
+test('company_name is required for update', function () {
+    Keap::company()->create(['key' => 'value']);
+
+})->throws(ValidationException::class);
+
 
 test('model makes a GET request', function () {
     Keap::company()->model();

@@ -13,6 +13,13 @@ class Company extends Service
         return $this->client->get();
     }
 
+    public function find($company_id, $options = [])
+    {
+        $data = $options ? ['optional_properties' => implode(',', $options)] : [];
+
+        return $this->client->get("/$company_id", $data  );
+    }
+
     public function create(array $data)
     {
         if (!array_key_exists('company_name', $data) || is_null($data['company_name'])) {

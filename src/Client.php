@@ -39,9 +39,9 @@ class Client
         return $this;
     }
 
-    public function get($uri = null)
+    public function get($uri = null, array $data = null)
     {
-        return $this->call('get', $uri);
+        return $this->call('get', $uri, $data);
     }
 
     public function post($uri, $data)

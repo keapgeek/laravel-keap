@@ -21,4 +21,9 @@ class Service
 
         $this->client->setUri($this->uri);
     }
+
+    public function getUri(): string
+    {
+        return $this->uri;
+    }
 }

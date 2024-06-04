@@ -7,7 +7,7 @@ use KeapGeek\Keap\Services\Service;
 
 class KeapList
 {
-    protected Collection $list;
+    protected array $list;
 
     protected int $total;
 

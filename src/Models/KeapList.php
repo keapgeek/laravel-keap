@@ -15,20 +15,26 @@ class KeapList
 
     protected string $name;
 
-    public function __construct(array $data, public Service $service)
+    public function __construct(?array $data, public Service $service)
     {
+        if(is_null($data)) return;
 
         $this->name = $this->getName($service->getUri());
         $this->total = $data['count'];
         $this->previous = $this->getQuery($data['previous']);
         $this->next = $this->getQuery($data['next']);
 
-        $this->list = collect($data[$this->name]);
+        $this->list = $data[$this->name];
     }
 
-    public function get(): Collection
+    public function toArray(): array
     {
         return $this->list;
+    }
+
+    public function toCollection(): Collection
+    {
+        return collect($this->list);
     }
 
     public function total(): int

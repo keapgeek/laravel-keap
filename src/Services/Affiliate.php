@@ -2,12 +2,16 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Exceptions\ValidationException;
+use KeapGeek\Keap\Models\KeapList;
 
 class Affiliate extends Service
 {
     protected $uri = '/v1/affiliates';
 
+    public function list(array $data = [])
+    {
+        return new KeapList($this->client->get('/', $data), $this);
+    }
     public function find(int $id)
     {
         return $this->client->get("/$id");

@@ -18,7 +18,7 @@ test('list makes a GET request', function () {
     Keap::company()->list();
 
     Http::assertSent(function ($request) {
-        dd($request);
+
        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies/' &&
               $request->method() === 'GET';
     });

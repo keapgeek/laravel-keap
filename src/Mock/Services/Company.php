@@ -6,6 +6,7 @@ use KeapGeek\Keap\Exceptions\ValidationException;
 
 class Company
 {
+
     public function model()
     {
         return [

@@ -21,7 +21,7 @@ test('hasKeap return true with keap_id', function () {
 test('achieveGoal creates a Keap Id', function () {
     $this->contact = Contact::create(['name' => 'Test User', 'email' => 'test@user.com']);
 
-    //Keap::fake();
+    Keap::fake();
     $this->contact->achieveGoal('test_goal');
     expect($this->contact->hasKeap())->toBeTrue();
 })->throwsNoExceptions();

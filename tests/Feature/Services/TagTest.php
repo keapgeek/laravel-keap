@@ -30,3 +30,54 @@ test('create makes a POST request', function () {
               $request->method() === 'POST';
     });
 });
+
+
+test('list makes a GET request', function () {
+    Keap::tag()->list();
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('find makes a GET request', function () {
+    Keap::tag()->find(1);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('removeFromContacts makes DELETE request', function () {
+    Keap::tag()->removeFromContacts(1, [1, 2, 3]);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts' &&
+              $request->method() === 'DELETE';
+    });
+});
+
+test('removeFromContact makes DELETE request', function () {
+    Keap::tag()->removeFromContact(1, 2);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts/2' &&
+              $request->method() === 'DELETE';
+    });
+});
+
+test('applyToContacts makes POST request', function () {
+    Keap::tag()->applyToContacts(1, [1, 2, 3]);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts' &&
+              $request->method() === 'POST';
+    });
+});

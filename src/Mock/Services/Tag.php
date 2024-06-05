@@ -28,7 +28,37 @@ class Tag
             'name' => $name,
             'description' => $description,
             'category' => $category ?? null,
-        ];;
+        ];
     }
 
+    public function find(int $tag_id)
+    {
+        return $this->fakeTag(['id' => $tag_id]);
+    }
+
+    public function applyToContacts(int $tag_id, array $contact_ids)
+    {
+        return array_map(function($item) {
+            return "SUCCESS";
+        }, $contact_ids);
+    }
+
+    public function removeFromContacts(int $tag_id, array $contact_ids)
+    {
+        return true;
+    }
+
+    public function removeFromContact(int $tag_id, int $contact_id)
+    {
+        return true;
+    }
+    protected function fakeTag(array $data)
+    {
+        return array_merge([
+            'id' => fake()->randomNumber(2),
+            'name' => fake()->word(),
+            'description' => fake()->sentence,
+            'category' => null,
+        ], $data);
+    }
 }

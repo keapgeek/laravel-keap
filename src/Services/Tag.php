@@ -2,6 +2,7 @@
 
 namespace KeapGeek\Keap\Services;
 
+use KeapGeek\Keap\Models\KeapList;
 use KeapGeek\Keap\Exceptions\ValidationException;
 
 class Tag extends Service
@@ -9,9 +10,9 @@ class Tag extends Service
     protected $uri = '/v1/tags';
 
 
-    public function list()
+    public function list(array $data = [])
     {
-        return $this->client->get('/');
+        return new KeapList($this->client->get('/', $data), $this);
     }
 
     public function create(string $name, string $description = '', ?int $categoryId = null)
@@ -30,5 +31,29 @@ class Tag extends Service
             'name' => $name,
             'description' => $description
         ]);
+    }
+
+    public function find(int $tag_id)
+    {
+        return $this->client->get("/$tag_id");
+    }
+
+    public function applyToContacts(int $tag_id, array $contact_ids)
+    {
+        return $this->client->post("/$tag_id/contacts", [
+            'ids' => $contact_ids
+        ]);
+    }
+
+    public function removeFromContacts(int $tag_id, array $contact_ids)
+    {
+        return $this->client->delete("/$tag_id/contacts", [
+            'ids' => $contact_ids
+        ]);
+    }
+
+    public function removeFromContact(int $tag_id, int $contact_id)
+    {
+        return $this->client->delete("/$tag_id/contacts/$contact_id");
     }
 }

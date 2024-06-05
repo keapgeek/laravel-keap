@@ -47,9 +47,7 @@ class Tag extends Service
 
     public function removeFromContacts(int $tag_id, array $contact_ids)
     {
-        return $this->client->delete("/$tag_id/contacts", [
-            'ids' => $contact_ids
-        ]);
+        return $this->client->delete("/$tag_id/contacts?ids=" . implode(",", $contact_ids));
     }
 
     public function removeFromContact(int $tag_id, int $contact_id)

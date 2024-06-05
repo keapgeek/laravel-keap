@@ -2,7 +2,7 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Models\KeapList;
+use Illuminate\Support\Carbon;
 
 class Affiliate extends Service
 {
@@ -10,8 +10,16 @@ class Affiliate extends Service
 
     public function list(array $data = [])
     {
-        return new KeapList($this->client->get('/', $data), $this);
+        $list = $this->client->get('/', $data);
+        return $list['affiliates'];
     }
+
+    public function count(array $data = [])
+    {
+        $list = $this->client->get('/', $data);
+        return (int) $list['count'];
+    }
+
     public function find(int $id)
     {
         return $this->client->get("/$id");
@@ -44,5 +52,20 @@ class Affiliate extends Service
     public function model()
     {
         return $this->client->get('/model');
+    }
+
+    public function commissions(array $data = [])
+    {
+        if(array_key_exists('since', $data)) {
+            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        if(array_key_exists('until', $data)) {
+            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+        $data['order'] = "DATE_EARNED";
+
+        $list = $this->client->get('/commissions', $data);
+        return $list['commissions'];
     }
 }

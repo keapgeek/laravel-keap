@@ -49,3 +49,21 @@ test('list makes a GET request', function () {
               $request->method() === 'GET';
     });
 });
+
+test('count makes a GET request', function () {
+    Keap::affiliate()->count();
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('commissions makes a GET request', function () {
+    Keap::affiliate()->commissions();
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/commissions' &&
+              $request->method() === 'GET';
+    });
+});

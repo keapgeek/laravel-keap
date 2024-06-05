@@ -2,9 +2,6 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Models\KeapList;
-use KeapGeek\Keap\Exceptions\ValidationException;
-
 class Tag extends Service
 {
     protected $uri = '/v1/tags';
@@ -12,7 +9,14 @@ class Tag extends Service
 
     public function list(array $data = [])
     {
-        return new KeapList($this->client->get('/', $data), $this);
+        $list = $this->client->get('/', $data);
+        return $list['tags'];
+    }
+
+    public function count(array $data = [])
+    {
+        $list = $this->client->get('/', $data);
+        return (int) $list['count'];
     }
 
     public function create(string $name, string $description = '', ?int $categoryId = null)

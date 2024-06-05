@@ -2,7 +2,6 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Models\KeapList;
 use KeapGeek\Keap\Exceptions\ValidationException;
 
 class Company extends Service
@@ -11,7 +10,14 @@ class Company extends Service
 
     public function list(array $data = [])
     {
-        return new KeapList($this->client->get('/', $data), $this);
+        $list = $this->client->get('/', $data);
+        return $list['companies'];
+    }
+
+    public function count(array $data = [])
+    {
+        $list = $this->client->get('/', $data);
+        return (int) $list['count'];
     }
 
     public function find($company_id, $options = [])

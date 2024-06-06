@@ -13,6 +13,18 @@ class Note extends Service
         return $this->client->get("/$id");
     }
 
+    public function list(array $data = [])
+    {
+        $list = $this->client->get('/', $data);
+        return $list['notes'];
+    }
+
+    public function count(array $data = [])
+    {
+        $list = $this->client->get('/', $data);
+        return $list['count'];
+    }
+
     public function delete(int $id)
     {
         return $this->client->delete("/$id");

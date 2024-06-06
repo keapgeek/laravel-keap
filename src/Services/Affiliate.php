@@ -56,6 +56,10 @@ class Affiliate extends Service
 
     public function commissions(array $data = [])
     {
+        if(array_key_exists('affiliate_id', $data)) {
+            $data['affiliateId'] = $data['affiliate_id'];
+            unset($data['affiliate_id']);
+        }
         if(array_key_exists('since', $data)) {
             $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
@@ -67,5 +71,11 @@ class Affiliate extends Service
 
         $list = $this->client->get('/commissions', $data);
         return $list['commissions'];
+    }
+
+    public function programs(array $data = [])
+    {
+        $list = $this->client->get('/programs', $data);
+        return $list['programs'];
     }
 }

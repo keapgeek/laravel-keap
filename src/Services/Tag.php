@@ -70,5 +70,4 @@ class Tag extends Service
         $list = $this->client->get("/$tag_id/contacts", $data);
         return $list['contacts'];
     }
-
 }

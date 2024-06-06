@@ -51,4 +51,14 @@ class Affiliate
             'track_leads_for' => 0,
             ], $data);
     }
+
+    public function commissions(array $data = [])
+    {
+        return [];
+    }
+
+    public function programs(array $data = [])
+    {
+        return [];
+    }
 }

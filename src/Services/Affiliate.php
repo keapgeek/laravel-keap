@@ -78,4 +78,10 @@ class Affiliate extends Service
         $list = $this->client->get('/programs', $data);
         return $list['programs'];
     }
+
+    public function redirects(array $data = [])
+    {
+        $list = $this->client->get('/redirectlinks', $data);
+        return $list['redirects'];
+    }
 }

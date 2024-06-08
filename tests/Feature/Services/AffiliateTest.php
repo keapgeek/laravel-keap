@@ -7,7 +7,6 @@ use KeapGeek\Keap\Exceptions\ValidationException;
 
 beforeEach(function () {
     setTokens();
-    Http::fake();
 });
 
 test('facade returns a Affiliate Service', function () {
@@ -15,6 +14,7 @@ test('facade returns a Affiliate Service', function () {
 });
 
 test('model makes a GET request', function () {
+    Http::fake();
     Keap::affiliate()->model();
 
     Http::assertSent(function ($request) {
@@ -24,6 +24,7 @@ test('model makes a GET request', function () {
 });
 
 test('creates makes a POST request', function () {
+    Http::fake();
     Keap::affiliate()->create('::code::', 111, '::password::');
 
     Http::assertSent(function ($request) {
@@ -33,6 +34,7 @@ test('creates makes a POST request', function () {
 });
 
 test('find makes a GET request', function () {
+    Http::fake();
     Keap::affiliate()->find(1);
 
     Http::assertSent(function ($request) {
@@ -42,6 +44,9 @@ test('find makes a GET request', function () {
 });
 
 test('list makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['affiliates' => []], 200),
+    ]);
     Keap::affiliate()->list();
 
     Http::assertSent(function ($request) {
@@ -51,6 +56,9 @@ test('list makes a GET request', function () {
 });
 
 test('count makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['count' => []], 200),
+    ]);
     Keap::affiliate()->count();
 
     Http::assertSent(function ($request) {
@@ -60,10 +68,37 @@ test('count makes a GET request', function () {
 });
 
 test('commissions makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['commissions' => []], 200),
+    ]);
     Keap::affiliate()->commissions();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/commissions' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/commissions?order=DATE_EARNED' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('programs makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['programs' => []], 200),
+    ]);
+    Keap::affiliate()->programs();
+
+    Http::assertSent(function ($request) {
+       return $request->url() === "https://api.infusionsoft.com/crm/rest/v1/affiliates/programs" &&
+              $request->method() === 'GET';
+    });
+});
+
+test('redirects makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['redirects' => []], 200),
+    ]);
+    Keap::affiliate()->redirects();
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/redirectlinks' &&
               $request->method() === 'GET';
     });
 });

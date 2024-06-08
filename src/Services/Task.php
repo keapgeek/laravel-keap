@@ -35,13 +35,12 @@ class Task extends Service
         }
 
         if(array_key_exists('contact_id', $data)) {
-            $contact = Keap::contact()->find($data['contact_id']);
+            $data['contact'] = [
+                'id' => $data['contact_id'],
+            ];
             unset($data['contact_id']);
-            $keys = ['first_name', 'last_name', 'email', 'id'];
-            $data['contact'] = array_map(function($contact) use ($keys) {
-                return array_intersect_key($contact, array_flip($keys));
-            }, $contact);
         }
+
 
         return $this->client->post('/', $data);
     }

@@ -20,6 +20,10 @@ class Note
         return $this->fakeNote(['id' => $id] + $data);
     }
 
+    public function replace(int $id, array $data) {
+        return $this->fakeNote(['id' => $id] + $data);
+    }
+
     public function create(array $data){
         $types = ['Appointment', 'Call', 'Email', 'Fax', 'Letter', 'Other'];
         if(!in_array($data['type'], $types)) {

@@ -78,4 +78,20 @@ class Affiliate
     {
         return [];
     }
+
+    public function summaries(array $data = [])
+    {
+        return [];
+    }
+
+    public function clawbacks(int $affiliate_id, array $data = [])
+    {
+        return [];
+    }
+
+    public function payments(int $affiliate_id, array $data = [])
+    {
+        return [];
+    }
+
 }

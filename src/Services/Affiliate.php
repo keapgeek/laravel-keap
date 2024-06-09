@@ -84,4 +84,41 @@ class Affiliate extends Service
         $list = $this->client->get('/redirectlinks', $data);
         return $list['redirects'];
     }
+
+    public function summaries(array $data = [])
+    {
+        $list = $this->client->get('/summaries', $data);
+        return $list['summaries'];
+    }
+
+    public function clawbacks(int $affiliate_id, array $data = [])
+    {
+        $data['order'] = "DATE_EARNED";
+
+        if(array_key_exists('since', $data)) {
+            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        if(array_key_exists('until', $data)) {
+            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        $list = $this->client->get("/$affiliate_id/clawbacks", $data);
+        return $list['clawbacks'];
+    }
+
+    public function payments(int $affiliate_id, array $data = [])
+    {
+
+        if(array_key_exists('since', $data)) {
+            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        if(array_key_exists('until', $data)) {
+            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        $list = $this->client->get("/$affiliate_id/payments", $data);
+        return $list['payments'];
+    }
 }

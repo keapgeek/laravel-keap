@@ -102,3 +102,41 @@ test('redirects makes a GET request', function () {
               $request->method() === 'GET';
     });
 });
+
+test('summaries makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['summaries' => []], 200),
+    ]);
+    Keap::affiliate()->summaries();
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/summaries' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('clawbacks makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['clawbacks' => []], 200),
+    ]);
+    Keap::affiliate()->clawbacks(1, []);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1/clawbacks?order=DATE_EARNED' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('payments makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['payments' => []], 200),
+    ]);
+    Keap::affiliate()->payments(1, []);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1/payments' &&
+              $request->method() === 'GET';
+    });
+});

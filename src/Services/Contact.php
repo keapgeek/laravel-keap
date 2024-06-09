@@ -36,9 +36,12 @@ class Contact extends Service
         $list = $this->client->get('/');
         return $list['count'];
     }
-    public function find(int $id)
+
+    public function find(int $contact_id, array $optional_properties = [])
     {
-        return $this->client->get("/$id");
+        return $this->client->get("/$contact_id", [
+            'optional_properties' => implode(',', $optional_properties)
+        ]);
     }
 
 

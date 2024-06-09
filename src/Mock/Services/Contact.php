@@ -14,6 +14,11 @@ class Contact
         }, range(1, 10));
         return $list;
     }
+
+    public function find(int $id) {
+        return $this->fakeContact(['id' => $id]);
+    }
+
     public function createOrUpdate(array $data, $duplicate_option = 'Email')
     {
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {

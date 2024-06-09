@@ -39,7 +39,16 @@ test('count makes a GET request', function () {
     });
 });
 
+test('find makes a GET request', function () {
+    Http::fake();
 
+    Keap::contact()->find(1);
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1?optional_properties=' &&
+              $request->method() === 'GET';
+    });
+});
 // test('creates makes a POST request', function () {
 //     Keap::company()->create(['company_name' => '::company_name::']);
 

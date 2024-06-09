@@ -2,17 +2,40 @@
 
 namespace KeapGeek\Keap\Services;
 
+use Carbon\Carbon;
 use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact extends Service
 {
     protected $uri = '/v1/contacts';
 
-    public function list()
+    public function list(array $data = [])
     {
-        return $this->client->get();
+        if(array_key_exists('since', $data)) {
+            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        if(array_key_exists('until', $data)) {
+            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        $list = $this->client->get('/');
+        return $list['contacts'];
     }
 
+    public function count(array $data = [])
+    {
+        if(array_key_exists('since', $data)) {
+            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        if(array_key_exists('until', $data)) {
+            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+
+        $list = $this->client->get('/');
+        return $list['count'];
+    }
     public function find(int $id)
     {
         return $this->client->get("/$id");

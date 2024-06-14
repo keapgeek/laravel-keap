@@ -40,6 +40,10 @@ class Task
         return true;
     }
 
+    public function create(array $data){
+        return $this->fakeTask($data);
+    }
+
     protected function fakeTask(array $data = []){
         return array_merge([
             'id' => fake()->randomNumber(3),

@@ -49,21 +49,38 @@ test('find makes a GET request', function () {
               $request->method() === 'GET';
     });
 });
-// test('creates makes a POST request', function () {
-//     Keap::company()->create(['company_name' => '::company_name::']);
 
-//     Http::assertSent(function ($request) {
-//        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies/' &&
-//               $request->method() === 'POST';
-//     });
-// });
+test('emails makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['emails' => []], 200),
+    ]);
+    Keap::contact()->emails(1);
 
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/emails' &&
+              $request->method() === 'GET';
+    });
+});
 
-// test('company_name is required for create', function () {
+test('creditCards makes a GET request', function () {
+    Http::fake();
+    Keap::contact()->creditCards(1);
 
-//     Keap::company()->create(['key' => 'value']);
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/creditCards' &&
+              $request->method() === 'GET';
+    });
+});
 
-// })->throws(ValidationException::class);
+test('deletes makes a DELETE request', function () {
+    Http::fake();
+    Keap::contact()->delete(1);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1' &&
+              $request->method() === 'DELETE';
+    });
+});
 
 test('model makes a GET request', function () {
     Http::fake();

@@ -70,6 +70,22 @@ class Contact extends Service
 
     }
 
+    public function emails(int $contact_id, array $data = [])
+    {
+        $list = $this->client->get("/$contact_id/emails", $data);
+        return $list['emails'];
+    }
+
+    public function creditCards(int $contact_id)
+    {
+        return $this->client->get("/$contact_id/creditCards");
+    }
+
+    public function delete(int $id)
+    {
+        return $this->client->delete("/$id");
+    }
+
     public function model()
     {
         return $this->client->get('/model');

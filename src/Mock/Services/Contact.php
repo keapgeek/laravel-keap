@@ -15,9 +15,26 @@ class Contact
         return $list;
     }
 
-    public function find(int $id) {
+    public function find(int $id)
+    {
         return $this->fakeContact(['id' => $id]);
     }
+
+    public function delete(int $id)
+    {
+        return true;
+    }
+
+    public function emails(int $id)
+    {
+        return [];
+    }
+
+    public function creditCards(int $id)
+    {
+        return [];
+    }
+
 
     public function createOrUpdate(array $data, $duplicate_option = 'Email')
     {

@@ -56,8 +56,7 @@ test('removeFromContacts makes DELETE request', function () {
     Keap::tag()->removeFromContacts(1, [1, 2, 3]);
 
     Http::assertSent(function ($request) {
-
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts' &&
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts?ids=1,2,3' &&
               $request->method() === 'DELETE';
     });
 });

@@ -92,3 +92,14 @@ test('model makes a GET request', function () {
               $request->method() === 'GET';
     });
 });
+
+test('insertUtm makes a GET request', function () {
+    Http::fake();
+    Keap::contact()->insertUtm(1, 2);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/utm' &&
+              $request->method() === 'POST';
+    });
+});

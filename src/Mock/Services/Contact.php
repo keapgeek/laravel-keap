@@ -51,6 +51,10 @@ class Contact
 
         return $data;
     }
+    public function insertUTM(int $contact_id, int $keap_source_id, ?array $utms = [])
+    {
+        return true;
+    }
 
 
     protected function fakeContact(array $data = []): array

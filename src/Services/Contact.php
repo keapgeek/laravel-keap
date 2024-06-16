@@ -90,4 +90,11 @@ class Contact extends Service
     {
         return $this->client->get('/model');
     }
+
+    public function insertUTM(int $contact_id, int $keap_source_id, ?array $utms = [])
+    {
+        return $this->client->post("/$contact_id/utm", [
+            'keapSourceId' => $keap_source_id,
+        ] + $utms);
+    }
 }

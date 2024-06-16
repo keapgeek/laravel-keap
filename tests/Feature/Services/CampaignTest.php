@@ -43,7 +43,19 @@ test('find makes a GET request', function () {
     Keap::campaign()->find(1);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/1?optional_properties=' &&
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/1' &&
+              $request->method() === 'GET';
+    });
+});
+
+
+test('find makes a GET request with optional_properties', function () {
+    Http::fake();
+
+    Keap::campaign()->find(1, ['sequences']);
+
+    Http::assertSent(function ($request) {
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/1?optional_properties=sequences' &&
               $request->method() === 'GET';
     });
 });

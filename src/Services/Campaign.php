@@ -20,6 +20,10 @@ class Campaign extends Service
 
     public function find(int $campaign_id, array $optional_properties = [])
     {
+        if(empty($optional_properties)) {
+            return $this->client->get("/$campaign_id");
+        }
+
         return $this->client->get("/$campaign_id", [
             'optional_properties' => implode(',', $optional_properties)
         ]);

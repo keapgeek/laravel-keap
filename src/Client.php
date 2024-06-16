@@ -122,6 +122,8 @@ class Client
     {
         if(is_null($response)) return null;
 
+        if($response->status() == 201) return true;
+
         if($response->status() == 204) return true;
 
         $content = $response->getBody()->getContents();

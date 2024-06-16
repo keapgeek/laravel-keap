@@ -51,7 +51,7 @@ class Contact
 
         return $data;
     }
-    public function insertUTM(int $contact_id, int $keap_source_id, ?array $utms = [])
+    public function insertUTM(int $contact_id, string $keap_source_id, ?array $utms = [])
     {
         return true;
     }

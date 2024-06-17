@@ -1,9 +1,8 @@
 <?php
 
-use KeapGeek\Keap\Facades\Keap;
 use Illuminate\Support\Facades\Http;
+use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Appointment;
-use KeapGeek\Keap\Exceptions\ValidationException;
 
 beforeEach(function () {
     setTokens();
@@ -18,11 +17,10 @@ test('model makes a GET request', function () {
     Keap::appointment()->model();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/model' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/model' &&
+               $request->method() === 'GET';
     });
 });
-
 
 test('list makes a GET request', function () {
     Http::fake([
@@ -31,8 +29,8 @@ test('list makes a GET request', function () {
     Keap::appointment()->list();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -43,15 +41,15 @@ test('count makes a GET request', function () {
     Keap::appointment()->count();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
+               $request->method() === 'GET';
     });
 });
 
 test('creates makes a POST request', function () {
     Http::fake();
     Keap::appointment()->create([
-        'title' => '::title::'
+        'title' => '::title::',
     ]);
 
     Http::assertSent(function ($request) {
@@ -85,18 +83,17 @@ test('update makes a PATCH request', function () {
     Keap::appointment()->update(1, ['title' => '::title::']);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/1' &&
-              $request->method() === 'PATCH';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/1' &&
+               $request->method() === 'PATCH';
     });
 });
-
 
 test('replace makes a PUT request', function () {
     Http::fake();
     Keap::appointment()->replace(1, ['body' => '::body::']);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/1' &&
-              $request->method() === 'PUT';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/1' &&
+               $request->method() === 'PUT';
     });
 });

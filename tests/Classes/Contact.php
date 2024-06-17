@@ -2,8 +2,8 @@
 
 namespace KeapGeek\Keap\Tests\Classes;
 
-use KeapGeek\Keap\Traits\KeapTrait;
 use Illuminate\Database\Eloquent\Model;
+use KeapGeek\Keap\Traits\KeapTrait;
 
 class Contact extends Model
 {

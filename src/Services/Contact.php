@@ -11,39 +11,40 @@ class Contact extends Service
 
     public function list(array $data = [])
     {
-        if(array_key_exists('since', $data)) {
+        if (array_key_exists('since', $data)) {
             $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        if(array_key_exists('until', $data)) {
+        if (array_key_exists('until', $data)) {
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
         $list = $this->client->get('/');
+
         return $list['contacts'];
     }
 
     public function count(array $data = [])
     {
-        if(array_key_exists('since', $data)) {
+        if (array_key_exists('since', $data)) {
             $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        if(array_key_exists('until', $data)) {
+        if (array_key_exists('until', $data)) {
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
         $list = $this->client->get('/');
+
         return $list['count'];
     }
 
     public function find(int $contact_id, array $optional_properties = [])
     {
         return $this->client->get("/$contact_id", [
-            'optional_properties' => implode(',', $optional_properties)
+            'optional_properties' => implode(',', $optional_properties),
         ]);
     }
-
 
     public function create(array $data)
     {
@@ -73,6 +74,7 @@ class Contact extends Service
     public function emails(int $contact_id, array $data = [])
     {
         $list = $this->client->get("/$contact_id/emails", $data);
+
         return $list['emails'];
     }
 
@@ -94,6 +96,7 @@ class Contact extends Service
     public function tags(int $contact_id, array $data = [])
     {
         $list = $this->client->get("/$contact_id/tags", $data);
+
         return $list['tags'];
     }
 
@@ -109,9 +112,8 @@ class Contact extends Service
 
     public function removeTags(int $contact_id, array $tag_ids)
     {
-        return $this->client->delete("/$contact_id/tags?ids=" . implode('%2C', $tag_ids));
+        return $this->client->delete("/$contact_id/tags?ids=".implode('%2C', $tag_ids));
     }
-
 
     public function insertUTM(int $contact_id, string $keap_source_id, ?array $utms = [])
     {

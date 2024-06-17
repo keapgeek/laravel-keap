@@ -2,8 +2,6 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Exceptions\ValidationException;
-
 class Note extends Service
 {
     protected $uri = '/v1/notes';
@@ -16,12 +14,14 @@ class Note extends Service
     public function list(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['notes'];
     }
 
     public function count(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['count'];
     }
 
@@ -40,10 +40,10 @@ class Note extends Service
         return $this->client->put("/$note_id", $data);
     }
 
-    public function create(array $data){
-            return $this->client->post('/', $data);
+    public function create(array $data)
+    {
+        return $this->client->post('/', $data);
     }
-
 
     public function model()
     {

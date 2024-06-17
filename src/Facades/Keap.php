@@ -2,9 +2,9 @@
 
 namespace KeapGeek\Keap\Facades;
 
-use KeapGeek\Keap\ServiceFactory;
-use KeapGeek\Keap\Mock\MockFactory;
 use Illuminate\Support\Facades\Facade;
+use KeapGeek\Keap\Mock\MockFactory;
+use KeapGeek\Keap\ServiceFactory;
 
 class Keap extends Facade
 {

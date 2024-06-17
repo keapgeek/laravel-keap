@@ -18,5 +18,4 @@ class Oauth
             'is_admin' => true,
         ];
     }
-
 }

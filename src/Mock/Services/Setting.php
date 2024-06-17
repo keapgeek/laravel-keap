@@ -12,20 +12,19 @@ class Setting
     public function config()
     {
         return [
-            "affiliate" => [],
-            "appointment" => [],
-            "application" => [],
-            "contact" => [],
-            "ecommerce" => [],
-            "email" => [],
-            "forms" => [],
-            "fulfillment" => [],
-            "invoice" => [],
-            "note" => [],
-            "opportunity" => [],
-            "task" => [],
-            "template" => [],
+            'affiliate' => [],
+            'appointment' => [],
+            'application' => [],
+            'contact' => [],
+            'ecommerce' => [],
+            'email' => [],
+            'forms' => [],
+            'fulfillment' => [],
+            'invoice' => [],
+            'note' => [],
+            'opportunity' => [],
+            'task' => [],
+            'template' => [],
         ];
     }
-
 }

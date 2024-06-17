@@ -2,8 +2,8 @@
 
 namespace KeapGeek\Keap\Tests;
 
-use KeapGeek\Keap\KeapServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
+use KeapGeek\Keap\KeapServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -27,7 +27,7 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-        config()->set('keap', require __DIR__ . '/../config/keap.php');
+        config()->set('keap', require __DIR__.'/../config/keap.php');
     }
 
     protected function setUpDatabase($app)

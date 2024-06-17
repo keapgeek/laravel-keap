@@ -6,12 +6,12 @@ use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact
 {
-
     public function list(array $data = [])
     {
         $list = array_map(function () {
             return $this->fakeContact();
         }, range(1, 10));
+
         return $list;
     }
 
@@ -35,7 +35,6 @@ class Contact
         return [];
     }
 
-
     public function createOrUpdate(array $data, $duplicate_option = 'Email')
     {
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
@@ -51,6 +50,7 @@ class Contact
 
         return $data;
     }
+
     public function insertUTM(int $contact_id, string $keap_source_id, ?array $utms = [])
     {
         return true;
@@ -63,10 +63,10 @@ class Contact
 
     public function tag(int $contact_id, array $tag_ids)
     {
-        $result = array();
+        $result = [];
 
         foreach ($tag_ids as $id) {
-            $result[$id] = "SUCCESS";
+            $result[$id] = 'SUCCESS';
         }
 
         return $result;
@@ -81,6 +81,7 @@ class Contact
     {
         return true;
     }
+
     protected function fakeContact(array $data = []): array
     {
         return array_merge([
@@ -107,5 +108,5 @@ class Contact
             'phone_numbers' => [],
             'addresses' => [],
         ], $data);
-}
+    }
 }

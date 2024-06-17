@@ -1,15 +1,14 @@
 <?php
 
-use KeapGeek\Keap\Facades\Keap;
 use Illuminate\Support\Facades\Http;
-use KeapGeek\Keap\Exceptions\ValidationException;
+use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Contact;
 
 beforeEach(function () {
     setTokens();
 });
 
-test('facade returns a Company Service', function () {
+test('facade returns a Contact Service', function () {
     expect(Keap::contact())->toBeInstanceOf(Contact::class);
 });
 
@@ -21,8 +20,8 @@ test('list makes a GET request', function () {
     Keap::contact()->list();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -34,8 +33,8 @@ test('count makes a GET request', function () {
     Keap::contact()->count();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -45,8 +44,8 @@ test('find makes a GET request', function () {
     Keap::contact()->find(1);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1?optional_properties=' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1?optional_properties=' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -88,8 +87,8 @@ test('model makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/model' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/model' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -101,8 +100,8 @@ test('tags makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -112,8 +111,8 @@ test('tag makes a POST request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags' &&
+               $request->method() === 'POST';
     });
 });
 
@@ -123,8 +122,8 @@ test('removeTag makes a DELETE request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags/2' &&
-              $request->method() === 'DELETE';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags/2' &&
+               $request->method() === 'DELETE';
     });
 });
 
@@ -134,8 +133,8 @@ test('removeTags makes a DELETE request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags?ids=1%2C2%2C3' &&
-              $request->method() === 'DELETE';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags?ids=1%2C2%2C3' &&
+               $request->method() === 'DELETE';
     });
 });
 
@@ -145,7 +144,7 @@ test('insertUtm makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/utm' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/utm' &&
+               $request->method() === 'POST';
     });
 });

@@ -1,9 +1,8 @@
 <?php
 
-use KeapGeek\Keap\Facades\Keap;
 use Illuminate\Support\Facades\Http;
+use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Task;
-use KeapGeek\Keap\Exceptions\ValidationException;
 
 beforeEach(function () {
     setTokens();
@@ -18,11 +17,10 @@ test('model makes a GET request', function () {
     Keap::task()->model();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/model' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/model' &&
+               $request->method() === 'GET';
     });
 });
-
 
 test('list makes a GET request', function () {
     Http::fake([
@@ -31,8 +29,8 @@ test('list makes a GET request', function () {
     Keap::task()->list();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -43,15 +41,15 @@ test('count makes a GET request', function () {
     Keap::task()->count();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/' &&
+               $request->method() === 'GET';
     });
 });
 
 test('creates makes a POST request', function () {
     Http::fake();
     Keap::task()->create([
-        'title' => '::title::'
+        'title' => '::title::',
     ]);
 
     Http::assertSent(function ($request) {
@@ -85,19 +83,18 @@ test('update makes a PATCH request', function () {
     Keap::task()->update(1, ['title' => '::title::']);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/1' &&
-              $request->method() === 'PATCH';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/1' &&
+               $request->method() === 'PATCH';
     });
 });
-
 
 test('replace makes a PUT request', function () {
     Http::fake();
     Keap::task()->replace(1, ['body' => '::body::']);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/1' &&
-              $request->method() === 'PUT';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/1' &&
+               $request->method() === 'PUT';
     });
 });
 
@@ -108,7 +105,7 @@ test('search makes a GET request', function () {
     Keap::task()->search();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/search' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tasks/search' &&
+               $request->method() === 'GET';
     });
 });

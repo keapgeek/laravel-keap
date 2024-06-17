@@ -6,7 +6,6 @@ use KeapGeek\Keap\Exceptions\ValidationException;
 
 class Company
 {
-
     public function model()
     {
         return [
@@ -17,7 +16,7 @@ class Company
 
     public function create(array $data)
     {
-        if (!array_key_exists('company_name', $data) || is_null($data['company_name'])) {
+        if (! array_key_exists('company_name', $data) || is_null($data['company_name'])) {
             throw new ValidationException('Required: company_name');
         }
 
@@ -27,10 +26,10 @@ class Company
     public function find($company_id, array $options = [])
     {
         $data = [];
-        foreach($options as $option)
-        {
+        foreach ($options as $option) {
             $data[$option] = null;
         }
+
         return $this->fakeCompany(['id' => $company_id] + $data);
     }
 
@@ -46,21 +45,19 @@ class Company
             'email_opted_in' => true,
             'email_address' => fake()->companyEmail(),
             'phone_number' => [
-                'number' => "",
+                'number' => '',
                 'extension' => null,
-                'type' => null
+                'type' => null,
             ],
             'address' => [
-                "line1" => "",
-                "line2" => "",
-                "locality" => "",
-                "region" => null,
-                "zip_code" => null,
-                "zip_four" => null,
-                "country_code" => null,
+                'line1' => '',
+                'line2' => '',
+                'locality' => '',
+                'region' => null,
+                'zip_code' => null,
+                'zip_four' => null,
+                'country_code' => null,
             ],
         ], $data);
     }
-
-
 }

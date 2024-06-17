@@ -19,5 +19,4 @@ class Account extends Service
 
         return $this->client->put('/', $data);
     }
-
 }

@@ -10,7 +10,7 @@ class Affiliate
         bool $notify_on_sale = true,
         ?int $parent_id = null,
         bool $active = true,
-        ?int $track_leads_for = null )
+        ?int $track_leads_for = null)
     {
         $status = $active ? 'active' : 'inactive';
 
@@ -39,14 +39,17 @@ class Affiliate
         $list = array_map(function () {
             return $this->fakeAffiliate();
         }, range(1, 10));
+
         return ['affiliates' => $list];
     }
 
-    public function find(int $id) {
+    public function find(int $id)
+    {
         return $this->fakeAffiliate(['id' => $id]);
     }
 
-    protected function fakeAffiliate(array $data = []){
+    protected function fakeAffiliate(array $data = [])
+    {
         return array_merge([
             'id' => fake()->randomNumber(3),
             'contact_id' => fake()->randomNumber(3),
@@ -57,13 +60,14 @@ class Affiliate
             'parent_id' => fake()->randomNumber(2),
             'status' => fake()->boolean() ? 'active' : 'inactive',
             'track_leads_for' => 0,
-            ], $data);
+        ], $data);
     }
 
     public function count(array $data = [])
     {
         return 1;
     }
+
     public function commissions(array $data = [])
     {
         return [];
@@ -93,5 +97,4 @@ class Affiliate
     {
         return [];
     }
-
 }

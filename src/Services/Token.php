@@ -2,8 +2,8 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Client;
 use Illuminate\Support\Facades\Cache;
+use KeapGeek\Keap\Client;
 
 class Token
 {

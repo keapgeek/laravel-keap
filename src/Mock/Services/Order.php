@@ -11,5 +11,4 @@ class Order
             'optional_properties' => null,
         ];
     }
-
 }

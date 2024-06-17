@@ -1,9 +1,8 @@
 <?php
 
-use KeapGeek\Keap\Facades\Keap;
 use Illuminate\Support\Facades\Http;
+use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\User;
-use KeapGeek\Keap\Exceptions\ValidationException;
 
 beforeEach(function () {
     setTokens();
@@ -18,8 +17,8 @@ test('list makes a GET request', function () {
     Keap::user()->list();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -27,8 +26,8 @@ test('create makes a POST request', function () {
     Keap::user()->create(fake()->email(), fake()->name());
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users/' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users/' &&
+               $request->method() === 'POST';
     });
 });
 
@@ -37,7 +36,7 @@ test('emailSignature makes a GET request', function () {
     Keap::user()->emailSignature($id);
 
     Http::assertSent(function ($request) use ($id) {
-       return $request->url() === "https://api.infusionsoft.com/crm/rest/v1/users/$id/signature" &&
-              $request->method() === 'GET';
+        return $request->url() === "https://api.infusionsoft.com/crm/rest/v1/users/$id/signature" &&
+               $request->method() === 'GET';
     });
 });

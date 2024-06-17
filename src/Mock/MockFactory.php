@@ -9,8 +9,6 @@ class MockFactory
         return new Services\Account();
     }
 
-
-
     public static function contact()
     {
         return new Services\Contact();

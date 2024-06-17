@@ -2,12 +2,12 @@
 
 namespace KeapGeek\Keap\Jobs;
 
-use KeapGeek\Keap\Interfaces\KeapInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use KeapGeek\Keap\Interfaces\KeapInterface;
 
 class AchieveGoal implements ShouldQueue
 {

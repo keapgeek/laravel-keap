@@ -20,7 +20,7 @@ class Account
                 'postal_code' => fake()->postcode(),
                 'zip_code' => fake()->postcode(),
                 'zip_four' => null,
-                'country_code' => fake()->countryCode()
+                'country_code' => fake()->countryCode(),
             ],
             'phone_ext' => null,
             'time_zone' => fake()->timezone(),

@@ -7,33 +7,37 @@ use KeapGeek\Keap\Exceptions\ValidationException;
 
 class Note
 {
-
-    public function find(int $id) {
+    public function find(int $id)
+    {
         return $this->fakeNote(['id' => $id]);
     }
 
-    public function delete(int $id) {
+    public function delete(int $id)
+    {
         return true;
     }
 
-    public function update(int $id, array $data) {
+    public function update(int $id, array $data)
+    {
         return $this->fakeNote(['id' => $id] + $data);
     }
 
-    public function replace(int $id, array $data) {
+    public function replace(int $id, array $data)
+    {
         return $this->fakeNote(['id' => $id] + $data);
     }
 
-    public function create(array $data){
+    public function create(array $data)
+    {
         $types = ['Appointment', 'Call', 'Email', 'Fax', 'Letter', 'Other'];
-        if(!in_array($data['type'], $types)) {
-            throw new ValidationException('Type must be one of the following: '. implode(', ', $types));
+        if (! in_array($data['type'], $types)) {
+            throw new ValidationException('Type must be one of the following: '.implode(', ', $types));
         }
 
         return array_merge([
-                'user_id' => 0,
-                'type' => 'Appointment',
-            ], $data);
+            'user_id' => 0,
+            'type' => 'Appointment',
+        ], $data);
     }
 
     public function model()
@@ -56,6 +60,6 @@ class Note
             'type' => 'Appointment',
             'last_updated_by' => 0,
             'user_id' => 0,
-            ], $data);
+        ], $data);
     }
 }

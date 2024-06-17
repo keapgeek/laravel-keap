@@ -15,7 +15,7 @@ class Tag
 
     public function create(string $name, string $description = '', ?int $categoryId = null)
     {
-        if($categoryId){
+        if ($categoryId) {
             $category = [
                 'id' => $categoryId,
                 'name' => fake()->slug(),
@@ -38,8 +38,8 @@ class Tag
 
     public function applyToContacts(int $tag_id, array $contact_ids)
     {
-        return array_map(function($item) {
-            return "SUCCESS";
+        return array_map(function ($item) {
+            return 'SUCCESS';
         }, $contact_ids);
     }
 
@@ -52,6 +52,7 @@ class Tag
     {
         return true;
     }
+
     protected function fakeTag(array $data)
     {
         return array_merge([

@@ -2,12 +2,12 @@
 
 namespace KeapGeek\Keap;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use KeapGeek\Keap\Exceptions\BadRequestException;
-use KeapGeek\Keap\Exceptions\ServerErrorException;
 use KeapGeek\Keap\Exceptions\InvalidTokenException;
+use KeapGeek\Keap\Exceptions\ServerErrorException;
 
 class Client
 {
@@ -39,7 +39,7 @@ class Client
         return $this;
     }
 
-    public function get($uri = '/', array $data = null)
+    public function get($uri = '/', ?array $data = null)
     {
         return $this->call('get', $uri, $data);
     }
@@ -63,6 +63,7 @@ class Client
     {
         return $this->call('patch', $uri, $data);
     }
+
     protected function call($method, $uri = '', $data = null)
     {
         return retry(config('keap.retry_times'),
@@ -90,29 +91,29 @@ class Client
         return $this->getResponse($response);
     }
 
-
-    protected function tryRequest($method, $url, $data){
+    protected function tryRequest($method, $url, $data)
+    {
         try {
 
             return $this->request->$method($url, $data);
 
         } catch (RequestException $e) {
 
-            if($e->getCode() == 400 || $e->getCode() == 500) {
+            if ($e->getCode() == 400 || $e->getCode() == 500) {
                 $message = json_decode($e->response->body(), true)['message'];
                 throw new BadRequestException($message);
             }
 
-            if($e->getCode() == 401) {
+            if ($e->getCode() == 401) {
                 throw new InvalidTokenException('Expired Token: go to /keap/auth');
             }
 
-            if($e->getCode() == 403) {
+            if ($e->getCode() == 403) {
                 $message = json_decode($e->response->body(), true)['message'];
-                throw new BadRequestException($message . '. Wrong Keap version.');
+                throw new BadRequestException($message.'. Wrong Keap version.');
             }
 
-            if($e->getCode() == 404) {
+            if ($e->getCode() == 404) {
                 return null;
             }
         }
@@ -120,22 +121,26 @@ class Client
 
     protected function getResponse($response)
     {
-        if(is_null($response)) return null;
+        if (is_null($response)) {
+            return null;
+        }
 
-        if($response->status() == 201) return true;
+        if ($response->status() == 201) {
+            return true;
+        }
 
-        if($response->status() == 204) return true;
+        if ($response->status() == 204) {
+            return true;
+        }
 
         $content = $response->getBody()->getContents();
 
-        if(strpos($response->getHeaderLine('Content-Type'),  'text/plain') !== false) {
+        if (strpos($response->getHeaderLine('Content-Type'), 'text/plain') !== false) {
             return $content;
         }
 
         return json_decode($content, true);
     }
-
-
 
     protected function prepareUrl(string $uri): string
     {
@@ -145,7 +150,9 @@ class Client
     public function setUri(string $uri = '')
     {
 
-        if (empty($uri)) return;
+        if (empty($uri)) {
+            return;
+        }
 
         $uri = trim($uri, '/');
         if (Str::startsWith($uri, 'v1')) {

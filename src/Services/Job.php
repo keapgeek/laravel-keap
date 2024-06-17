@@ -2,8 +2,8 @@
 
 namespace KeapGeek\Keap\Services;
 
-use KeapGeek\Keap\Jobs\AchieveGoal;
 use KeapGeek\Keap\Interfaces\KeapInterface;
+use KeapGeek\Keap\Jobs\AchieveGoal;
 
 class Job
 {

@@ -1,9 +1,8 @@
 <?php
 
-use KeapGeek\Keap\Facades\Keap;
 use Illuminate\Support\Facades\Http;
+use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Affiliate;
-use KeapGeek\Keap\Exceptions\ValidationException;
 
 beforeEach(function () {
     setTokens();
@@ -18,8 +17,8 @@ test('model makes a GET request', function () {
     Keap::affiliate()->model();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/model' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/model' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -28,8 +27,8 @@ test('creates makes a POST request', function () {
     Keap::affiliate()->create('::code::', 111, '::password::');
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+               $request->method() === 'POST';
     });
 });
 
@@ -38,8 +37,8 @@ test('find makes a GET request', function () {
     Keap::affiliate()->find(1);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -50,8 +49,8 @@ test('list makes a GET request', function () {
     Keap::affiliate()->list();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -62,8 +61,8 @@ test('count makes a GET request', function () {
     Keap::affiliate()->count();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -86,8 +85,8 @@ test('programs makes a GET request', function () {
     Keap::affiliate()->programs();
 
     Http::assertSent(function ($request) {
-       return $request->url() === "https://api.infusionsoft.com/crm/rest/v1/affiliates/programs" &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/programs' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -98,8 +97,8 @@ test('redirects makes a GET request', function () {
     Keap::affiliate()->redirects();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/redirectlinks' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/redirectlinks' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -110,8 +109,8 @@ test('summaries makes a GET request', function () {
     Keap::affiliate()->summaries();
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/summaries' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/summaries' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -123,8 +122,8 @@ test('clawbacks makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1/clawbacks?order=DATE_EARNED' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1/clawbacks?order=DATE_EARNED' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -136,7 +135,7 @@ test('payments makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1/payments' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/1/payments' &&
+               $request->method() === 'GET';
     });
 });

@@ -2,9 +2,9 @@
 
 namespace KeapGeek\Keap\Http\Controllers;
 
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use KeapGeek\Keap\Facades\Keap;
-use Illuminate\Routing\Controller;
 
 class KeapController extends Controller
 {

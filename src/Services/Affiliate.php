@@ -11,12 +11,14 @@ class Affiliate extends Service
     public function list(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['affiliates'];
     }
 
     public function count(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return (int) $list['count'];
     }
 
@@ -31,7 +33,7 @@ class Affiliate extends Service
         bool $notify_on_sale = true,
         ?int $parent_id = null,
         bool $active = true,
-        ?int $track_leads_for = null )
+        ?int $track_leads_for = null)
     {
 
         $status = $active ? 'active' : 'inactive';
@@ -45,7 +47,7 @@ class Affiliate extends Service
             'notify_on_sale' => $notify_on_sale,
             'parent_id' => $parent_id,
             'status' => $status,
-            'track_leads_for' => $track_leads_for
+            'track_leads_for' => $track_leads_for,
         ]);
     }
 
@@ -56,69 +58,75 @@ class Affiliate extends Service
 
     public function commissions(array $data = [])
     {
-        if(array_key_exists('affiliate_id', $data)) {
+        if (array_key_exists('affiliate_id', $data)) {
             $data['affiliateId'] = $data['affiliate_id'];
             unset($data['affiliate_id']);
         }
-        if(array_key_exists('since', $data)) {
+        if (array_key_exists('since', $data)) {
             $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        if(array_key_exists('until', $data)) {
+        if (array_key_exists('until', $data)) {
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
-        $data['order'] = "DATE_EARNED";
+        $data['order'] = 'DATE_EARNED';
 
         $list = $this->client->get('/commissions', $data);
+
         return $list['commissions'];
     }
 
     public function programs(array $data = [])
     {
         $list = $this->client->get('/programs', $data);
+
         return $list['programs'];
     }
 
     public function redirects(array $data = [])
     {
         $list = $this->client->get('/redirectlinks', $data);
+
         return $list['redirects'];
     }
 
     public function summaries(array $data = [])
     {
         $list = $this->client->get('/summaries', $data);
+
         return $list['summaries'];
     }
 
     public function clawbacks(int $affiliate_id, array $data = [])
     {
-        $data['order'] = "DATE_EARNED";
+        $data['order'] = 'DATE_EARNED';
 
-        if(array_key_exists('since', $data)) {
+        if (array_key_exists('since', $data)) {
             $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        if(array_key_exists('until', $data)) {
+        if (array_key_exists('until', $data)) {
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
         $list = $this->client->get("/$affiliate_id/clawbacks", $data);
+
         return $list['clawbacks'];
     }
 
     public function payments(int $affiliate_id, array $data = [])
     {
 
-        if(array_key_exists('since', $data)) {
+        if (array_key_exists('since', $data)) {
             $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        if(array_key_exists('until', $data)) {
+        if (array_key_exists('until', $data)) {
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
         $list = $this->client->get("/$affiliate_id/payments", $data);
+
         return $list['payments'];
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use KeapGeek\Keap\Tests\TestCase;
 use Illuminate\Support\Facades\Cache;
+use KeapGeek\Keap\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 

@@ -1,7 +1,7 @@
 <?php
 
-use KeapGeek\Keap\Facades\Keap;
 use Illuminate\Support\Facades\Http;
+use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Tag;
 
 beforeEach(function () {
@@ -17,8 +17,8 @@ test('createCategory makes a POST request', function () {
     Keap::tag()->createCategory('::name::', '::description::');
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/categories' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/categories' &&
+               $request->method() === 'POST';
     });
 });
 
@@ -26,19 +26,18 @@ test('create makes a POST request', function () {
     Keap::tag()->create('::name::', '::description::');
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
+               $request->method() === 'POST';
     });
 });
-
 
 test('list makes a GET request', function () {
     Keap::tag()->list();
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -47,8 +46,8 @@ test('find makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1' &&
-              $request->method() === 'GET';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1' &&
+               $request->method() === 'GET';
     });
 });
 
@@ -56,8 +55,8 @@ test('removeFromContacts makes DELETE request', function () {
     Keap::tag()->removeFromContacts(1, [1, 2, 3]);
 
     Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts?ids=1,2,3' &&
-              $request->method() === 'DELETE';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts?ids=1,2,3' &&
+               $request->method() === 'DELETE';
     });
 });
 
@@ -66,8 +65,8 @@ test('removeFromContact makes DELETE request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts/2' &&
-              $request->method() === 'DELETE';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts/2' &&
+               $request->method() === 'DELETE';
     });
 });
 
@@ -76,7 +75,7 @@ test('applyToContacts makes POST request', function () {
 
     Http::assertSent(function ($request) {
 
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts' &&
-              $request->method() === 'POST';
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/1/contacts' &&
+               $request->method() === 'POST';
     });
 });

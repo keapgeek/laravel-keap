@@ -56,7 +56,31 @@ class Contact
         return true;
     }
 
+    public function tags(int $contact_id, array $data = [])
+    {
+        return [];
+    }
 
+    public function tag(int $contact_id, array $tag_ids)
+    {
+        $result = array();
+
+        foreach ($tag_ids as $id) {
+            $result[$id] = "SUCCESS";
+        }
+
+        return $result;
+    }
+
+    public function removeTag(int $contact_id, int $tag_id)
+    {
+        return true;
+    }
+
+    public function removeTags(int $contact_id, array $tag_ids)
+    {
+        return true;
+    }
     protected function fakeContact(array $data = []): array
     {
         return array_merge([

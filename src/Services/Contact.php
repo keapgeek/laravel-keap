@@ -91,6 +91,28 @@ class Contact extends Service
         return $this->client->get('/model');
     }
 
+    public function tags(int $contact_id, array $data = [])
+    {
+        $list = $this->client->get("/$contact_id/tags", $data);
+        return $list['tags'];
+    }
+
+    public function tag(int $contact_id, array $tag_ids)
+    {
+        return $this->client->post("/$contact_id/tags", $tag_ids);
+    }
+
+    public function removeTag(int $contact_id, int $tag_id)
+    {
+        return $this->client->delete("/$contact_id/tags/$tag_id");
+    }
+
+    public function removeTags(int $contact_id, array $tag_ids)
+    {
+        return $this->client->delete("/$contact_id/tags?ids=" . implode('%2C', $tag_ids));
+    }
+
+
     public function insertUTM(int $contact_id, string $keap_source_id, ?array $utms = [])
     {
         return $this->client->post("/$contact_id/utm", [

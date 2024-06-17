@@ -93,6 +93,52 @@ test('model makes a GET request', function () {
     });
 });
 
+test('tags makes a GET request', function () {
+    Http::fake([
+        '*' => Http::response(['tags' => []], 200),
+    ]);
+    Keap::contact()->tags(1);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags' &&
+              $request->method() === 'GET';
+    });
+});
+
+test('tag makes a POST request', function () {
+    Http::fake();
+    Keap::contact()->tag(1, [2]);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags' &&
+              $request->method() === 'POST';
+    });
+});
+
+test('removeTag makes a DELETE request', function () {
+    Http::fake();
+    Keap::contact()->removeTag(1, 2);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags/2' &&
+              $request->method() === 'DELETE';
+    });
+});
+
+test('removeTags makes a DELETE request', function () {
+    Http::fake();
+    Keap::contact()->removeTags(1, [1, 2, 3]);
+
+    Http::assertSent(function ($request) {
+
+       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/tags?ids=1%2C2%2C3' &&
+              $request->method() === 'DELETE';
+    });
+});
+
 test('insertUtm makes a GET request', function () {
     Http::fake();
     Keap::contact()->insertUtm(1, 2);

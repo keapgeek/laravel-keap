@@ -39,6 +39,16 @@ class ServiceFactory
         return new Services\EmailAddress();
     }
 
+    public function locale()
+    {
+        return new Services\Locale();
+    }
+
+    public function merchant()
+    {
+        return new Services\Merchant();
+    }
+
     public function order()
     {
         return new Services\Order();

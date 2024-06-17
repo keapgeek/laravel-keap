@@ -41,6 +41,10 @@ class Contact extends Service
 
     public function find(int $contact_id, array $optional_properties = [])
     {
+        if(empty($optional_properties)) {
+            return $this->client->get("/$contact_id");
+        }
+
         return $this->client->get("/$contact_id", [
             'optional_properties' => implode(',', $optional_properties),
         ]);

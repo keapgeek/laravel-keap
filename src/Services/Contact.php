@@ -102,7 +102,9 @@ class Contact extends Service
 
     public function tag(int $contact_id, array $tag_ids)
     {
-        return $this->client->post("/$contact_id/tags", $tag_ids);
+        return $this->client->post("/$contact_id/tags", [
+            'tagIds' => $tag_ids
+        ]);
     }
 
     public function removeTag(int $contact_id, int $tag_id)

@@ -135,7 +135,7 @@ class Client
 
         $content = $response->getBody()->getContents();
 
-        if (strpos($response->getHeaderLine('Content-Type'), 'text/plain') !== false) {
+        if (strpos($response->getHeaderLine('Content-Type'), 'text/plain') === true) {
             return $content;
         }
 

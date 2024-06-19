@@ -20,17 +20,17 @@ class Opportunity extends Service
 
     public function create(array $data)
     {
-        $this->client->post('/', $data);
+        return $this->client->post('/', $data);
     }
 
     public function update(int $opportunity_id, array $data = [])
     {
-        $this->client->patch("/$opportunity_id", $data);
+        return $this->client->patch("/$opportunity_id", $data);
     }
 
     public function replace(array $data = [])
     {
-        $this->client->put('/', $data);
+        return $this->client->put('/', $data);
     }
 
     public function find(int $opportunity_id, array $optional_properties = [])

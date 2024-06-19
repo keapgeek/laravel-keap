@@ -30,7 +30,7 @@ class File extends Service
             $data['file_association'] = 'CONTACT';
             $data['contact_id'] = $contact_id;
         }
-        $this->client->post('/', $data);
+        return $this->client->post('/', $data);
     }
 
     public function find(int $file_id, array $optional_properties = [])

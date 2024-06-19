@@ -54,6 +54,11 @@ class ServiceFactory
         return new Services\Merchant();
     }
 
+    public function opportunity()
+    {
+        return new Services\Opportunity();
+    }
+
     public function order()
     {
         return new Services\Order();

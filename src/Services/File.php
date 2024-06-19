@@ -22,7 +22,6 @@ class File extends Service
     {
         $data = [
             'file_name' => $file_name,
-            'public' => $is_public,
             'file_data' => $file_data,
             'is_public' => $is_public,
             'file_association' => 'USER'
@@ -54,9 +53,7 @@ class File extends Service
     public function replace(int $file_id, string $file_name, $file_data, bool $is_public = false, ?int $contact_id = null)
     {
         $data = [
-            'file_id' => $file_id,
             'file_name' => $file_name,
-            'public' => $is_public,
             'file_data' => $file_data,
             'is_public' => $is_public,
             'file_association' => 'USER'

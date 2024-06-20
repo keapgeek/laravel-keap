@@ -6,7 +6,9 @@ use KeapGeek\Keap\Services\Tag;
 
 beforeEach(function () {
     setTokens();
-    Http::fake();
+    Http::fake([
+        '*' => Http::response(['tags' => []], 200),
+    ]);
 });
 
 test('facade returns a Tag Service', function () {
@@ -35,7 +37,6 @@ test('list makes a GET request', function () {
     Keap::tag()->list();
 
     Http::assertSent(function ($request) {
-
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
                $request->method() === 'GET';
     });

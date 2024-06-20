@@ -80,6 +80,6 @@ test('replace makes a PUT request', function () {
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/files/1' &&
-               $request->method() === 'POST';
+               $request->method() === 'PUT';
     });
 });

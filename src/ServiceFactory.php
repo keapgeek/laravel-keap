@@ -89,6 +89,11 @@ class ServiceFactory
         return new Services\Oauth();
     }
 
+    public function product()
+    {
+        return new Services\Product();
+    }
+
     public function setting()
     {
         return new Services\Setting();

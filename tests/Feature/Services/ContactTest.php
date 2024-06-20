@@ -44,7 +44,7 @@ test('find makes a GET request', function () {
     Keap::contact()->find(1);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1?optional_properties=' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1' &&
                $request->method() === 'GET';
     });
 });

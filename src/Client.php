@@ -125,10 +125,6 @@ class Client
             return null;
         }
 
-        if ($response->status() == 201) {
-            return true;
-        }
-
         if ($response->status() == 204) {
             return true;
         }

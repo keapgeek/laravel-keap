@@ -13,6 +13,7 @@ class Client
 {
     protected string $url;
 
+    protected string $base_url = 'https://api.infusionsoft.com';
     protected $request;
 
     public function __construct($bearer = null)
@@ -29,7 +30,6 @@ class Client
 
         $this->request = $this->request->retry(config('keap.retry_times'), config('keap.retry_delay'));
 
-        $this->url = 'https://api.infusionsoft.com';
     }
 
     public function auth()
@@ -154,6 +154,7 @@ class Client
             return;
         }
 
+        $this->url = $this->base_url;
         $uri = trim($uri, '/');
         if (Str::startsWith($uri, 'v1')) {
             $this->url .= '/crm/rest/'.$uri;

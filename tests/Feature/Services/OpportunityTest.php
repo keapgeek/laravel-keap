@@ -93,7 +93,7 @@ test('pipeline makes a GET request', function () {
     Keap::opportunity()->pipeline();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities/stage_pipeline' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunity/stage_pipeline' &&
                $request->method() === 'GET';
     });
 });

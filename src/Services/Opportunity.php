@@ -51,6 +51,7 @@ class Opportunity extends Service
 
     public function pipeline()
     {
+        $this->client->setUri('/v1/opportunity');
         return $this->client->get('/stage_pipeline');
     }
 }

@@ -7,7 +7,9 @@ use KeapGeek\Keap\Services\Company;
 
 beforeEach(function () {
     setTokens();
-    Http::fake();
+    Http::fake([
+        '*' => Http::response(['companies' => []], 200),
+    ]);
 });
 
 test('facade returns a Company Service', function () {

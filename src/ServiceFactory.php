@@ -108,4 +108,10 @@ class ServiceFactory
     {
         return new Services\User();
     }
+
+    public function submitForm(string $form_xid, array $data, array $headers = [])
+    {
+        return new Services\Form($form_xid, $data, $headers);
+    }
+
 }

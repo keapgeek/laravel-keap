@@ -25,6 +25,12 @@ return [
     'default_integration' => env('KEAP_DEFAULT_INTEGRATION'),
 
     /**
+     * This configuration apply to the submit form service.
+     * The app name is the XXX### code of your application, if set to null, no form will be submitted.
+     */
+    'app_name' => null,
+
+    /**
      * Contact Data
      * This array matches Keap contact attributes with your Contact Model attributes.
      * The key are keap attributes, the values your contact attributes.

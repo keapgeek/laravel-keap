@@ -16,9 +16,7 @@ class AchieveGoal implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(private KeapInterface $contact, private string $callName)
-    {
-    }
+    public function __construct(private KeapInterface $contact, private string $callName) {}
 
     /**
      * Execute the job.

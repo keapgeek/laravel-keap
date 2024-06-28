@@ -9,12 +9,14 @@ class File extends Service
     public function list(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['files'];
     }
 
     public function count(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['count'];
     }
 
@@ -24,18 +26,19 @@ class File extends Service
             'file_name' => $file_name,
             'file_data' => $file_data,
             'is_public' => $is_public,
-            'file_association' => 'USER'
+            'file_association' => 'USER',
         ];
         if ($contact_id) {
             $data['file_association'] = 'CONTACT';
             $data['contact_id'] = $contact_id;
         }
+
         return $this->client->post('/', $data);
     }
 
     public function find(int $file_id, array $optional_properties = [])
     {
-        if(empty($optional_properties)) {
+        if (empty($optional_properties)) {
             return $this->client->get("/$file_id");
         }
 
@@ -49,14 +52,13 @@ class File extends Service
         return $this->client->delete("/$file_id");
     }
 
-
     public function replace(int $file_id, string $file_name, $file_data, bool $is_public = false, ?int $contact_id = null)
     {
         $data = [
             'file_name' => $file_name,
             'file_data' => $file_data,
             'is_public' => $is_public,
-            'file_association' => 'USER'
+            'file_association' => 'USER',
         ];
         if ($contact_id) {
             $data['file_association'] = 'CONTACT';

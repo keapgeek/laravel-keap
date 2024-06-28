@@ -38,6 +38,7 @@ class ServiceFactory
     {
         return new Services\Email();
     }
+
     public function emailAddress()
     {
         return new Services\EmailAddress();
@@ -117,5 +118,4 @@ class ServiceFactory
     {
         return new Services\Form($form_xid, $data, $headers);
     }
-
 }

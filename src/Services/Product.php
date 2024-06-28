@@ -9,12 +9,14 @@ class Product extends Service
     public function list(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['products'];
     }
 
     public function count(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['count'];
     }
 

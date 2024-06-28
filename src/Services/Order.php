@@ -20,6 +20,7 @@ class Order extends Service
         }
 
         $list = $this->client->get('/', $data);
+
         return $list['orders'];
     }
 
@@ -35,6 +36,7 @@ class Order extends Service
         }
 
         $list = $this->client->get('/', $data);
+
         return $list['count'];
     }
 
@@ -67,5 +69,4 @@ class Order extends Service
     {
         return $this->client->delete("/$order_id/items/$item_id");
     }
-
 }

@@ -41,7 +41,7 @@ class Contact extends Service
 
     public function find(int $contact_id, array $optional_properties = [])
     {
-        if(empty($optional_properties)) {
+        if (empty($optional_properties)) {
             return $this->client->get("/$contact_id");
         }
 
@@ -112,7 +112,7 @@ class Contact extends Service
     public function tag(int $contact_id, array $tag_ids)
     {
         return $this->client->post("/$contact_id/tags", [
-            'tagIds' => $tag_ids
+            'tagIds' => $tag_ids,
         ]);
     }
 

@@ -2,6 +2,4 @@
 
 namespace KeapGeek\Keap\Exceptions;
 
-class KeapException extends \Exception
-{
-}
+class KeapException extends \Exception {}

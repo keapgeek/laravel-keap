@@ -32,17 +32,17 @@ class Email extends Service
 
     public function create(array $data)
     {
-        return $this->client->post("/", $data);
+        return $this->client->post('/', $data);
     }
 
     public function send(array $data)
     {
-        return $this->client->post("/queue", $data);
+        return $this->client->post('/queue', $data);
     }
 
     public function createSet(array $emails, array $errors = [])
     {
-        return $this->client->post("/sync", [
+        return $this->client->post('/sync', [
             'emails' => $emails,
             'errors' => $errors,
         ]);
@@ -50,6 +50,6 @@ class Email extends Service
 
     public function unsync(array $ids)
     {
-        return $this->client->post("/unsync", $ids);
+        return $this->client->post('/unsync', $ids);
     }
 }

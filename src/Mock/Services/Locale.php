@@ -14,16 +14,16 @@ class Locale
     public function provinces(string $country_code)
     {
         return [
-            'US-AL' => 'Alabama'
+            'US-AL' => 'Alabama',
         ];
     }
 
     public function dropdown(string $type)
     {
         return [
-            0 => "Work",
-            1 => "Home",
-            3 => "Other",
+            0 => 'Work',
+            1 => 'Home',
+            3 => 'Other',
         ];
     }
 }

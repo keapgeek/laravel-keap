@@ -14,6 +14,7 @@ class Client
     protected string $url;
 
     protected string $base_url = 'https://api.infusionsoft.com';
+
     protected $request;
 
     public function __construct($bearer = null)

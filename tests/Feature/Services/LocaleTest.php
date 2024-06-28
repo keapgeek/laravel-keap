@@ -38,7 +38,6 @@ test('provinces makes a GET request', function () {
     });
 });
 
-
 test('dropdown makes a GET request', function () {
     Http::fake([
         '*' => Http::response(['contact_types' => []], 200),

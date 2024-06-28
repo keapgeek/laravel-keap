@@ -20,6 +20,11 @@ return [
     'retry_delay' => 50,
 
     /**
+     * The middleware that protects the keap/auth and callback routes.
+     */
+    'middleware' => ['web', 'auth'],
+
+    /**
      * When not specified, the achieve goal is going to call this default integration
      */
     'default_integration' => env('KEAP_DEFAULT_INTEGRATION'),

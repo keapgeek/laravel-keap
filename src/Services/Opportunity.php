@@ -11,12 +11,14 @@ class Opportunity extends Service
     public function list(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['opportunities'];
     }
 
     public function count(array $data = [])
     {
         $list = $this->client->get('/', $data);
+
         return $list['count'];
     }
 
@@ -47,6 +49,7 @@ class Opportunity extends Service
         if (array_key_exists('date_created', $data)) {
             $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
+
         return $this->client->post('/', $data);
     }
 
@@ -76,6 +79,7 @@ class Opportunity extends Service
         if (array_key_exists('date_created', $data)) {
             $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
+
         return $this->client->patch("/$opportunity_id", $data);
     }
 
@@ -105,12 +109,13 @@ class Opportunity extends Service
         if (array_key_exists('date_created', $data)) {
             $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
+
         return $this->client->put('/', $data);
     }
 
     public function find(int $opportunity_id, array $optional_properties = [])
     {
-        if(empty($optional_properties)) {
+        if (empty($optional_properties)) {
             return $this->client->get("/$opportunity_id");
         }
 
@@ -127,6 +132,7 @@ class Opportunity extends Service
     public function pipeline()
     {
         $this->client->setUri('/v1/opportunity');
+
         return $this->client->get('/stage_pipeline');
     }
 }

@@ -93,6 +93,7 @@ test('deleteItem makes a DELETE request', function () {
 
     Http::assertSent(function ($request) {
         dd($request->url());
+
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/1/items/2' &&
                $request->method() === 'DELETE';
     });

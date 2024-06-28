@@ -17,6 +17,12 @@ beforeEach(function () {
 
 });
 
+it('routes are protected by middleware', function () {
+    dd(config('keap.middleware'));
+
+    get('/keap/auth')->assertRedirect('/login');
+});
+
 it('redirects to Auth Server with Parameters', function () {
     $url = 'https://accounts.infusionsoft.com/app/oauth/authorize?client_id=0123456789&redirect_uri=http://localhost/keap/callback&response_type=code&scope=full';
 

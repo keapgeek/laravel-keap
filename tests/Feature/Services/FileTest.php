@@ -49,7 +49,6 @@ test('delete makes a GET request', function () {
     });
 });
 
-
 test('find makes a GET request', function () {
     Http::fake();
 
@@ -60,7 +59,6 @@ test('find makes a GET request', function () {
                $request->method() === 'GET';
     });
 });
-
 
 test('upload makes a POST request', function () {
     Http::fake();

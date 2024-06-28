@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
-use KeapGeek\Keap\Exceptions\ValidationException;
 use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Email;
 

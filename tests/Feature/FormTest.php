@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Facades\Keap;
 use KeapGeek\Keap\Services\Form;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
     setTokens();
@@ -19,7 +19,6 @@ test('if config is not set no Http call', function () {
     Keap::submitForm('::xid::', []);
     Http::assertNothingSent();
 });
-
 
 test('if config is set it sends Http call', function () {
     Config::set('keap.app_name', 'aaa111');

@@ -18,6 +18,6 @@ class Locale extends Service
 
     public function dropdown(string $type)
     {
-        return $this->client->get("/defaultOptions")[$type . '_types'];
+        return $this->client->get('/defaultOptions')[$type.'_types'];
     }
 }

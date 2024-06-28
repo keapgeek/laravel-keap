@@ -71,7 +71,6 @@ test('createEmail makes a POST request', function () {
     });
 });
 
-
 test('creditCards makes a GET request', function () {
     Http::fake();
     Keap::contact()->creditCards(1);

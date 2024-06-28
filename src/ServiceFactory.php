@@ -84,11 +84,6 @@ class ServiceFactory
         return new Services\Job();
     }
 
-    public function token()
-    {
-        return new Services\Token();
-    }
-
     public function oauth()
     {
         return new Services\Oauth();

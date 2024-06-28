@@ -61,6 +61,17 @@ test('emails makes a GET request', function () {
     });
 });
 
+test('createEmail makes a POST request', function () {
+    Http::fake();
+    Keap::contact()->createEmail(1, ['sent_to_Address' => 'test@example.com']);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/emails' &&
+              $request->method() === 'POST';
+    });
+});
+
+
 test('creditCards makes a GET request', function () {
     Http::fake();
     Keap::contact()->creditCards(1);

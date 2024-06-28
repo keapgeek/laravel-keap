@@ -34,6 +34,10 @@ class ServiceFactory
         return new Services\Contact();
     }
 
+    public function email()
+    {
+        return new Services\Email();
+    }
     public function emailAddress()
     {
         return new Services\EmailAddress();

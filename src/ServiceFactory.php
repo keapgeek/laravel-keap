@@ -49,6 +49,11 @@ class ServiceFactory
         return new Services\File();
     }
 
+    public function hook()
+    {
+        return new Services\Hook();
+    }
+
     public function locale()
     {
         return new Services\Locale();

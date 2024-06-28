@@ -65,7 +65,7 @@ class Email extends Service
     public function unsync(array $ids)
     {
         return $this->client->post('/unsync', [
-            'ids' => $ids
+            'ids' => $ids,
         ]);
     }
 }

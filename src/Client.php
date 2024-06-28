@@ -4,7 +4,6 @@ namespace KeapGeek\Keap;
 
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 use KeapGeek\Keap\Exceptions\BadRequestException;
 use KeapGeek\Keap\Exceptions\InvalidTokenException;
 use KeapGeek\Keap\Exceptions\ServerErrorException;

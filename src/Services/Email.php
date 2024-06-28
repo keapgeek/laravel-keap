@@ -10,13 +10,8 @@ class Email extends Service
 
     public function list(array $data = [])
     {
-        if (array_key_exists('since_sent_date', $data)) {
-            $data['since_sent_date'] = Carbon::parse($data['since_sent_date'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until_sent_date', $data)) {
-            $data['until_sent_date'] = Carbon::parse($data['until_sent_date'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDate('since_sent_date', $data);
+        $this->parseDate('until_sent_date', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -25,6 +20,9 @@ class Email extends Service
 
     public function count(array $data = [])
     {
+        $this->parseDate('since_sent_date', $data);
+        $this->parseDate('until_sent_date', $data);
+
         $list = $this->client->get('/', $data);
 
         return $list['count'];
@@ -42,6 +40,11 @@ class Email extends Service
 
     public function create(array $data)
     {
+        $this->parseDate('clicked_date', $data);
+        $this->parseDate('opened_date', $data);
+        $this->parseDate('sent_date', $data);
+        $this->parseDate('received_date', $data);
+
         return $this->client->post('/', $data);
     }
 

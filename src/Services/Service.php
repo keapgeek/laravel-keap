@@ -3,6 +3,7 @@
 namespace KeapGeek\Keap\Services;
 
 use KeapGeek\Keap\Client;
+use Illuminate\Support\Carbon;
 use KeapGeek\Keap\Exceptions\InvalidTokenException;
 
 class Service
@@ -25,5 +26,12 @@ class Service
     public function getUri(): string
     {
         return $this->uri;
+    }
+
+    protected function parseDate(string $field, array &$data)
+    {
+        if (array_key_exists($field, $data)) {
+            $data[$field] = Carbon::parse($data[$field])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
     }
 }

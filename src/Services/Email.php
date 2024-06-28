@@ -2,8 +2,6 @@
 
 namespace KeapGeek\Keap\Services;
 
-use Illuminate\Support\Carbon;
-
 class Email extends Service
 {
     protected $uri = '/v1/emails';
@@ -50,6 +48,9 @@ class Email extends Service
 
     public function send(array $data)
     {
+        $this->encode64('html_content', $data);
+        $this->encode64('plain_content', $data);
+
         return $this->client->post('/queue', $data);
     }
 

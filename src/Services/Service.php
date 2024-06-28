@@ -35,4 +35,11 @@ class Service
             $data[$field] = Carbon::parse($data[$field])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
     }
+
+    protected function encode64(string $field, array &$data)
+    {
+        if (array_key_exists($field, $data)) {
+            $data[$field] = base64_encode($data[$field]);
+        }
+    }
 }

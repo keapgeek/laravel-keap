@@ -19,7 +19,7 @@ class Service
             throw new InvalidTokenException('Access Token is Missing: go to /keap/auth');
         }
 
-        $this->client = new Client(Token::getToken());
+        $this->client = new Client(Token::getAccessToken());
 
         $this->client->setUri($this->uri);
     }

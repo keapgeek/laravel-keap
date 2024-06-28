@@ -92,8 +92,6 @@ test('deleteItem makes a DELETE request', function () {
     Keap::order()->deleteItem(1, 2);
 
     Http::assertSent(function ($request) {
-        dd($request->url());
-
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/1/items/2' &&
                $request->method() === 'DELETE';
     });

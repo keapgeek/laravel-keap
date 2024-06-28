@@ -13,31 +13,16 @@ class Client
 {
     protected string $url;
 
-    protected string $base_url = 'https://api.infusionsoft.com';
+    protected string $base_url = 'https://api.infusionsoft.com/crm/rest/';
 
     protected $request;
 
     public function __construct($bearer = null)
     {
-
-        $this->request = Http::asForm();
-
-        if ($bearer) {
-            $this->request = Http::withHeaders([
-                'Authorization' => 'Bearer '.$bearer,
-                'Content-Type' => 'application/json',
-            ]);
-        }
-
-        $this->request = $this->request->retry(config('keap.retry_times'), config('keap.retry_delay'));
-
-    }
-
-    public function auth()
-    {
-        $this->request = $this->request->withBasicAuth(config('keap.client_key'), config('keap.client_secret'));
-
-        return $this;
+        $this->request = Http::withHeaders([
+            'Authorization' => 'Bearer '.$bearer,
+            'Content-Type' => 'application/json',
+        ]);
     }
 
     public function get($uri = '/', ?array $data = null)
@@ -153,9 +138,6 @@ class Client
 
         $this->url = $this->base_url;
         $uri = trim($uri, '/');
-        if (Str::startsWith($uri, 'v1')) {
-            $this->url .= '/crm/rest/'.$uri;
-        }
-
+        $this->url .= $uri;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace KeapGeek\Keap\Services;
 
+use KeapGeek\Keap\Token;
 use KeapGeek\Keap\Client;
 use Illuminate\Support\Carbon;
 use KeapGeek\Keap\Exceptions\InvalidTokenException;

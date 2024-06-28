@@ -4,7 +4,7 @@ namespace KeapGeek\Keap\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
-use KeapGeek\Keap\Facades\Keap;
+use KeapGeek\Keap\Token;
 
 class KeapController extends Controller
 {
@@ -32,8 +32,8 @@ class KeapController extends Controller
             return 'Missing callback code!';
         }
 
-        Keap::token()->request($code);
+        Token::request($code);
 
-        return 'Access granted!';
+        return view('laravel-keap::connected');
     }
 }

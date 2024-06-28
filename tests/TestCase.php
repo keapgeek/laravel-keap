@@ -13,8 +13,8 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
-        $this->setUpDatabase(app());
 
+        $this->setUpDatabase(app());
     }
 
     protected function getPackageProviders($app)
@@ -28,6 +28,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
         config()->set('keap', require __DIR__.'/../config/keap.php');
+        config()->set('keap.middleware', ['web']);
     }
 
     protected function setUpDatabase($app)

@@ -162,3 +162,33 @@ test('findOrderTransactions makes a GET request', function () {
                $request->method() === 'GET';
     });
 });
+
+test('replacePayPlan makes a PUT request', function () {
+    Http::fake();
+    Keap::order()->replacePayPlan(1, []);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/1/paymentPlan' &&
+               $request->method() === 'PUT';
+    });
+});
+
+test('findPayments makes a GET request', function () {
+    Http::fake();
+    Keap::order()->findPayments(1);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/1/payments' &&
+               $request->method() === 'GET';
+    });
+});
+
+test('createPayment makes a GET request', function () {
+    Http::fake();
+    Keap::order()->createPayment(1, []);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/1/payments' &&
+               $request->method() === 'POST';
+    });
+});

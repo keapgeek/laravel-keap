@@ -97,4 +97,19 @@ class Order extends Service
         $list = $this->client->get("/$order_id/transactions", $data);
         return $list['transactions'];
     }
+
+    public function replacePayPlan(int $order_id, array $data = [])
+    {
+        return $this->client->put("/$order_id/paymentPlan", $data);
+    }
+
+    public function findPayments(int $order_id)
+    {
+        return $this->client->get("/$order_id/payments");
+    }
+
+    public function createPayment(int $order_id, array $data)
+    {
+        return $this->client->post("/$order_id/payments", $data);
+    }
 }

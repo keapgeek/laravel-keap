@@ -11,13 +11,8 @@ class Order extends Service
     public function list(array $data = [])
     {
 
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDate('since', $data);
+        $this->parseDate('until', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -27,13 +22,8 @@ class Order extends Service
     public function count(array $data = [])
     {
 
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDate('since', $data);
+        $this->parseDate('until', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -68,5 +58,43 @@ class Order extends Service
     public function deleteItem(int $order_id, int $item_id)
     {
         return $this->client->delete("/$order_id/items/$item_id");
+    }
+
+    public function subscriptionModel()
+    {
+        $this->client->setUri('/v1/subscriptions');
+        return $this->client->get('/model');
+    }
+
+    public function listSubscriptions(array $data = [])
+    {
+        $this->client->setUri('/v1/subscriptions');
+        $list = $this->client->get('/', $data);
+        return $list['subscriptions'];
+    }
+
+    public function createSubscription(array $data)
+    {
+        $this->client->setUri('/v1/subscriptions');
+        return $this->client->post('/', $data);
+    }
+
+
+    public function listTransactions(array $data = [])
+    {
+        $this->client->setUri('/v1/transactions');
+        $list = $this->client->get('/', $data);
+        return $list['transactions'];
+    }
+
+    public function findTransaction(int $transaction_id)
+    {
+        $this->client->setUri('/v1/transactions');
+        return $this->client->get("/$transaction_id");
+    }
+    public function findOrderTransactions(int $order_id, array $data = [])
+    {
+        $list = $this->client->get("/$order_id/transactions", $data);
+        return $list['transactions'];
     }
 }

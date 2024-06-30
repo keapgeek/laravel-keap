@@ -80,13 +80,10 @@ class Client
 
     protected function getResponse($response)
     {
-        if (is_null($response)) {
-            return null;
-        }
+        if (is_null($response)) return null;
 
-        if ($response->status() == 204) {
-            return true;
-        }
+        if ($response->status() == 204) return true;
+
 
         $content = $response->getBody()->getContents();
 

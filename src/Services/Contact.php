@@ -52,6 +52,12 @@ class Contact extends Service
 
     public function create(array $data)
     {
+        if (array_key_exists('email', $data)) {
+            $data['email_addresses'] = [
+                'email' => $data['email'],
+                'fields' => 'EMAIL1'
+            ];
+        }
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
@@ -69,6 +75,13 @@ class Contact extends Service
 
     public function createOrUpdate(array $data, $duplicate_option = 'Email')
     {
+        if (array_key_exists('email', $data)) {
+            $data['email_addresses'] = [
+                'email' => $data['email'],
+                'fields' => 'EMAIL1'
+            ];
+        }
+
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
@@ -89,19 +102,21 @@ class Contact extends Service
         return $this->put('/', $data);
     }
 
-    public function update(int $contact_id, array $data, $duplicate_option = 'Email')
+    public function update(int $contact_id, array $data)
     {
+        if (array_key_exists('email', $data)) {
+            $data['email_addresses'] = [
+                'email' => $data['email'],
+                'fields' => 'EMAIL1'
+            ];
+        }
+
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
         $this->parseDatetime('anniversary', $data);
         $this->parseDatetime('birthday', $data);
-
-        if(! array_key_exists('duplicate_option', $data))
-        {
-            $data['duplicate_option'] = $duplicate_option;
-        }
 
         if(! array_key_exists('opt_in_reason', $data))
         {

@@ -63,7 +63,7 @@ test('emails makes a GET request', function () {
 
 test('create makes a POST request', function () {
     Http::fake();
-    Keap::contact()->create([]);
+    Keap::contact()->create(['email' => 'test@example.com']);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
@@ -73,7 +73,7 @@ test('create makes a POST request', function () {
 
 test('createOrUpdate makes a PUT request', function () {
     Http::fake();
-    Keap::contact()->createOrUpdate([]);
+    Keap::contact()->createOrUpdate(['email' => 'test@example.com']);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
@@ -83,7 +83,7 @@ test('createOrUpdate makes a PUT request', function () {
 
 test('update makes a PATCH request', function () {
     Http::fake();
-    Keap::contact()->update(1, []);
+    Keap::contact()->update(1, ['email' => 'test@example.com']);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1' &&

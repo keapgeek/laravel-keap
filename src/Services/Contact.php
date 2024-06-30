@@ -56,8 +56,13 @@ class Contact extends Service
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
-        $data['opt_in_reason'] = config('keap.opt_in_reason');
+        $this->parseDatetime('anniversary', $data);
+        $this->parseDatetime('birthday', $data);
 
+        if(! array_key_exists('opt_in_reason', $data))
+        {
+            $data['opt_in_reason'] = config('keap.opt_in_reason');
+        }
         return $this->post('/', $data);
 
     }
@@ -68,11 +73,42 @@ class Contact extends Service
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
-        $data['duplicate_option'] = $duplicate_option;
-        $data['opt_in_reason'] = config('keap.opt_in_reason');
+        $this->parseDatetime('anniversary', $data);
+        $this->parseDatetime('birthday', $data);
+
+        if(! array_key_exists('duplicate_option', $data))
+        {
+            $data['duplicate_option'] = $duplicate_option;
+        }
+
+        if(! array_key_exists('opt_in_reason', $data))
+        {
+            $data['opt_in_reason'] = config('keap.opt_in_reason');
+        }
 
         return $this->put('/', $data);
+    }
 
+    public function update(int $contact_id, array $data, $duplicate_option = 'Email')
+    {
+        if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
+            throw new KeapException('Missing Email addresses and/or phone numbers');
+        }
+
+        $this->parseDatetime('anniversary', $data);
+        $this->parseDatetime('birthday', $data);
+
+        if(! array_key_exists('duplicate_option', $data))
+        {
+            $data['duplicate_option'] = $duplicate_option;
+        }
+
+        if(! array_key_exists('opt_in_reason', $data))
+        {
+            $data['opt_in_reason'] = config('keap.opt_in_reason');
+        }
+
+        return $this->patch("/$contact_id", $data);
     }
 
     public function emails(int $contact_id, array $data = [])

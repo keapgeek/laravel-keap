@@ -61,6 +61,36 @@ test('emails makes a GET request', function () {
     });
 });
 
+test('create makes a POST request', function () {
+    Http::fake();
+    Keap::contact()->create([]);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+              $request->method() === 'POST';
+    });
+});
+
+test('createOrUpdate makes a PUT request', function () {
+    Http::fake();
+    Keap::contact()->createOrUpdate([]);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+              $request->method() === 'PUT';
+    });
+});
+
+test('update makes a PATCH request', function () {
+    Http::fake();
+    Keap::contact()->update(1, []);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1' &&
+              $request->method() === 'PATCH';
+    });
+});
+
 test('createEmail makes a POST request', function () {
     Http::fake();
     Keap::contact()->createEmail(1, ['sent_to_Address' => 'test@example.com']);

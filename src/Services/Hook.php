@@ -8,27 +8,27 @@ class Hook extends Service
 
     public function list()
     {
-        return $this->client->get('/');
+        return $this->get('/');
     }
 
     public function types()
     {
-        return $this->client->get('/event_keys');
+        return $this->get('/event_keys');
     }
 
     public function find(string $key)
     {
-        return $this->client->get("/$key");
+        return $this->get("/$key");
     }
 
     public function delete(string $key)
     {
-        return $this->client->delete("/$key");
+        return $this->del("/$key");
     }
 
     public function create(string $event_key, string $hook_url)
     {
-        return $this->client->post('/', [
+        return $this->post('/', [
             'eventKey' => $event_key,
             'hookUrl' => $hook_url,
         ]);
@@ -36,7 +36,7 @@ class Hook extends Service
 
     public function update(string $key, string $event_key, string $hook_url)
     {
-        return $this->client->put("/$key", [
+        return $this->put("/$key", [
             'eventKey' => $event_key,
             'hookUrl' => $hook_url,
         ]);
@@ -44,6 +44,6 @@ class Hook extends Service
 
     public function verify(string $key)
     {
-        return $this->client->post("/$key/verify", []);
+        return $this->post("/$key/verify", []);
     }
 }

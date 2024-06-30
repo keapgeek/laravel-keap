@@ -8,14 +8,14 @@ class Tag extends Service
 
     public function list(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['tags'];
     }
 
     public function count(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return (int) $list['count'];
     }
@@ -24,7 +24,7 @@ class Tag extends Service
     {
         $category = $categoryId ? ['id' => $categoryId] : null;
 
-        return $this->client->post('/', [
+        return $this->post('/', [
             'name' => $name,
             'description' => $description,
             'category' => $category,
@@ -33,7 +33,7 @@ class Tag extends Service
 
     public function createCategory(string $name, string $description = '')
     {
-        return $this->client->post('/categories', [
+        return $this->post('/categories', [
             'name' => $name,
             'description' => $description,
         ]);
@@ -41,36 +41,36 @@ class Tag extends Service
 
     public function find(int $tag_id)
     {
-        return $this->client->get("/$tag_id");
+        return $this->get("/$tag_id");
     }
 
     public function applyToContacts(int $tag_id, array $contact_ids)
     {
-        return $this->client->post("/$tag_id/contacts", [
+        return $this->post("/$tag_id/contacts", [
             'ids' => $contact_ids,
         ]);
     }
 
     public function removeFromContacts(int $tag_id, array $contact_ids)
     {
-        return $this->client->delete("/$tag_id/contacts?ids=".implode(',', $contact_ids));
+        return $this->del("/$tag_id/contacts?ids=".implode(',', $contact_ids));
     }
 
     public function removeFromContact(int $tag_id, int $contact_id)
     {
-        return $this->client->delete("/$tag_id/contacts/$contact_id");
+        return $this->del("/$tag_id/contacts/$contact_id");
     }
 
     public function taggedCompanies(int $tag_id, array $data = [])
     {
-        $list = $this->client->get("/$tag_id/companies", $data);
+        $list = $this->get("/$tag_id/companies", $data);
 
         return $list['companies'];
     }
 
     public function taggedContacts(int $tag_id, array $data = [])
     {
-        $list = $this->client->get("/$tag_id/contacts", $data);
+        $list = $this->get("/$tag_id/contacts", $data);
 
         return $list['contacts'];
     }

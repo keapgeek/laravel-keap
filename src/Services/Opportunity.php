@@ -10,14 +10,14 @@ class Opportunity extends Service
 
     public function list(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['opportunities'];
     }
 
     public function count(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['count'];
     }
@@ -50,7 +50,7 @@ class Opportunity extends Service
             $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        return $this->client->post('/', $data);
+        return $this->post('/', $data);
     }
 
     public function update(int $opportunity_id, array $data = [])
@@ -80,7 +80,7 @@ class Opportunity extends Service
             $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        return $this->client->patch("/$opportunity_id", $data);
+        return $this->patch("/$opportunity_id", $data);
     }
 
     public function replace(array $data = [])
@@ -110,29 +110,29 @@ class Opportunity extends Service
             $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        return $this->client->put('/', $data);
+        return $this->put('/', $data);
     }
 
     public function find(int $opportunity_id, array $optional_properties = [])
     {
         if (empty($optional_properties)) {
-            return $this->client->get("/$opportunity_id");
+            return $this->get("/$opportunity_id");
         }
 
-        return $this->client->get("/$opportunity_id", [
+        return $this->get("/$opportunity_id", [
             'optional_properties' => implode(',', $optional_properties),
         ]);
     }
 
     public function model()
     {
-        return $this->client->get('/model');
+        return $this->get('/model');
     }
 
     public function pipeline()
     {
         $this->client->setUri('/v1/opportunity');
 
-        return $this->client->get('/stage_pipeline');
+        return $this->get('/stage_pipeline');
     }
 }

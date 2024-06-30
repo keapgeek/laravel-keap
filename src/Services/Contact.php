@@ -19,7 +19,7 @@ class Contact extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get('/');
+        $list = $this->get('/');
 
         return $list['contacts'];
     }
@@ -34,7 +34,7 @@ class Contact extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get('/');
+        $list = $this->get('/');
 
         return $list['count'];
     }
@@ -42,10 +42,10 @@ class Contact extends Service
     public function find(int $contact_id, array $optional_properties = [])
     {
         if (empty($optional_properties)) {
-            return $this->client->get("/$contact_id");
+            return $this->get("/$contact_id");
         }
 
-        return $this->client->get("/$contact_id", [
+        return $this->get("/$contact_id", [
             'optional_properties' => implode(',', $optional_properties),
         ]);
     }
@@ -58,7 +58,7 @@ class Contact extends Service
 
         $data['opt_in_reason'] = config('keap.opt_in_reason');
 
-        return $this->client->post('/', $data);
+        return $this->post('/', $data);
 
     }
 
@@ -71,69 +71,69 @@ class Contact extends Service
         $data['duplicate_option'] = $duplicate_option;
         $data['opt_in_reason'] = config('keap.opt_in_reason');
 
-        return $this->client->put('/', $data);
+        return $this->put('/', $data);
 
     }
 
     public function emails(int $contact_id, array $data = [])
     {
-        $list = $this->client->get("/$contact_id/emails", $data);
+        $list = $this->get("/$contact_id/emails", $data);
 
         return $list['emails'];
     }
 
     public function createEmail(int $contact_id, array $data)
     {
-        return $this->client->post("/$contact_id/emails", $data);
+        return $this->post("/$contact_id/emails", $data);
     }
 
     public function createCreditCard(int $contact_id, array $data)
     {
-        return $this->client->post("/$contact_id/creditCards", $data);
+        return $this->post("/$contact_id/creditCards", $data);
     }
 
     public function listCreditCards(int $contact_id)
     {
-        return $this->client->get("/$contact_id/creditCards");
+        return $this->get("/$contact_id/creditCards");
     }
 
     public function delete(int $id)
     {
-        return $this->client->delete("/$id");
+        return $this->del("/$id");
     }
 
     public function model()
     {
-        return $this->client->get('/model');
+        return $this->get('/model');
     }
 
     public function tags(int $contact_id, array $data = [])
     {
-        $list = $this->client->get("/$contact_id/tags", $data);
+        $list = $this->get("/$contact_id/tags", $data);
 
         return $list['tags'];
     }
 
     public function tag(int $contact_id, array $tag_ids)
     {
-        return $this->client->post("/$contact_id/tags", [
+        return $this->post("/$contact_id/tags", [
             'tagIds' => $tag_ids,
         ]);
     }
 
     public function removeTag(int $contact_id, int $tag_id)
     {
-        return $this->client->delete("/$contact_id/tags/$tag_id");
+        return $this->del("/$contact_id/tags/$tag_id");
     }
 
     public function removeTags(int $contact_id, array $tag_ids)
     {
-        return $this->client->delete("/$contact_id/tags?ids=".implode('%2C', $tag_ids));
+        return $this->del("/$contact_id/tags?ids=".implode('%2C', $tag_ids));
     }
 
     public function insertUTM(int $contact_id, string $keap_source_id, ?array $utms = [])
     {
-        return $this->client->post("/$contact_id/utm", [
+        return $this->post("/$contact_id/utm", [
             'keapSourceId' => $keap_source_id,
         ] + $utms);
     }

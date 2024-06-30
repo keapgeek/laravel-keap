@@ -10,21 +10,21 @@ class Affiliate extends Service
 
     public function list(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['affiliates'];
     }
 
     public function count(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return (int) $list['count'];
     }
 
     public function find(int $id)
     {
-        return $this->client->get("/$id");
+        return $this->get("/$id");
     }
 
     public function create(string $code, int $contact_id, string $password,
@@ -38,7 +38,7 @@ class Affiliate extends Service
 
         $status = $active ? 'active' : 'inactive';
 
-        return $this->client->post('/', [
+        return $this->post('/', [
             'code' => $code,
             'contact_id' => $contact_id,
             'password' => $password,
@@ -53,7 +53,7 @@ class Affiliate extends Service
 
     public function model()
     {
-        return $this->client->get('/model');
+        return $this->get('/model');
     }
 
     public function commissions(array $data = [])
@@ -71,28 +71,28 @@ class Affiliate extends Service
         }
         $data['order'] = 'DATE_EARNED';
 
-        $list = $this->client->get('/commissions', $data);
+        $list = $this->get('/commissions', $data);
 
         return $list['commissions'];
     }
 
     public function programs(array $data = [])
     {
-        $list = $this->client->get('/programs', $data);
+        $list = $this->get('/programs', $data);
 
         return $list['programs'];
     }
 
     public function redirects(array $data = [])
     {
-        $list = $this->client->get('/redirectlinks', $data);
+        $list = $this->get('/redirectlinks', $data);
 
         return $list['redirects'];
     }
 
     public function summaries(array $data = [])
     {
-        $list = $this->client->get('/summaries', $data);
+        $list = $this->get('/summaries', $data);
 
         return $list['summaries'];
     }
@@ -109,7 +109,7 @@ class Affiliate extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get("/$affiliate_id/clawbacks", $data);
+        $list = $this->get("/$affiliate_id/clawbacks", $data);
 
         return $list['clawbacks'];
     }
@@ -125,7 +125,7 @@ class Affiliate extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get("/$affiliate_id/payments", $data);
+        $list = $this->get("/$affiliate_id/payments", $data);
 
         return $list['payments'];
     }

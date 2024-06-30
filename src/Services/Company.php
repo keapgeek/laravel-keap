@@ -10,14 +10,14 @@ class Company extends Service
 
     public function list(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['companies'];
     }
 
     public function count(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return (int) $list['count'];
     }
@@ -26,7 +26,7 @@ class Company extends Service
     {
         $data = $options ? ['optional_properties' => implode(',', $options)] : [];
 
-        return $this->client->get("/$company_id", $data);
+        return $this->get("/$company_id", $data);
     }
 
     public function create(array $data)
@@ -38,7 +38,7 @@ class Company extends Service
             $data['opt_in_reason'] = config('keap.opt_in_reason');
         }
 
-        return $this->client->post('/', $data);
+        return $this->post('/', $data);
     }
 
     public function update(int $company_id, array $data)
@@ -50,11 +50,11 @@ class Company extends Service
             $data['opt_in_reason'] = config('keap.opt_in_reason');
         }
 
-        return $this->client->patch("/$company_id", $data);
+        return $this->patch("/$company_id", $data);
     }
 
     public function model()
     {
-        return $this->client->get('/model');
+        return $this->get('/model');
     }
 }

@@ -49,4 +49,29 @@ class Service
             $data[$field] = base64_encode($data[$field]);
         }
     }
+
+    protected function get($uri = '/', array $data = [])
+    {
+        return $this->client->call('get', $uri, $data);
+    }
+
+    protected function post($uri, $data)
+    {
+        return $this->client->call('post', $uri, $data);
+    }
+
+    protected function put($uri, $data)
+    {
+        return $this->client->call('put', $uri, $data);
+    }
+
+    protected function del($uri, $data = null)
+    {
+        return $this->client->call('delete', $uri, $data);
+    }
+
+    protected function patch($uri, $data)
+    {
+        return $this->client->call('patch', $uri, $data);
+    }
 }

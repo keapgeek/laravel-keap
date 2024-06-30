@@ -10,7 +10,7 @@ class Task extends Service
 
     public function model()
     {
-        return $this->client->get('/model');
+        return $this->get('/model');
     }
 
     public function create(array $data)
@@ -38,7 +38,7 @@ class Task extends Service
             unset($data['contact_id']);
         }
 
-        return $this->client->post('/', $data);
+        return $this->post('/', $data);
     }
 
     public function list(array $data = [])
@@ -52,7 +52,7 @@ class Task extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['tasks'];
     }
@@ -68,7 +68,7 @@ class Task extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get('/search', $data);
+        $list = $this->get('/search', $data);
 
         return $list['tasks'];
     }
@@ -83,14 +83,14 @@ class Task extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['count'];
     }
 
     public function delete(int $id)
     {
-        return $this->client->delete("/$id");
+        return $this->del("/$id");
     }
 
     public function update(int $task_id, array $data)
@@ -111,7 +111,7 @@ class Task extends Service
             $data['modification_date'] = Carbon::parse($data['modification_date'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        return $this->client->patch("/$task_id", $data);
+        return $this->patch("/$task_id", $data);
     }
 
     public function replace(int $task_id, array $data)
@@ -132,11 +132,11 @@ class Task extends Service
             $data['modification_date'] = Carbon::parse($data['modification_date'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        return $this->client->put("/$task_id", $data);
+        return $this->put("/$task_id", $data);
     }
 
     public function find(int $id)
     {
-        return $this->client->get("/$id");
+        return $this->get("/$id");
     }
 }

@@ -8,17 +8,17 @@ class User extends Service
 
     public function list()
     {
-        return $this->client->get('/');
+        return $this->get('/');
     }
 
     public function emailSignature(int $userId)
     {
-        return $this->client->get("/$userId/signature");
+        return $this->get("/$userId/signature");
     }
 
     public function create(string $email, string $given_name, bool $admin = false, bool $partner = false)
     {
-        return $this->client->post('/', [
+        return $this->post('/', [
             'email' => $email,
             'given_name' => $given_name,
             'admin' => $admin,

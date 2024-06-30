@@ -10,7 +10,7 @@ class Appointment extends Service
 
     public function model()
     {
-        return $this->client->get('/model');
+        return $this->get('/model');
     }
 
     public function create(array $data)
@@ -28,7 +28,7 @@ class Appointment extends Service
             unset($data['user_id']);
         }
 
-        return $this->client->post('/', $data);
+        return $this->post('/', $data);
     }
 
     public function list(array $data = [])
@@ -47,7 +47,7 @@ class Appointment extends Service
             unset($data['user_id']);
         }
 
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['appointments'];
     }
@@ -62,14 +62,14 @@ class Appointment extends Service
             $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
         }
 
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['count'];
     }
 
     public function delete(int $id)
     {
-        return $this->client->delete("/$id");
+        return $this->del("/$id");
     }
 
     public function update(int $appointment_id, array $data)
@@ -87,7 +87,7 @@ class Appointment extends Service
             unset($data['user_id']);
         }
 
-        return $this->client->patch("/$appointment_id", $data);
+        return $this->patch("/$appointment_id", $data);
     }
 
     public function replace(int $appointment_id, array $data)
@@ -105,11 +105,11 @@ class Appointment extends Service
             unset($data['user_id']);
         }
 
-        return $this->client->put("/$appointment_id", $data);
+        return $this->put("/$appointment_id", $data);
     }
 
     public function find(int $id)
     {
-        return $this->client->get("/$id");
+        return $this->get("/$id");
     }
 }

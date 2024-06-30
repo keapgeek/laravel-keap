@@ -8,16 +8,16 @@ class Locale extends Service
 
     public function countries()
     {
-        return $this->client->get('/countries')['countries'];
+        return $this->get('/countries')['countries'];
     }
 
     public function provinces(string $country_code)
     {
-        return $this->client->get("/countries/$country_code/provinces")['provinces'];
+        return $this->get("/countries/$country_code/provinces")['provinces'];
     }
 
     public function dropdown(string $type)
     {
-        return $this->client->get('/defaultOptions')[$type.'_types'];
+        return $this->get('/defaultOptions')[$type.'_types'];
     }
 }

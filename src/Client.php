@@ -24,32 +24,7 @@ class Client
         ]);
     }
 
-    public function get($uri = '/', ?array $data = null)
-    {
-        return $this->call('get', $uri, $data);
-    }
-
-    public function post($uri, $data)
-    {
-        return $this->call('post', $uri, $data);
-    }
-
-    public function put($uri, $data)
-    {
-        return $this->call('put', $uri, $data);
-    }
-
-    public function delete($uri, $data = null)
-    {
-        return $this->call('delete', $uri, $data);
-    }
-
-    public function patch($uri, $data)
-    {
-        return $this->call('patch', $uri, $data);
-    }
-
-    protected function call($method, $uri = '', $data = null)
+    public function call($method, $uri = '/', $data = null)
     {
         return retry(config('keap.retry_times'),
 
@@ -64,7 +39,6 @@ class Client
             function (\Exception $e) {
                 return $e instanceof ServerErrorException;
             });
-
     }
 
     protected function sendRequest($method, $uri, $data)

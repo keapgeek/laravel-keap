@@ -8,14 +8,14 @@ class Campaign extends Service
 
     public function list(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['campaigns'];
     }
 
     public function count(array $data = [])
     {
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['count'];
     }
@@ -23,10 +23,10 @@ class Campaign extends Service
     public function find(int $campaign_id, array $optional_properties = [])
     {
         if (empty($optional_properties)) {
-            return $this->client->get("/$campaign_id");
+            return $this->get("/$campaign_id");
         }
 
-        return $this->client->get("/$campaign_id", [
+        return $this->get("/$campaign_id", [
             'optional_properties' => implode(',', $optional_properties),
         ]);
     }
@@ -35,7 +35,7 @@ class Campaign extends Service
     {
         $integration = $integration ?? config('keap.default_integration');
 
-        return $this->client->post("/goals/{$integration}/{$callName}", [
+        return $this->post("/goals/{$integration}/{$callName}", [
             'contact_id' => $contact_id,
         ]);
     }
@@ -46,7 +46,7 @@ class Campaign extends Service
             $ids = [$ids];
         }
 
-        return $this->client->post("/{$campaign_id}/sequences/{$sequence_id}/contacts", [
+        return $this->post("/{$campaign_id}/sequences/{$sequence_id}/contacts", [
             'ids' => $ids,
         ]);
     }
@@ -57,7 +57,7 @@ class Campaign extends Service
             $ids = [$ids];
         }
 
-        return $this->client->delete("/{$campaign_id}/sequences/{$sequence_id}/contacts", [
+        return $this->del("/{$campaign_id}/sequences/{$sequence_id}/contacts", [
             'ids' => $ids,
         ]);
     }

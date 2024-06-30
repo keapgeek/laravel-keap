@@ -8,11 +8,11 @@ class Merchant extends Service
 
     public function list()
     {
-        return $this->client->get('/')['merchant_accounts'];
+        return $this->get('/')['merchant_accounts'];
     }
 
     public function default()
     {
-        return $this->client->get('/')['default_merchant_account'];
+        return $this->get('/')['default_merchant_account'];
     }
 }

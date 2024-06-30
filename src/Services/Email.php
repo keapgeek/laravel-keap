@@ -11,7 +11,7 @@ class Email extends Service
         $this->parseDatetime('since_sent_date', $data);
         $this->parseDatetime('until_sent_date', $data);
 
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['emails'];
     }
@@ -21,19 +21,19 @@ class Email extends Service
         $this->parseDatetime('since_sent_date', $data);
         $this->parseDatetime('until_sent_date', $data);
 
-        $list = $this->client->get('/', $data);
+        $list = $this->get('/', $data);
 
         return $list['count'];
     }
 
     public function find(int $id)
     {
-        return $this->client->get("/$id");
+        return $this->get("/$id");
     }
 
     public function delete(int $id)
     {
-        return $this->client->delete("/$id");
+        return $this->del("/$id");
     }
 
     public function create(array $data)
@@ -43,7 +43,7 @@ class Email extends Service
         $this->parseDatetime('sent_date', $data);
         $this->parseDatetime('received_date', $data);
 
-        return $this->client->post('/', $data);
+        return $this->post('/', $data);
     }
 
     public function send(array $data)
@@ -51,12 +51,12 @@ class Email extends Service
         $this->encode64('html_content', $data);
         $this->encode64('plain_content', $data);
 
-        return $this->client->post('/queue', $data);
+        return $this->post('/queue', $data);
     }
 
     public function createSet(array $emails, array $errors = [])
     {
-        return $this->client->post('/sync', [
+        return $this->post('/sync', [
             'emails' => $emails,
             'errors' => $errors,
         ]);
@@ -64,7 +64,7 @@ class Email extends Service
 
     public function unsync(array $ids)
     {
-        return $this->client->post('/unsync', [
+        return $this->post('/unsync', [
             'ids' => $ids,
         ]);
     }

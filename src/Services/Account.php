@@ -8,7 +8,7 @@ class Account extends Service
 
     public function info()
     {
-        return $this->client->get();
+        return $this->get();
     }
 
     public function update(array $data)
@@ -17,6 +17,6 @@ class Account extends Service
 
         $data = array_merge($original, $data);
 
-        return $this->client->put('/', $data);
+        return $this->put('/', $data);
     }
 }

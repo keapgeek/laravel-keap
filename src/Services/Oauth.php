@@ -8,6 +8,6 @@ class Oauth extends Service
 
     public function user()
     {
-        return $this->client->get('/');
+        return $this->get('/');
     }
 }

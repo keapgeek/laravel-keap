@@ -51,7 +51,7 @@ class Service
         $url = $this->client->getUrl() . '/' . ltrim($uri, '/');
         $cacheKey = 'http_get_' . md5($url . json_encode($data));
 
-        return Cache::remember($cacheKey, config('keap.cache_duration'), function () use ($uri, $data) {
+        return Cache::remember($cacheKey, config('keap.cache_duration', 60), function () use ($uri, $data) {
             return $this->client->call('get', $uri, $data);
         });
     }

@@ -25,9 +25,9 @@ return [
     'middleware' => ['web', 'auth'],
 
     /**
-     * The middleware that protects the keap/auth and callback routes.
+     * The duration in SECONDS for the get requests
      */
-    'cache_duration' => 60,
+    'cache_duration' => 300,
 
 
     /**

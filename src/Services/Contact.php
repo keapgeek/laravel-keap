@@ -87,7 +87,12 @@ class Contact extends Service
         return $this->client->post("/$contact_id/emails", $data);
     }
 
-    public function creditCards(int $contact_id)
+    public function createCreditCard(int $contact_id, array $data)
+    {
+        return $this->client->post("/$contact_id/creditCards", $data);
+    }
+
+    public function listCreditCards(int $contact_id)
     {
         return $this->client->get("/$contact_id/creditCards");
     }

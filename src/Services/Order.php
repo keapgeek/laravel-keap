@@ -11,8 +11,8 @@ class Order extends Service
     public function list(array $data = [])
     {
 
-        $this->parseDate('since', $data);
-        $this->parseDate('until', $data);
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -22,8 +22,8 @@ class Order extends Service
     public function count(array $data = [])
     {
 
-        $this->parseDate('since', $data);
-        $this->parseDate('until', $data);
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -75,6 +75,8 @@ class Order extends Service
 
     public function createSubscription(array $data)
     {
+        $this->parseDate('first_bill_date', $data);
+
         $this->client->setUri('/v1/subscriptions');
         return $this->client->post('/', $data);
     }
@@ -82,6 +84,9 @@ class Order extends Service
 
     public function listTransactions(array $data = [])
     {
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
+
         $this->client->setUri('/v1/transactions');
         $list = $this->client->get('/', $data);
         return $list['transactions'];
@@ -94,12 +99,17 @@ class Order extends Service
     }
     public function findOrderTransactions(int $order_id, array $data = [])
     {
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
+
         $list = $this->client->get("/$order_id/transactions", $data);
         return $list['transactions'];
     }
 
     public function replacePayPlan(int $order_id, array $data = [])
     {
+        $this->parseDate('initial_payment_date', $data);
+        $this->parseDate('plan_start_date', $data);
         return $this->client->put("/$order_id/paymentPlan", $data);
     }
 
@@ -110,6 +120,7 @@ class Order extends Service
 
     public function createPayment(int $order_id, array $data)
     {
+        $this->parseDatetime('date', $data);
         return $this->client->post("/$order_id/payments", $data);
     }
 }

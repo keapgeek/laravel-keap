@@ -29,10 +29,17 @@ class Service
         return $this->uri;
     }
 
-    protected function parseDate(string $field, array &$data)
+    protected function parseDatetime(string $field, array &$data)
     {
         if (array_key_exists($field, $data)) {
             $data[$field] = Carbon::parse($data[$field])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
+        }
+    }
+
+    protected function parseDate(string $field, array &$data)
+    {
+        if (array_key_exists($field, $data)) {
+            $data[$field] = Carbon::parse($data[$field])->setTimezone('UTC')->format('Y-m-d');
         }
     }
 

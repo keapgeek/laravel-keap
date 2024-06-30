@@ -8,8 +8,8 @@ class Email extends Service
 
     public function list(array $data = [])
     {
-        $this->parseDate('since_sent_date', $data);
-        $this->parseDate('until_sent_date', $data);
+        $this->parseDatetime('since_sent_date', $data);
+        $this->parseDatetime('until_sent_date', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -18,8 +18,8 @@ class Email extends Service
 
     public function count(array $data = [])
     {
-        $this->parseDate('since_sent_date', $data);
-        $this->parseDate('until_sent_date', $data);
+        $this->parseDatetime('since_sent_date', $data);
+        $this->parseDatetime('until_sent_date', $data);
 
         $list = $this->client->get('/', $data);
 
@@ -38,10 +38,10 @@ class Email extends Service
 
     public function create(array $data)
     {
-        $this->parseDate('clicked_date', $data);
-        $this->parseDate('opened_date', $data);
-        $this->parseDate('sent_date', $data);
-        $this->parseDate('received_date', $data);
+        $this->parseDatetime('clicked_date', $data);
+        $this->parseDatetime('opened_date', $data);
+        $this->parseDatetime('sent_date', $data);
+        $this->parseDatetime('received_date', $data);
 
         return $this->client->post('/', $data);
     }

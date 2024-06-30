@@ -71,13 +71,23 @@ test('createEmail makes a POST request', function () {
     });
 });
 
-test('creditCards makes a GET request', function () {
+test('listCreditCards makes a GET request', function () {
     Http::fake();
-    Keap::contact()->creditCards(1);
+    Keap::contact()->listCreditCards(1);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/creditCards' &&
               $request->method() === 'GET';
+    });
+});
+
+test('createCreditCard makes a POST request', function () {
+    Http::fake();
+    Keap::contact()->createCreditCard(1, []);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/1/creditCards' &&
+              $request->method() === 'POST';
     });
 });
 

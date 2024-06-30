@@ -2,11 +2,12 @@
 
 namespace KeapGeek\Keap;
 
-use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Client\RequestException;
 use KeapGeek\Keap\Exceptions\BadRequestException;
-use KeapGeek\Keap\Exceptions\InvalidTokenException;
 use KeapGeek\Keap\Exceptions\ServerErrorException;
+use KeapGeek\Keap\Exceptions\InvalidTokenException;
 
 class Client
 {
@@ -26,11 +27,14 @@ class Client
 
     public function call($method, $uri = '/', $data = null)
     {
+
+        $url = $this->prepareUrl($uri);
+
         return retry(config('keap.retry_times'),
 
-            function () use ($method, $uri, $data) {
+            function () use ($method, $url, $data) {
 
-                return $this->sendRequest($method, $uri, $data);
+                return $this->sendRequest($method, $url, $data);
 
             },
 
@@ -41,10 +45,8 @@ class Client
             });
     }
 
-    protected function sendRequest($method, $uri, $data)
+    protected function sendRequest($method, $url, $data)
     {
-        $url = $this->prepareUrl($uri);
-
         $response = $this->tryRequest($method, $url, $data);
 
         return $this->getResponse($response);
@@ -101,13 +103,13 @@ class Client
 
     public function setUri(string $uri = '')
     {
-
-        if (empty($uri)) {
-            return;
-        }
-
         $this->url = $this->base_url;
         $uri = trim($uri, '/');
         $this->url .= $uri;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

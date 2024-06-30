@@ -2,10 +2,11 @@
 
 namespace KeapGeek\Keap\Services;
 
-use Illuminate\Support\Carbon;
-use KeapGeek\Keap\Client;
-use KeapGeek\Keap\Exceptions\InvalidTokenException;
 use KeapGeek\Keap\Token;
+use KeapGeek\Keap\Client;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
+use KeapGeek\Keap\Exceptions\InvalidTokenException;
 
 class Service
 {
@@ -47,7 +48,12 @@ class Service
 
     protected function get($uri = '/', array $data = [])
     {
-        return $this->client->call('get', $uri, $data);
+        $url = $this->client->getUrl() . '/' . ltrim($uri, '/');
+        $cacheKey = 'http_get_' . md5($url . json_encode($data));
+
+        return Cache::remember($cacheKey, config('keap.cache_duration'), function () use ($uri, $data) {
+            return $this->client->call('get', $uri, $data);
+        });
     }
 
     protected function post($uri, $data)

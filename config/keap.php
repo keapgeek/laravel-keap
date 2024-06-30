@@ -25,6 +25,12 @@ return [
     'middleware' => ['web', 'auth'],
 
     /**
+     * The middleware that protects the keap/auth and callback routes.
+     */
+    'cache_duration' => 60,
+
+
+    /**
      * When not specified, the achieve goal is going to call this default integration
      */
     'default_integration' => env('KEAP_DEFAULT_INTEGRATION'),

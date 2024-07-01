@@ -86,14 +86,11 @@ Keap::contact();
 //To access the campaigns
 Keap::campaign();
 
-//To manage the Oauth tokens
-Keap::token();
-
 ```
 
 The methods of the Keap Facade allow you to automatically call the API endpoints.
 
-A list of all the available methods are can be found in the [Laravel Keap API Docs](https://www.laravelkeap.com/docs/api?utm_source=github&utm_medium=repository&utm_campaign=readme)
+A list of all the available methods are can be found in the [Laravel Keap API Docs](https://www.laravelkeap.com/docs?utm_source=github&utm_medium=repository&utm_campaign=readme)
 
 ## Testing
 

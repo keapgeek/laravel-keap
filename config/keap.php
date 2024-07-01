@@ -29,7 +29,6 @@ return [
      */
     'cache_duration' => 300,
 
-
     /**
      * When not specified, the achieve goal is going to call this default integration
      */

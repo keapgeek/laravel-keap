@@ -2,7 +2,6 @@
 
 namespace KeapGeek\Keap\Services;
 
-use Carbon\Carbon;
 use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact extends Service
@@ -11,13 +10,8 @@ class Contact extends Service
 
     public function list(array $data = [])
     {
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
 
         $list = $this->get('/');
 
@@ -26,13 +20,8 @@ class Contact extends Service
 
     public function count(array $data = [])
     {
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
 
         $list = $this->get('/');
 
@@ -55,20 +44,26 @@ class Contact extends Service
         if (array_key_exists('email', $data)) {
             $data['email_addresses'] = [
                 'email' => $data['email'],
-                'fields' => 'EMAIL1'
+                'fields' => 'EMAIL1',
             ];
+            unset($data['email']);
         }
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
+        if (array_key_exists('company_id', $data)) {
+            $data['company'] = ['id' => $data['company_id']];
+            unset($data['company_id']);
+        }
+
         $this->parseDatetime('anniversary', $data);
         $this->parseDatetime('birthday', $data);
 
-        if(! array_key_exists('opt_in_reason', $data))
-        {
+        if (! array_key_exists('opt_in_reason', $data)) {
             $data['opt_in_reason'] = config('keap.opt_in_reason');
         }
+
         return $this->post('/', $data);
 
     }
@@ -78,24 +73,27 @@ class Contact extends Service
         if (array_key_exists('email', $data)) {
             $data['email_addresses'] = [
                 'email' => $data['email'],
-                'fields' => 'EMAIL1'
+                'fields' => 'EMAIL1',
             ];
+            unset($data['email']);
         }
 
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
+        if (array_key_exists('company_id', $data)) {
+            $data['company'] = ['id' => $data['company_id']];
+            unset($data['company_id']);
+        }
         $this->parseDatetime('anniversary', $data);
         $this->parseDatetime('birthday', $data);
 
-        if(! array_key_exists('duplicate_option', $data))
-        {
+        if (! array_key_exists('duplicate_option', $data)) {
             $data['duplicate_option'] = $duplicate_option;
         }
 
-        if(! array_key_exists('opt_in_reason', $data))
-        {
+        if (! array_key_exists('opt_in_reason', $data)) {
             $data['opt_in_reason'] = config('keap.opt_in_reason');
         }
 
@@ -107,8 +105,9 @@ class Contact extends Service
         if (array_key_exists('email', $data)) {
             $data['email_addresses'] = [
                 'email' => $data['email'],
-                'fields' => 'EMAIL1'
+                'fields' => 'EMAIL1',
             ];
+            unset($data['email']);
         }
 
         if (! array_key_exists('email_addresses', $data) && ! array_key_exists('phone_numbers', $data)) {
@@ -118,8 +117,7 @@ class Contact extends Service
         $this->parseDatetime('anniversary', $data);
         $this->parseDatetime('birthday', $data);
 
-        if(! array_key_exists('opt_in_reason', $data))
-        {
+        if (! array_key_exists('opt_in_reason', $data)) {
             $data['opt_in_reason'] = config('keap.opt_in_reason');
         }
 

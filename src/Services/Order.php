@@ -2,8 +2,6 @@
 
 namespace KeapGeek\Keap\Services;
 
-use Illuminate\Support\Carbon;
-
 class Order extends Service
 {
     protected $uri = '/v1/orders';
@@ -63,6 +61,7 @@ class Order extends Service
     public function subscriptionModel()
     {
         $this->client->setUri('/v1/subscriptions');
+
         return $this->get('/model');
     }
 
@@ -70,6 +69,7 @@ class Order extends Service
     {
         $this->client->setUri('/v1/subscriptions');
         $list = $this->get('/', $data);
+
         return $list['subscriptions'];
     }
 
@@ -78,9 +78,9 @@ class Order extends Service
         $this->parseDate('first_bill_date', $data);
 
         $this->client->setUri('/v1/subscriptions');
+
         return $this->post('/', $data);
     }
-
 
     public function listTransactions(array $data = [])
     {
@@ -89,20 +89,24 @@ class Order extends Service
 
         $this->client->setUri('/v1/transactions');
         $list = $this->get('/', $data);
+
         return $list['transactions'];
     }
 
     public function findTransaction(int $transaction_id)
     {
         $this->client->setUri('/v1/transactions');
+
         return $this->get("/$transaction_id");
     }
+
     public function findOrderTransactions(int $order_id, array $data = [])
     {
         $this->parseDatetime('since', $data);
         $this->parseDatetime('until', $data);
 
         $list = $this->get("/$order_id/transactions", $data);
+
         return $list['transactions'];
     }
 
@@ -110,6 +114,7 @@ class Order extends Service
     {
         $this->parseDate('initial_payment_date', $data);
         $this->parseDate('plan_start_date', $data);
+
         return $this->put("/$order_id/paymentPlan", $data);
     }
 
@@ -121,6 +126,7 @@ class Order extends Service
     public function createPayment(int $order_id, array $data)
     {
         $this->parseDatetime('date', $data);
+
         return $this->post("/$order_id/payments", $data);
     }
 }

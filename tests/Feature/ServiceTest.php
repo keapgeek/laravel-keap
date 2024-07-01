@@ -1,9 +1,10 @@
 <?php
-use KeapGeek\Keap\Services\Service;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Cache;
 
-beforeEach(function() {
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+use KeapGeek\Keap\Services\Service;
+
+beforeEach(function () {
     setTokens();
 });
 it('cashes get requests', function () {
@@ -11,8 +12,10 @@ it('cashes get requests', function () {
         '*' => Http::response(['foo' => 'bar'], 200),
     ]);
 
-    $service = new class extends Service {
-        public function testGet() {
+    $service = new class extends Service
+    {
+        public function testGet()
+        {
             $this->get();
         }
     };

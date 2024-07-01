@@ -2,12 +2,11 @@
 
 namespace KeapGeek\Keap;
 
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Exceptions\BadRequestException;
-use KeapGeek\Keap\Exceptions\ServerErrorException;
 use KeapGeek\Keap\Exceptions\InvalidTokenException;
+use KeapGeek\Keap\Exceptions\ServerErrorException;
 
 class Client
 {
@@ -82,10 +81,13 @@ class Client
 
     protected function getResponse($response)
     {
-        if (is_null($response)) return null;
+        if (is_null($response)) {
+            return null;
+        }
 
-        if ($response->status() == 204) return true;
-
+        if ($response->status() == 204) {
+            return true;
+        }
 
         $content = $response->getBody()->getContents();
 

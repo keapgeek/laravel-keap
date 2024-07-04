@@ -1,6 +1,8 @@
 <?php
 
-namespace KeapGeek\Keap\Services;
+namespace KeapGeek\Keap\Services\V1;
+
+use KeapGeek\Keap\Services\Service;
 
 use Illuminate\Support\Carbon;
 

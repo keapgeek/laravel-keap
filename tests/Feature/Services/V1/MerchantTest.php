@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Facades\Keap;
-use KeapGeek\Keap\Services\Merchant;
+use KeapGeek\Keap\Services\V1\Merchant;
 
 beforeEach(function () {
     setTokens();

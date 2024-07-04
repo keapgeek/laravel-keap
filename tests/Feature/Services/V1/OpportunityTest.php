@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Facades\Keap;
-use KeapGeek\Keap\Services\Opportunity;
+use KeapGeek\Keap\Services\V1\Opportunity;
 
 beforeEach(function () {
     setTokens();

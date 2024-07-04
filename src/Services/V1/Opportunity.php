@@ -1,8 +1,8 @@
 <?php
 
-namespace KeapGeek\Keap\Services;
+namespace KeapGeek\Keap\Services\V1;
 
-use Illuminate\Support\Carbon;
+use KeapGeek\Keap\Services\Service;
 
 class Opportunity extends Service
 {
@@ -46,9 +46,7 @@ class Opportunity extends Service
             unset($data['stage_id']);
         }
 
-        if (array_key_exists('date_created', $data)) {
-            $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('date_created', $data);
 
         return $this->post('/', $data);
     }
@@ -76,9 +74,7 @@ class Opportunity extends Service
             unset($data['stage_id']);
         }
 
-        if (array_key_exists('date_created', $data)) {
-            $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('date_created', $data);
 
         return $this->patch("/$opportunity_id", $data);
     }
@@ -106,9 +102,7 @@ class Opportunity extends Service
             unset($data['stage_id']);
         }
 
-        if (array_key_exists('date_created', $data)) {
-            $data['date_created'] = Carbon::parse($data['date_created'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('date_created', $data);
 
         return $this->put('/', $data);
     }

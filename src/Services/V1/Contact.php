@@ -1,7 +1,8 @@
 <?php
 
-namespace KeapGeek\Keap\Services;
+namespace KeapGeek\Keap\Services\V1;
 
+use KeapGeek\Keap\Services\Service;
 use KeapGeek\Keap\Exceptions\KeapException;
 
 class Contact extends Service
@@ -52,10 +53,7 @@ class Contact extends Service
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
-        if (array_key_exists('company_id', $data)) {
-            $data['company'] = ['id' => $data['company_id']];
-            unset($data['company_id']);
-        }
+        $this->switch('company_id', 'company', $data);
 
         $this->parseDatetime('anniversary', $data);
         $this->parseDatetime('birthday', $data);
@@ -82,10 +80,8 @@ class Contact extends Service
             throw new KeapException('Missing Email addresses and/or phone numbers');
         }
 
-        if (array_key_exists('company_id', $data)) {
-            $data['company'] = ['id' => $data['company_id']];
-            unset($data['company_id']);
-        }
+        $this->switch('company_id', 'company', $data);
+
         $this->parseDatetime('anniversary', $data);
         $this->parseDatetime('birthday', $data);
 

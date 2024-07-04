@@ -1,7 +1,8 @@
 <?php
 
-namespace KeapGeek\Keap\Services;
+namespace KeapGeek\Keap\Services\V1;
 
+use KeapGeek\Keap\Services\Service;
 use KeapGeek\Keap\Exceptions\ValidationException;
 
 class Company extends Service

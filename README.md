@@ -5,7 +5,7 @@ Barely any support for modern version of PHP and all the laravel packages, such 
 
 I jump in to ensure a Laravel 11+ support for this package that completely ignores the PHP SDK and builds it's own wrapper using Laravel helpers and architectures.
 
-This package uses OAuth 2 with the REST API v1 of Keap, **WITHOUT** relying on the SDK of infusionsoft.
+This package uses OAuth 2 with the REST API v1 or v2 of Keap, **WITHOUT** relying on the SDK of infusionsoft.
 
 You can find a whole website with the documentation for this package at [https://www.laravelkeap.com/](https://www.laravelkeap.com/)
 

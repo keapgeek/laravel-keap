@@ -1,6 +1,6 @@
 {
     "name": "keapgeek/laravel-keap",
-    "description": "Laravel Package for accessing the Keap REST API (v1)",
+    "description": "Laravel Package for accessing the Keap REST API (v1/v2)",
     "keywords": [
         "keapgeek",
         "laravel",

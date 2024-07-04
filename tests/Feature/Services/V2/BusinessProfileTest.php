@@ -30,6 +30,6 @@ test('updates makes a PUT request', function () {
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/businessProfile/' &&
-               $request->method() === 'PUT';
+               $request->method() === 'PATCH';
     });
 });

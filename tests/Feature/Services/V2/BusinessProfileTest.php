@@ -13,7 +13,7 @@ test('facade returns a BusinessProfile Service', function () {
     expect(Keap::businessProfile())->toBeInstanceOf(BusinessProfile::class);
 });
 
-test('retrieve makes a GET request', function () {
+test('info makes a GET request', function () {
     Keap::businessProfile()->info();
 
     Http::assertSent(function ($request) {
@@ -22,7 +22,7 @@ test('retrieve makes a GET request', function () {
     });
 });
 
-test('updates makes a PUT request', function () {
+test('updates makes a PATCH request', function () {
     Keap::businessProfile()->update(['key' => 'value']);
 
     Http::assertSent(function ($request) {

@@ -22,6 +22,11 @@ class ServiceFactory
         return new V1\Appointment();
     }
 
+    public function automation()
+    {
+        return new V2\Automation();
+    }
+
     public function businessProfile()
     {
         return new V2\BusinessProfile();

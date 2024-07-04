@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Facades\Keap;
-use KeapGeek\Keap\Services\Affiliate;
+use KeapGeek\Keap\Services\V1\Affiliate;
 
 beforeEach(function () {
     setTokens();

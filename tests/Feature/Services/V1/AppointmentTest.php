@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Facades\Keap;
-use KeapGeek\Keap\Services\Appointment;
+use KeapGeek\Keap\Services\V1\Appointment;
 
 beforeEach(function () {
     setTokens();
 });
 
-test('facade returns a Affiliate Service', function () {
+test('facade returns a Appointment Service', function () {
     expect(Keap::appointment())->toBeInstanceOf(Appointment::class);
 });
 

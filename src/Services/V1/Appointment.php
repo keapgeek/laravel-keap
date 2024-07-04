@@ -1,6 +1,6 @@
 <?php
 
-namespace KeapGeek\Keap\Services\V2;
+namespace KeapGeek\Keap\Services\V1;
 
 use KeapGeek\Keap\Services\Service;
 

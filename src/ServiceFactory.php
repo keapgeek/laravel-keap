@@ -2,23 +2,24 @@
 
 namespace KeapGeek\Keap;
 
+use KeapGeek\Keap\Services\V1;
 use KeapGeek\Keap\Services\V2;
 
 class ServiceFactory
 {
     public function account()
     {
-        return new Services\Account();
+        return new V1\Account();
     }
 
     public function affiliate()
     {
-        return new Services\Affiliate();
+        return new V1\Affiliate();
     }
 
     public function appointment()
     {
-        return new Services\Appointment();
+        return new V1\Appointment();
     }
 
     public function businessProfile()
@@ -27,67 +28,67 @@ class ServiceFactory
     }
     public function campaign()
     {
-        return new Services\Campaign();
+        return new V1\Campaign();
     }
 
     public function company()
     {
-        return new Services\Company();
+        return new V1\Company();
     }
 
     public function contact()
     {
-        return new Services\Contact();
+        return new V1\Contact();
     }
 
     public function email()
     {
-        return new Services\Email();
+        return new V1\Email();
     }
 
     public function emailAddress()
     {
-        return new Services\EmailAddress();
+        return new V1\EmailAddress();
     }
 
     public function file()
     {
-        return new Services\File();
+        return new V1\File();
     }
 
     public function hook()
     {
-        return new Services\Hook();
+        return new V1\Hook();
     }
 
     public function locale()
     {
-        return new Services\Locale();
+        return new V1\Locale();
     }
 
     public function merchant()
     {
-        return new Services\Merchant();
+        return new V1\Merchant();
     }
 
     public function opportunity()
     {
-        return new Services\Opportunity();
+        return new V1\Opportunity();
     }
 
     public function order()
     {
-        return new Services\Order();
+        return new V1\Order();
     }
 
     public function note()
     {
-        return new Services\Note();
+        return new V1\Note();
     }
 
     public function task()
     {
-        return new Services\Task();
+        return new V1\Task();
     }
 
     public function job()
@@ -97,27 +98,27 @@ class ServiceFactory
 
     public function oauth()
     {
-        return new Services\Oauth();
+        return new V1\Oauth();
     }
 
     public function product()
     {
-        return new Services\Product();
+        return new V1\Product();
     }
 
     public function setting()
     {
-        return new Services\Setting();
+        return new V1\Setting();
     }
 
     public function tag()
     {
-        return new Services\Tag();
+        return new V1\Tag();
     }
 
     public function user()
     {
-        return new Services\User();
+        return new V1\User();
     }
 
     public function submitForm(string $form_xid, array $data, array $headers = [])

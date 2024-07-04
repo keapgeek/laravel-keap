@@ -111,11 +111,17 @@ class ServiceFactory
         return new V1\Product();
     }
 
-    public function setting()
+    public function settings($version = null)
     {
-        return new V1\Setting();
+        if($version === 'v2') {
+            return new V2\Settings();
+        }
+        return new V1\Settings();
     }
-
+    public function subscription()
+    {
+        return new V2\Subscription();
+    }
     public function tag()
     {
         return new V1\Tag();

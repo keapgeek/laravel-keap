@@ -4,7 +4,7 @@ namespace KeapGeek\Keap\Services\V1;
 
 use KeapGeek\Keap\Services\Service;
 
-class Setting extends Service
+class Settings extends Service
 {
     protected $uri = '/v1/setting';
 

@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Http;
 use KeapGeek\Keap\Facades\Keap;
-use KeapGeek\Keap\Services\V1\Setting;
+use KeapGeek\Keap\Services\V1\Settings;
 
 beforeEach(function () {
     setTokens();
 });
 
-test('facade returns a Setting Service', function () {
-    expect(Keap::setting())->toBeInstanceOf(Setting::class);
+test('facade returns a Settings Service', function () {
+    expect(Keap::settings())->toBeInstanceOf(Settings::class);
 });
 
 test('status makes a GET request', function () {
@@ -19,7 +19,7 @@ test('status makes a GET request', function () {
         ], 200),
     ]);
 
-    Keap::setting()->status();
+    Keap::settings()->status();
 
     Http::assertSent(function ($request) {
 
@@ -30,7 +30,7 @@ test('status makes a GET request', function () {
 
 test('config makes a GET request', function () {
     Http::fake();
-    Keap::setting()->config();
+    Keap::settings()->config();
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/setting/application/configuration' &&

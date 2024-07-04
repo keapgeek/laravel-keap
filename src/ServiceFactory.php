@@ -2,6 +2,8 @@
 
 namespace KeapGeek\Keap;
 
+use KeapGeek\Keap\Services\V2;
+
 class ServiceFactory
 {
     public function account()
@@ -19,6 +21,10 @@ class ServiceFactory
         return new Services\Appointment();
     }
 
+    public function businessProfile()
+    {
+        return new V2\BusinessProfile();
+    }
     public function campaign()
     {
         return new Services\Campaign();

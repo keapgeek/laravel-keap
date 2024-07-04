@@ -46,6 +46,15 @@ class Service
         }
     }
 
+    protected function switch(string $from, string $to, array &$data)
+    {
+        if (array_key_exists($from, $data)) {
+            $data[$to] = $data[$from];
+            unset($data[$from]);
+        }
+    }
+
+
     protected function get($uri = '/', array $data = [])
     {
         $url = $this->client->getUrl().'/'.ltrim($uri, '/');

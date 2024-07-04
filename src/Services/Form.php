@@ -12,7 +12,6 @@ class Form
             return;
         }
         $data['inf_form_xid'] = $form_xid;
-        //$data['inf_form_name'] = 'Web Form Submitted';
 
         Http::withHeaders($headers)->asForm()->post('https://'.config('keap.app_name').'.infusionsoft.com/app/form/process/'.$form_xid, $data);
     }

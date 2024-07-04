@@ -1,8 +1,8 @@
 <?php
 
-namespace KeapGeek\Keap\Services;
+namespace KeapGeek\Keap\Services\V1;
 
-use Illuminate\Support\Carbon;
+use KeapGeek\Keap\Services\Service;
 
 class Affiliate extends Service
 {
@@ -58,17 +58,11 @@ class Affiliate extends Service
 
     public function commissions(array $data = [])
     {
-        if (array_key_exists('affiliate_id', $data)) {
-            $data['affiliateId'] = $data['affiliate_id'];
-            unset($data['affiliate_id']);
-        }
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->switch('affiliate_id', 'affiliateId', $data);
 
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
+
         $data['order'] = 'DATE_EARNED';
 
         $list = $this->get('/commissions', $data);
@@ -101,13 +95,8 @@ class Affiliate extends Service
     {
         $data['order'] = 'DATE_EARNED';
 
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
 
         $list = $this->get("/$affiliate_id/clawbacks", $data);
 
@@ -117,13 +106,8 @@ class Affiliate extends Service
     public function payments(int $affiliate_id, array $data = [])
     {
 
-        if (array_key_exists('since', $data)) {
-            $data['since'] = Carbon::parse($data['since'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if (array_key_exists('until', $data)) {
-            $data['until'] = Carbon::parse($data['until'])->setTimezone('UTC')->format('Y-m-d\TH:i:s.v\Z');
-        }
+        $this->parseDatetime('since', $data);
+        $this->parseDatetime('until', $data);
 
         $list = $this->get("/$affiliate_id/payments", $data);
 

@@ -110,7 +110,10 @@ class ServiceFactory
     {
         return new V1\Product();
     }
-
+    public function sales()
+    {
+        return new V2\Sales();
+    }
     public function settings($version = null)
     {
         if($version === 'v2') {

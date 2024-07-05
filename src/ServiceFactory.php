@@ -143,8 +143,11 @@ class ServiceFactory
     {
         return new V2\Subscription();
     }
-    public function tag()
+    public function tag($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Tag();
+        }
         return new V1\Tag();
     }
 

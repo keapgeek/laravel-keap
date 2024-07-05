@@ -62,14 +62,22 @@ class ServiceFactory
         return new V1\Email();
     }
 
-    public function emailAddress()
+    public function emailAddress($version = null)
     {
+        if($version === 'v2') {
+            return new V2\EmailAddress();
+        }
         return new V1\EmailAddress();
     }
 
     public function file()
     {
         return new V1\File();
+    }
+
+    public function funnelIntegration()
+    {
+        return new V2\FunnelIntegration();
     }
 
     public function hook()

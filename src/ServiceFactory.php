@@ -41,8 +41,11 @@ class ServiceFactory
         return new V1\Campaign();
     }
 
-    public function company()
+    public function company($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Company();
+        }
         return new V1\Company();
     }
 

@@ -96,8 +96,11 @@ class ServiceFactory
         }
         return new V1\Order();
     }
-    public function note()
+    public function note($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Note();
+        }
         return new V1\Note();
     }
 

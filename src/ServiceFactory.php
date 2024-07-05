@@ -27,6 +27,11 @@ class ServiceFactory
         return new V2\Automation();
     }
 
+    public function automationCategory()
+    {
+        return new V2\AutomationCategory();
+    }
+
     public function businessProfile()
     {
         return new V2\BusinessProfile();
@@ -81,14 +86,21 @@ class ServiceFactory
         return new V1\Opportunity();
     }
 
-    public function order()
+    public function order($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Order();
+        }
         return new V1\Order();
     }
-
     public function note()
     {
         return new V1\Note();
+    }
+
+    public function paymentMethod()
+    {
+        return new V2\PaymentMethod();
     }
 
     public function task()

@@ -12,8 +12,11 @@ class ServiceFactory
         return new V1\Account();
     }
 
-    public function affiliate()
+    public function affiliate($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Affiliate();
+        }
         return new V1\Affiliate();
     }
 

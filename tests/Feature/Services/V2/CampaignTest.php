@@ -24,8 +24,8 @@ test('list makes a GET request', function () {
     });
 });
 
-test('addContacts makes a POST request', function () {
-    Keap::campaign('v2')->addContacts(1, 2, [3]);
+test('addToSequence makes a POST request', function () {
+    Keap::campaign('v2')->addToSequence(1, 2, 3);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/campaigns/1/sequences/2:addContacts' &&
@@ -33,33 +33,14 @@ test('addContacts makes a POST request', function () {
     });
 });
 
-test('addContact makes a POST request', function () {
-    Keap::campaign('v2')->addContact(1, 2, 3);
-
-    Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/campaigns/1/sequences/2:addContacts' &&
-               $request->method() === 'POST';
-    });
-});
-
-test('removeContacts makes a POST request', function () {
-    Keap::campaign('v2')->removeContacts(1, 2, [3]);
+test('removeFromSequence makes a POST request', function () {
+    Keap::campaign('v2')->removeFromSequence(1, 2, 3);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/campaigns/1/sequences/2:removeContacts' &&
                $request->method() === 'POST';
     });
 });
-
-test('removeContact makes a POST request', function () {
-    Keap::campaign('v2')->removeContact(1, 2, 3);
-
-    Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/campaigns/1/sequences/2:removeContacts' &&
-               $request->method() === 'POST';
-    });
-});
-
 
 test('find makes a GET request', function () {
     Keap::campaign('v2')->find(1);

@@ -72,7 +72,7 @@ test('achieve makes a POST request', function () {
 test('addToSequence makes a POST request', function () {
     Http::fake();
 
-    Keap::campaign()->addToSequence(1, 2, 3);
+    Keap::campaign()->addToSequence(2, 3, 1);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/2/sequences/3/contacts' &&
@@ -83,7 +83,7 @@ test('addToSequence makes a POST request', function () {
 test('removeFromSequence makes a DELETE request', function () {
     Http::fake();
 
-    Keap::campaign()->removeFromSequence(1, 2, 3);
+    Keap::campaign()->removeFromSequence(2, 3, 1);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/2/sequences/3/contacts' &&

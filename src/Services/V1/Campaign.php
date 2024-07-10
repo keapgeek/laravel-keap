@@ -42,7 +42,7 @@ class Campaign extends Service
         ]);
     }
 
-    public function addToSequence(array|int $ids, int $campaign_id, int $sequence_id)
+    public function addToSequence(int $campaign_id, int $sequence_id, array|int $ids)
     {
         if (is_int($ids)) {
             $ids = [$ids];
@@ -53,7 +53,7 @@ class Campaign extends Service
         ]);
     }
 
-    public function removeFromSequence(array|int $ids, int $campaign_id, int $sequence_id)
+    public function removeFromSequence(int $campaign_id, int $sequence_id, array|int $ids)
     {
         if (is_int($ids)) {
             $ids = [$ids];

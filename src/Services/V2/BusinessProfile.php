@@ -15,6 +15,10 @@ class BusinessProfile extends Service
 
     public function update(array $data)
     {
+        $original = $this->info() ?? [];
+
+        $data = array_merge($original, $data);
+
         return $this->patch('/', $data);
     }
 }

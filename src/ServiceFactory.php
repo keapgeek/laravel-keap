@@ -39,8 +39,11 @@ class ServiceFactory
     {
         return new V2\BusinessProfile();
     }
-    public function campaign()
+    public function campaign($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Campaign();
+        }
         return new V1\Campaign();
     }
 

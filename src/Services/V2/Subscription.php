@@ -10,6 +10,8 @@ class Subscription extends Service
 
     public function create(array $data)
     {
+        $this->parseDate('first_bill_date', $data);
+
         return $this->post('/', $data);
     }
 }

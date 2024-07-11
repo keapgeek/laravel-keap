@@ -60,8 +60,11 @@ class ServiceFactory
         return new V1\Contact();
     }
 
-    public function email()
+    public function email($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Email();
+        }
         return new V1\Email();
     }
 

@@ -10,20 +10,20 @@ class FunnelIntegration extends Service
 
     public function create(array $data)
     {
-        $this->post("/", $data);
+        $this->post('/', $data);
     }
 
     public function delete(array $data)
     {
-        $this->del("/", $data);
+        $this->del('/', $data);
     }
 
     public function achieveGoal(int $contact_id, int $trigger_id, string $schema_data)
     {
-        $this->post("/trigger", [
+        $this->post('/trigger', [
             'contact_id' => $contact_id,
             'funnel_integration_trigger_id' => (string) $trigger_id,
-            'schema_data' => $schema_data
+            'schema_data' => $schema_data,
         ]);
     }
 }

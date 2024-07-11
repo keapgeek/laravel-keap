@@ -10,11 +10,12 @@ class Campaign extends Service
 
     public function list(array $data = [])
     {
-        if(array_key_exists('name', $data)) {
-            $data['filter'] = 'name%3D%3D' . $data['name'];
+        if (array_key_exists('name', $data)) {
+            $data['filter'] = 'name%3D%3D'.$data['name'];
             unset($data['name']);
         }
         $list = $this->get('/', $data);
+
         return $list['campaigns'];
     }
 
@@ -44,5 +45,4 @@ class Campaign extends Service
             'contact_ids' => $ids,
         ]);
     }
-
 }

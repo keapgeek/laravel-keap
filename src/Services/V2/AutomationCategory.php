@@ -11,17 +11,18 @@ class AutomationCategory extends Service
     public function list(array $data = [])
     {
         $list = $this->get('/', $data);
+
         return $list['automation_categories'];
     }
 
     public function delete(int|array $id)
     {
-        if(is_int($id)){
+        if (is_int($id)) {
             $id = [$id];
         }
 
         return $this->del('/', [
-            'ids' => $id
+            'ids' => $id,
         ]);
     }
 

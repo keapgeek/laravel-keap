@@ -11,36 +11,37 @@ class Automation extends Service
     public function list(array $data = [])
     {
         $list = $this->get('/', $data);
+
         return $list['automations'];
     }
 
     public function count(array $data = [])
     {
         $list = $this->get('/', $data);
+
         return $list['automation_count'];
     }
 
     public function delete(int|array $id)
     {
-        if(is_int($id)){
+        if (is_int($id)) {
             $id = [$id];
         }
 
         return $this->del('/', [
-            'automation_ids' => $id
+            'automation_ids' => $id,
         ]);
     }
 
     public function updateCategory(int|array $automation_ids, int|array $category_ids, bool $apply_category = true)
     {
-        if(is_int($automation_ids)){
+        if (is_int($automation_ids)) {
             $automation_ids = [$automation_ids];
         }
 
-        if(is_int($category_ids)){
+        if (is_int($category_ids)) {
             $category_ids = [$category_ids];
         }
-
 
         return $this->put('/category', [
             'apply_category' => $apply_category,

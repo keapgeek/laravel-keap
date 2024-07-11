@@ -11,12 +11,13 @@ class Company extends Service
     public function list(array $data = [])
     {
         $list = $this->get('/', $data);
+
         return $list['companies'];
     }
 
     public function delete(int $company_id)
     {
-             return $this->del("/$company_id");
+        return $this->del("/$company_id");
     }
 
     public function update(int $company_id, array $data)

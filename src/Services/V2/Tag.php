@@ -10,7 +10,8 @@ class Tag extends Service
 
     public function list(array $data = [])
     {
-        $list = $this->get("/", $data);
+        $list = $this->get('/', $data);
+
         return $list['tags'];
     }
 
@@ -21,8 +22,7 @@ class Tag extends Service
 
     public function update(int $tag_id, array $data)
     {
-        if(array_key_exists('category_id', $data))
-        {
+        if (array_key_exists('category_id', $data)) {
             $data['category'] = ['id' => (int) $data['category_id']];
             unset($data['category_id']);
         }
@@ -32,13 +32,12 @@ class Tag extends Service
 
     public function create(array $data)
     {
-        if(array_key_exists('category_id', $data))
-        {
+        if (array_key_exists('category_id', $data)) {
             $data['category'] = ['id' => (int) $data['category_id']];
             unset($data['category_id']);
         }
 
-        return $this->post("/", $data);
+        return $this->post('/', $data);
     }
 
     public function find(int $tag_id)
@@ -48,7 +47,8 @@ class Tag extends Service
 
     public function listCategories(array $data = [])
     {
-        $list = $this->get("/categories", $data);
+        $list = $this->get('/categories', $data);
+
         return $list['tag_categories'];
     }
 
@@ -64,7 +64,7 @@ class Tag extends Service
 
     public function createCategory(array $data)
     {
-        return $this->post("/categories", $data);
+        return $this->post('/categories', $data);
     }
 
     public function findCategory(int $category_id)
@@ -84,21 +84,23 @@ class Tag extends Service
 
     public function apply(int $tag_id, int|array $ids)
     {
-        if(is_int($ids)) {
+        if (is_int($ids)) {
             $ids = [$ids];
         }
+
         return $this->post("/$tag_id/contacts:applyTags", [
-            'contact_ids' => $ids
+            'contact_ids' => $ids,
         ]);
     }
 
     public function remove(int $tag_id, int|array $ids)
     {
-        if(is_int($ids)) {
+        if (is_int($ids)) {
             $ids = [$ids];
         }
+
         return $this->post("/$tag_id/contacts:removeTags", [
-            'contact_ids' => $ids
+            'contact_ids' => $ids,
         ]);
     }
 }

@@ -12,7 +12,6 @@ test('facade returns a Contact Service', function () {
     expect(Keap::contact('v2'))->toBeInstanceOf(Contact::class);
 });
 
-
 test('find makes a GET request', function () {
     Http::fake();
 
@@ -23,8 +22,6 @@ test('find makes a GET request', function () {
                $request->method() === 'GET';
     });
 });
-
-
 
 test('create makes a POST request', function () {
     Http::fake();

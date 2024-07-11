@@ -11,6 +11,7 @@ class Note extends Service
     public function list(int $contact_id, array $data = [])
     {
         $list = $this->get("/$contact_id/notes", $data);
+
         return $list['notes'];
     }
 

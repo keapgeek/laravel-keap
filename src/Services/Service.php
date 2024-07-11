@@ -11,6 +11,7 @@ use KeapGeek\Keap\Traits\MakesRequests;
 class Service
 {
     use MakesRequests;
+
     protected $client;
 
     protected $uri = '';

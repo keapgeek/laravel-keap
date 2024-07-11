@@ -2,13 +2,12 @@
 
 namespace KeapGeek\Keap\Services\V2;
 
-use KeapGeek\Keap\Services\Service;
 use KeapGeek\Keap\Exceptions\KeapException;
+use KeapGeek\Keap\Services\Service;
 
 class Contact extends Service
 {
     protected $uri = '/v2/contacts';
-
 
     public function find(int $contact_id, array $fields = [])
     {
@@ -56,5 +55,4 @@ class Contact extends Service
     {
         return $this->get('/model');
     }
-
 }

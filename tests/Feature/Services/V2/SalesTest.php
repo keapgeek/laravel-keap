@@ -14,7 +14,7 @@ test('facade returns a Sales Service', function () {
 });
 
 test('setDefault makes a POST request', function () {
-     Keap::sales()->setDefault(1);
+    Keap::sales()->setDefault(1);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/sales/merchants/1:setDefault' &&

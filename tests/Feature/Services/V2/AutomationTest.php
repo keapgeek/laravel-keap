@@ -51,7 +51,6 @@ test('delete makes a DELETE request', function () {
     });
 });
 
-
 test('find makes a GET request', function () {
     Keap::automation()->find(1);
 

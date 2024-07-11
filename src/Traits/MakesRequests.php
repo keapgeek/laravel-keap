@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 
 trait MakesRequests
 {
-protected function get($uri = '/', array $data = [])
+    protected function get($uri = '/', array $data = [])
     {
         $url = $this->client->getUrl().'/'.ltrim($uri, '/');
         $cacheKey = 'http_get_'.md5($url.json_encode($data));

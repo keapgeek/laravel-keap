@@ -2,8 +2,8 @@
 
 namespace KeapGeek\Keap\Services\V1;
 
-use KeapGeek\Keap\Services\Service;
 use KeapGeek\Keap\Exceptions\KeapException;
+use KeapGeek\Keap\Services\Service;
 
 class Contact extends Service
 {

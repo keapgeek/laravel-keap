@@ -2,9 +2,8 @@
 
 namespace KeapGeek\Keap\Services\V1;
 
-use KeapGeek\Keap\Services\Service;
-
 use Illuminate\Support\Carbon;
+use KeapGeek\Keap\Services\Service;
 
 class Task extends Service
 {

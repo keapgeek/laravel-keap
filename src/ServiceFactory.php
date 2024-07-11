@@ -14,9 +14,10 @@ class ServiceFactory
 
     public function affiliate($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Affiliate();
         }
+
         return new V1\Affiliate();
     }
 
@@ -39,43 +40,49 @@ class ServiceFactory
     {
         return new V2\BusinessProfile();
     }
+
     public function campaign($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Campaign();
         }
+
         return new V1\Campaign();
     }
 
     public function company($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Company();
         }
+
         return new V1\Company();
     }
 
     public function contact($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Contact();
         }
+
         return new V1\Contact();
     }
 
     public function email($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Email();
         }
+
         return new V1\Email();
     }
 
     public function emailAddress($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\EmailAddress();
         }
+
         return new V1\EmailAddress();
     }
 
@@ -111,16 +118,19 @@ class ServiceFactory
 
     public function order($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Order();
         }
+
         return new V1\Order();
     }
+
     public function note($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Note();
         }
+
         return new V1\Note();
     }
 
@@ -148,26 +158,32 @@ class ServiceFactory
     {
         return new V1\Product();
     }
+
     public function sales()
     {
         return new V2\Sales();
     }
+
     public function settings($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Settings();
         }
+
         return new V1\Settings();
     }
+
     public function subscription()
     {
         return new V2\Subscription();
     }
+
     public function tag($version = null)
     {
-        if($version === 'v2') {
+        if ($version === 'v2') {
             return new V2\Tag();
         }
+
         return new V1\Tag();
     }
 

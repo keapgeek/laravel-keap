@@ -25,4 +25,3 @@ class Settings extends Service
         return $this->get('/applications:getConfiguration', $items);
     }
 }
-

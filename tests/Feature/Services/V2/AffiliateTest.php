@@ -15,7 +15,6 @@ test('facade returns a Affiliate Service', function () {
     expect(Keap::affiliate('v2'))->toBeInstanceOf(Affiliate::class);
 });
 
-
 test('update makes a PATCH request', function () {
     Keap::affiliate('v2')->update(1, []);
 
@@ -33,7 +32,6 @@ test('updateProgram makes a PATCH request', function () {
                $request->method() === 'PATCH';
     });
 });
-
 
 test('find makes a GET request', function () {
     Keap::affiliate('v2')->find(1);

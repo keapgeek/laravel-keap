@@ -16,7 +16,7 @@ test('facade returns a Settings Service', function () {
 });
 
 test('status makes a GET request', function () {
-     Keap::settings('v2')->status();
+    Keap::settings('v2')->status();
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/settings/applications:isEnabled' &&
@@ -27,12 +27,11 @@ test('status makes a GET request', function () {
 test('contactOptionTypes makes a GET request', function () {
     Keap::settings('v2')->contactOptionTypes();
 
-   Http::assertSent(function ($request) {
-       return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/settings/contactOptionTypes' &&
-              $request->method() === 'GET';
-   });
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/settings/contactOptionTypes' &&
+               $request->method() === 'GET';
+    });
 });
-
 
 test('config makes a GET request', function () {
     Keap::settings('v2')->config();

@@ -2,8 +2,8 @@
 
 namespace KeapGeek\Keap\Services\V1;
 
-use KeapGeek\Keap\Services\Service;
 use KeapGeek\Keap\Exceptions\ValidationException;
+use KeapGeek\Keap\Services\Service;
 
 class Company extends Service
 {

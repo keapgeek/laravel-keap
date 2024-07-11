@@ -14,7 +14,7 @@ class Contact extends Service
         $this->parseDatetime('since', $data);
         $this->parseDatetime('until', $data);
 
-        $list = $this->get('/');
+        $list = $this->get('/', $data);
 
         return $list['contacts'];
     }
@@ -24,7 +24,7 @@ class Contact extends Service
         $this->parseDatetime('since', $data);
         $this->parseDatetime('until', $data);
 
-        $list = $this->get('/');
+        $list = $this->get('/', $data);
 
         return $list['count'];
     }

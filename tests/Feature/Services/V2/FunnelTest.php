@@ -17,7 +17,7 @@ test('create makes a POST request', function () {
     Keap::funnelIntegration()->create([]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/funnelIntegration/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/funnelIntegration' &&
                $request->method() === 'POST';
     });
 });
@@ -26,7 +26,7 @@ test('delete makes a DELETE request', function () {
     Keap::funnelIntegration()->delete([]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/funnelIntegration/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/funnelIntegration' &&
                $request->method() === 'DELETE';
     });
 });

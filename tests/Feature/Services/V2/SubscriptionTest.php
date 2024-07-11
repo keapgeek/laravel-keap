@@ -17,7 +17,7 @@ test('create makes a GET request', function () {
     Keap::subscription()->create([]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/subscriptions/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/subscriptions' &&
                $request->method() === 'POST';
     });
 });

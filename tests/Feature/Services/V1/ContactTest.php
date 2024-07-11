@@ -20,7 +20,7 @@ test('list makes a GET request', function () {
     Keap::contact()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts' &&
                $request->method() === 'GET';
     });
 });
@@ -33,7 +33,7 @@ test('count makes a GET request', function () {
     Keap::contact()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts' &&
                $request->method() === 'GET';
     });
 });
@@ -66,7 +66,7 @@ test('create makes a POST request', function () {
     Keap::contact()->create(['email' => 'test@example.com']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts' &&
               $request->method() === 'POST';
     });
 });
@@ -76,7 +76,7 @@ test('createOrUpdate makes a PUT request', function () {
     Keap::contact()->createOrUpdate(['email' => 'test@example.com']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/contacts' &&
               $request->method() === 'PUT';
     });
 });

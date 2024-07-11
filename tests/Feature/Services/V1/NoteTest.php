@@ -17,7 +17,7 @@ test('create makes a POST request', function () {
     Keap::note()->create(['contact_id' => 1, 'body' => '::body::']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/notes/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/notes' &&
                $request->method() === 'POST';
     });
 });

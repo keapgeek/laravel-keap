@@ -19,7 +19,7 @@ test('list makes a GET request', function () {
     Keap::campaign()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns' &&
                $request->method() === 'GET';
     });
 });
@@ -31,7 +31,7 @@ test('count makes a GET request', function () {
     Keap::campaign()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/campaigns' &&
                $request->method() === 'GET';
     });
 });

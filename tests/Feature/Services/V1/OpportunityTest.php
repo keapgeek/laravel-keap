@@ -29,7 +29,7 @@ test('list makes a GET request', function () {
     Keap::opportunity()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities' &&
                $request->method() === 'GET';
     });
 });
@@ -41,7 +41,7 @@ test('count makes a GET request', function () {
     Keap::opportunity()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities' &&
                $request->method() === 'GET';
     });
 });
@@ -53,7 +53,7 @@ test('creates makes a POST request', function () {
     ]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities' &&
               $request->method() === 'POST';
     });
 });
@@ -83,7 +83,7 @@ test('replace makes a PUT request', function () {
     Keap::opportunity()->replace(['data' => '::data::']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/opportunities' &&
                $request->method() === 'PUT';
     });
 });

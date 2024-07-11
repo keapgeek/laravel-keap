@@ -17,7 +17,7 @@ test('createKey makes a POST request', function () {
     Keap::paymentMethod()->createKey(1);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/paymentMethodConfigs/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/paymentMethodConfigs' &&
                $request->method() === 'POST';
     });
 });

@@ -28,7 +28,7 @@ test('create makes a POST request', function () {
     Keap::tag()->create('::name::', '::description::');
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags' &&
                $request->method() === 'POST';
     });
 });
@@ -37,7 +37,7 @@ test('list makes a GET request', function () {
     Keap::tag()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags' &&
                $request->method() === 'GET';
     });
 });

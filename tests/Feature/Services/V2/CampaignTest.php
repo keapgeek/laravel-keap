@@ -19,7 +19,7 @@ test('list makes a GET request', function () {
     Keap::campaign('v2')->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/campaigns/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/campaigns' &&
                $request->method() === 'GET';
     });
 });

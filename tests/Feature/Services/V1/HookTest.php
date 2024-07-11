@@ -18,7 +18,7 @@ test('list makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/hooks/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/hooks' &&
                $request->method() === 'GET';
     });
 });
@@ -58,7 +58,7 @@ test('create makes a POST request', function () {
 
     Http::assertSent(function ($request) {
 
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/hooks/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/hooks' &&
                $request->method() === 'POST';
     });
 });

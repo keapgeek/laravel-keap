@@ -100,7 +100,7 @@ class Client
 
     protected function prepareUrl(string $uri): string
     {
-        return $this->url.'/'.trim($uri, '/');
+        return $this->url.rtrim($uri, '/');
     }
 
     public function setUri(string $uri = '')

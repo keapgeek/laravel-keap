@@ -17,7 +17,7 @@ test('list makes a GET request', function () {
     Keap::user()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users' &&
                $request->method() === 'GET';
     });
 });
@@ -26,7 +26,7 @@ test('create makes a POST request', function () {
     Keap::user()->create(fake()->email(), fake()->name());
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/users' &&
                $request->method() === 'POST';
     });
 });

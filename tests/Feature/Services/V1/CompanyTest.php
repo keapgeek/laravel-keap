@@ -21,7 +21,7 @@ test('list makes a GET request', function () {
 
     Http::assertSent(function ($request) {
 
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies' &&
                $request->method() === 'GET';
     });
 });
@@ -30,7 +30,7 @@ test('create makes a POST request', function () {
     Keap::company()->create(['company_name' => '::company_name::']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/companies' &&
                $request->method() === 'POST';
     });
 });

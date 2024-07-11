@@ -18,7 +18,7 @@ test('retrieve makes a GET request', function () {
     Keap::account()->info();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/account/profile/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/account/profile' &&
                $request->method() === 'GET';
     });
 });
@@ -29,7 +29,7 @@ test('updates makes a PUT request', function () {
     Keap::account()->update(['key' => 'value']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/account/profile/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/account/profile' &&
                $request->method() === 'PUT';
     });
 });

@@ -17,7 +17,7 @@ test('info makes a GET request', function () {
     Keap::businessProfile()->info();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/businessProfile/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/businessProfile' &&
                $request->method() === 'GET';
     });
 });
@@ -26,7 +26,7 @@ test('updates makes a PATCH request', function () {
     Keap::businessProfile()->update(['key' => 'value']);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/businessProfile/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/businessProfile' &&
                $request->method() === 'PATCH';
     });
 });

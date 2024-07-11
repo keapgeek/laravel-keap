@@ -29,7 +29,7 @@ test('list makes a GET request', function () {
     Keap::appointment()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments' &&
                $request->method() === 'GET';
     });
 });
@@ -41,7 +41,7 @@ test('count makes a GET request', function () {
     Keap::appointment()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments' &&
                $request->method() === 'GET';
     });
 });
@@ -53,7 +53,7 @@ test('creates makes a POST request', function () {
     ]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/appointments' &&
               $request->method() === 'POST';
     });
 });

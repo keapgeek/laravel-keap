@@ -30,7 +30,7 @@ test('list makes a GET request', function () {
     Keap::order()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders' &&
                $request->method() === 'GET';
     });
 });
@@ -42,7 +42,7 @@ test('count makes a GET request', function () {
     Keap::order()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders' &&
                $request->method() === 'GET';
     });
 });
@@ -52,7 +52,7 @@ test('create makes a POST request', function () {
     Keap::order()->create([]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/orders' &&
                $request->method() === 'POST';
     });
 });
@@ -104,7 +104,7 @@ test('listSubscriptions makes a GET request', function () {
     Keap::order()->listSubscriptions();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/subscriptions/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/subscriptions' &&
                $request->method() === 'GET';
     });
 });
@@ -114,7 +114,7 @@ test('createSubscription makes a POST request', function () {
     Keap::order()->createSubscription([]);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/subscriptions/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/subscriptions' &&
                $request->method() === 'POST';
     });
 });
@@ -136,7 +136,7 @@ test('listTransactions makes a GET request', function () {
     Keap::order()->listTransactions();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/transactions/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/transactions' &&
                $request->method() === 'GET';
     });
 });

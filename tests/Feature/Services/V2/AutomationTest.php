@@ -19,7 +19,7 @@ test('list makes a GET request', function () {
     Keap::automation()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations' &&
                $request->method() === 'GET';
     });
 });
@@ -28,7 +28,7 @@ test('count makes a GET request', function () {
     Keap::automation()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations' &&
                $request->method() === 'GET';
     });
 });
@@ -46,7 +46,7 @@ test('delete makes a DELETE request', function () {
     Keap::automation()->delete(1);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations' &&
                $request->method() === 'DELETE';
     });
 });

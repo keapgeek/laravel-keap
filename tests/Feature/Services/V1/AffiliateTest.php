@@ -27,7 +27,7 @@ test('creates makes a POST request', function () {
     Keap::affiliate()->create('::code::', 111, '::password::');
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates' &&
                $request->method() === 'POST';
     });
 });
@@ -49,7 +49,7 @@ test('list makes a GET request', function () {
     Keap::affiliate()->list();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates' &&
                $request->method() === 'GET';
     });
 });
@@ -61,7 +61,7 @@ test('count makes a GET request', function () {
     Keap::affiliate()->count();
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates/' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/affiliates' &&
                $request->method() === 'GET';
     });
 });

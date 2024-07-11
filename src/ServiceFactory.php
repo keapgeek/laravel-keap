@@ -55,8 +55,11 @@ class ServiceFactory
         return new V1\Company();
     }
 
-    public function contact()
+    public function contact($version = null)
     {
+        if($version === 'v2') {
+            return new V2\Contact();
+        }
         return new V1\Contact();
     }
 

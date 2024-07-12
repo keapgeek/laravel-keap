@@ -13,9 +13,14 @@ class Affiliate extends Service
         return $this->get("/$affiliate_id");
     }
 
-    public function create(array $data)
+    public function create(string $code, int $contact_id, bool $active = true, string $name = '')
     {
-        return $this->post('/', $data);
+        return $this->post('/', [
+            'code' => $code,
+            'contact_id' => $contact_id,
+            'status' => $active ? 'active' : 'inactive',
+            'name' => $name,
+        ]);
     }
 
     public function update(int $affiliate_id, array $data)

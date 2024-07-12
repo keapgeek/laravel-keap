@@ -43,7 +43,7 @@ test('find makes a GET request', function () {
 });
 
 test('create makes a POST request', function () {
-    Keap::affiliate('v2')->create([]);
+    Keap::affiliate('v2')->create('::code::', 1);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/affiliates' &&

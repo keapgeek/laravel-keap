@@ -55,4 +55,15 @@ class Service
             unset($data[$from]);
         }
     }
+
+    protected function parseFilter(array &$data)
+    {
+        if (array_key_exists('filter', $data)) {
+            $filter = [];
+            foreach ($data['filter'] as $key => $value) {
+                $filter[] = $key.'%3D%3D'.$value;
+            }
+            $data['filter'] = implode(';', $filter);
+        }
+    }
 }

@@ -55,4 +55,67 @@ class Contact extends Service
     {
         return $this->get('/model');
     }
+
+    public function list(array $data = [])
+    {
+        $this->parseFilter($data);
+
+        return $this->get('/', $data);
+    }
+
+    public function update(int $contact_id, array $data)
+    {
+        return $this->patch("/$contact_id", $data);
+    }
+
+    public function paymentMethods(int $contact_id)
+    {
+        $response = $this->get("/$contact_id/paymentMethods");
+
+        return $response['records'];
+    }
+
+    public function listLinkTypes(array $data = [])
+    {
+        if (array_key_exists('name', $data)) {
+            $data['filter'] = 'name%3D%3D'.$data['name'];
+            unset($data['name']);
+        }
+        $list = $this->get('/links/types', $data);
+
+        return $list['contact_link_types'];
+    }
+
+    public function createLinkType(string $name, int $max_links = 0)
+    {
+        return $this->post('/links/types', [
+            'max_links' => $max_links,
+            'name' => $name,
+        ]);
+    }
+
+    public function listLinkedContacts(int $contact_id)
+    {
+        $list = $this->get("/$contact_id/links");
+
+        return $list['links'];
+    }
+
+    public function link(int $contact1_id, int $contact2_id, int $link_type_id)
+    {
+        return $this->post(':link', [
+            'contact1_id' => $contact1_id,
+            'contact2_id' => $contact2_id,
+            'link_type_id' => $link_type_id,
+        ]);
+    }
+
+    public function unlink(int $contact1_id, int $contact2_id, int $link_type_id)
+    {
+        return $this->post(':unlink', [
+            'contact1_id' => $contact1_id,
+            'contact2_id' => $contact2_id,
+            'link_type_id' => $link_type_id,
+        ]);
+    }
 }

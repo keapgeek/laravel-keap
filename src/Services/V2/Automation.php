@@ -10,6 +10,11 @@ class Automation extends Service
 
     public function list(array $data = [])
     {
+        if (array_key_exists('name', $data)) {
+            $data['filter'] = 'name%3D%3D'.$data['name'];
+            unset($data['name']);
+        }
+
         $list = $this->get('/', $data);
 
         return $list['automations'];
@@ -17,6 +22,11 @@ class Automation extends Service
 
     public function count(array $data = [])
     {
+        if (array_key_exists('name', $data)) {
+            $data['filter'] = 'name%3D%3D'.$data['name'];
+            unset($data['name']);
+        }
+
         $list = $this->get('/', $data);
 
         return $list['automation_count'];
@@ -53,5 +63,19 @@ class Automation extends Service
     public function find(int $automation_ids)
     {
         return $this->get("/$automation_ids");
+    }
+
+    public function addContact(int $automation_id, int $sequence_id, int $contact_id)
+    {
+        return $this->post("/$automation_id/sequences/$sequence_id:addContacts", [
+            'contact_ids' => [$contact_id],
+        ]);
+    }
+
+    public function addContacts(int $automation_id, int $sequence_id, array $contact_ids)
+    {
+        return $this->post("/$automation_id/sequences/$sequence_id:addContacts", [
+            'contact_ids' => $contact_ids,
+        ]);
     }
 }

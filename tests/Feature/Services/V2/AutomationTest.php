@@ -59,3 +59,21 @@ test('find makes a GET request', function () {
                $request->method() === 'GET';
     });
 });
+
+test('addContact makes a POST request', function () {
+    Keap::automation()->addContact(1, 2, 3);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations/1/sequences/2:addContacts' &&
+               $request->method() === 'POST';
+    });
+});
+
+test('addContacts makes a POST request', function () {
+    Keap::automation()->addContacts(1, 2, [1, 2, 3]);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations/1/sequences/2:addContacts' &&
+               $request->method() === 'POST';
+    });
+});

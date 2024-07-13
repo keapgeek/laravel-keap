@@ -43,7 +43,7 @@ class Automation extends Service
         ]);
     }
 
-    public function updateCategory(int|array $automation_ids, int|array $category_ids, bool $apply_category = true)
+    public function updateCategory(int|array $automation_ids, int|array $category_ids)
     {
         if (is_int($automation_ids)) {
             $automation_ids = [$automation_ids];
@@ -54,9 +54,21 @@ class Automation extends Service
         }
 
         return $this->put('/category', [
-            'apply_category' => $apply_category,
+            'apply_category' => true,
             'automation_ids' => $automation_ids,
             'category_ids' => $category_ids,
+        ]);
+    }
+
+    public function clearCategories(int|array $automation_ids)
+    {
+        if (is_int($automation_ids)) {
+            $automation_ids = [$automation_ids];
+        }
+
+        return $this->put('/category', [
+            'apply_category' => false,
+            'automation_ids' => $automation_ids,
         ]);
     }
 

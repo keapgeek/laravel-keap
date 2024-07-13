@@ -21,9 +21,7 @@ class AutomationCategory extends Service
             $id = [$id];
         }
 
-        return $this->del('/', [
-            'ids' => $id,
-        ]);
+        return $this->del('?ids=' . implode(',', $id));
     }
 
     public function update(int $category_id, string $category_name)

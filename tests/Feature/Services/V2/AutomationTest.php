@@ -46,7 +46,7 @@ test('delete makes a DELETE request', function () {
     Keap::automation()->delete(1);
 
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations' &&
+        return $request->url() === 'https://api.infusionsoft.com/crm/rest/v2/automations?ids=1' &&
                $request->method() === 'DELETE';
     });
 });

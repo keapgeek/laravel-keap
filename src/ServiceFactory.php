@@ -192,8 +192,8 @@ class ServiceFactory
         return new V1\User();
     }
 
-    public function submitForm(string $form_xid, array $data, array $headers = [])
+    public function submitForm(string $form_xid, string $infusionsoft_version, array $data, array $headers = [])
     {
-        return new Services\Form($form_xid, $data, $headers);
+        return new Services\Form($form_xid, $infusionsoft_version, $data, $headers);
     }
 }

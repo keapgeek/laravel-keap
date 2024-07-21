@@ -10,6 +10,7 @@ class Order extends Service
 
     public function createPayment(int $order_id, array $data = [])
     {
+        $this->parseDatetime('date', $data);
         return $this->post("/$order_id/payments", $data);
     }
 }

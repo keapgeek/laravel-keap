@@ -10,6 +10,16 @@ class Tag extends Service
 
     public function list(array $data = [])
     {
+        if (array_key_exists('name', $data)) {
+            $data['filter'] = 'name==' . $data['name'] . ';';
+            unset($data['name']);
+        }
+
+        if (array_key_exists('description', $data)) {
+            $data['filter'] = 'description==' . $data['description'] . ';';
+            unset($data['description']);
+        }
+
         $list = $this->get('/', $data);
 
         return $list['tags'];

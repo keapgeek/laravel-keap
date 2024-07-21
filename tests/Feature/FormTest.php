@@ -12,7 +12,7 @@ beforeEach(function () {
 });
 
 
-test('if config is not set throws Exception', function () {
+test('if config is not set throws Exception5', function () {
     Config::set('keap.app_name', null);
     Keap::submitForm('::xid::', '1.2.3', []);
 })->throws(KeapException::class);

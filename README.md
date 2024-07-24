@@ -38,7 +38,9 @@ KEAP_CLIENT_SECRET="Secret from the developer account"
 ### Keap set up
 
 Before we start installing the package, we need to create a Keap developer account and get our API credentials.
-For more information look at the Keap documentation [Visit the Laravel Keap Docs](https://www.laravelkeap.com/get-started?utm_source=github&utm_medium=repository&utm_campaign=readme)
+
+For more information look at the Keap documentation: [visit the Laravel Keap Docs](https://www.laravelkeap.com/get-started?utm_source=github&utm_medium=repository&utm_campaign=readme)
+
 In shorts the steps are repeated here below:
 
 -   Create a Developer Account
@@ -50,20 +52,21 @@ In shorts the steps are repeated here below:
 After installation and having setup the environment variables in the .env file. You can access the `/keap/auth` uri in your browser, even in the local version, to access the
 login page of Keap. Once logged in you can authorize the access to a specific app.
 
-I strongly suggest to use a sandbox version of Keap, to test your Api before connecting it to your real app with your clients data.
+I strongly suggest to use a sandbox version of Keap, and test your Api before connecting it to your real app with your clients data.
 
-Automatically keap will redirect you to a confirmation page that will simply say `Access granted!`. From there you can start using the keap service.
+Automatically Keap will redirect you to a confirmation page that will simply say `Successful Connection!`. From there you can start using the Laravel Keap service.
 
 ### Automatically refresh the Oath token
 
 Keap will transmit an access and refresh token that are stored in the cache, therefore pay attention when you clear it.
-The refresh code can be used only for 24 hours. You can refresh the code with the artisan command
+
+The refresh code can be used only for 24 hours. However, you can refresh the code with the artisan command
 
 ```
 php artisan keap:refresh
 ```
 
-You can set up this command in the console `Kernel.php` file to run twice or thrice a day to prevent the code from expiring.
+You can set up this command in the `Console\Kernel.php` file to run twice or thrice a day to prevent the code from expiring.
 
 ```php
     protected function schedule(Schedule $schedule): void
@@ -80,11 +83,11 @@ To access the REST API, you can use the `Keap` Facade:
 ```php
 use KeapGeek\Keap\Facades\Keap;
 
-// To access the contacts
-Keap::contact();
+// To list all the contacts the contacts
+Keap::contact()->list;
 
-//To access the campaigns
-Keap::campaign();
+// To create a new tag
+Keap::tag()->create(...);
 
 ```
 

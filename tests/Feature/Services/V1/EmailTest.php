@@ -81,7 +81,7 @@ test('createSet makes a POST request', function () {
 });
 
 test('unsync makes a POST request', function () {
-    Keap::email()->unsync([1, 2, 3]);
+    Keap::email()->removeSet([1, 2, 3]);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/emails/unsync' &&

@@ -1,9 +1,9 @@
-# Laravel Package for accessing the Keap REST API (v1)
+# Laravel Package for accessing the Keap REST API (v1/v2)
 
 Let's be honest, the php-infusionsoft SDK is shit.
 Barely any support for modern version of PHP and all the laravel packages, such as the upwebdesign one, that has been the main inspiration for this package, rely on the old architecture and legacy version of the Infusionsoft API.
 
-I jump in to ensure a Laravel 11+ support for this package that completely ignores the PHP SDK and builds it's own wrapper using Laravel helpers and architectures.
+I jump in to ensure a Laravel 10+ support for this package that completely ignores the PHP SDK and builds it's own wrapper using Laravel helpers and architectures.
 
 This package uses OAuth 2 with the REST API v1 or v2 of Keap, **WITHOUT** relying on the SDK of infusionsoft.
 
@@ -45,12 +45,12 @@ In shorts the steps are repeated here below:
 -   Generate the Api Keys
 -   Authenticate
 
-## First Usage
+## First Use
 
 After installation and having setup the environment variables in the .env file. You can access the `/keap/auth` uri in your browser, even in the local version, to access the
 login page of Keap. Once logged in you can authorize the access to a specific app.
 
-I strongly suggest to have a sandbox version of Keap, to test your Api before connecting it to your real app with your clients data.
+I strongly suggest to use a sandbox version of Keap, to test your Api before connecting it to your real app with your clients data.
 
 Automatically keap will redirect you to a confirmation page that will simply say `Access granted!`. From there you can start using the keap service.
 

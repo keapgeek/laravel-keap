@@ -44,6 +44,8 @@ class Email extends Service
         $this->parseDatetime('opened_date', $data);
         $this->parseDatetime('sent_date', $data);
         $this->parseDatetime('received_date', $data);
+        $this->encode64('html_content', $data);
+        $this->encode64('plain_content', $data);
 
         return $this->post('/', $data);
     }
@@ -64,10 +66,10 @@ class Email extends Service
         ]);
     }
 
-    public function unsync(array $ids)
+    public function removeSet(array $email_ids)
     {
         return $this->post('/unsync', [
-            'ids' => $ids,
+            'ids' => $email_ids,
         ]);
     }
 }

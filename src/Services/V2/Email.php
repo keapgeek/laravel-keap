@@ -25,6 +25,9 @@ class Email extends Service
         $this->parseDatetime('sent_time', $data);
         $this->parseDatetime('received_time', $data);
 
+        $this->encode64('html_content', $data);
+        $this->encode64('plain_content', $data);
+
         return $this->post('/', $data);
     }
 

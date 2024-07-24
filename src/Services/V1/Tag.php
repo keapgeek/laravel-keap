@@ -63,14 +63,14 @@ class Tag extends Service
         return $this->del("/$tag_id/contacts/$contact_id");
     }
 
-    public function taggedCompanies(int $tag_id, array $data = [])
+    public function listCompanies(int $tag_id, array $data = [])
     {
         $list = $this->get("/$tag_id/companies", $data);
 
         return $list['companies'];
     }
 
-    public function taggedContacts(int $tag_id, array $data = [])
+    public function listContacts(int $tag_id, array $data = [])
     {
         $list = $this->get("/$tag_id/contacts", $data);
 

@@ -22,15 +22,19 @@ class Tag extends Service
         return (int) $list['count'];
     }
 
-    public function create(string $name, string $description = '', ?int $categoryId = null)
+    public function create(string | array $data, string $description = '', ?int $categoryId = null)
     {
-        $category = $categoryId ? ['id' => $categoryId] : null;
+        if(is_string($data)) {
+            $category = $categoryId ? ['id' => $categoryId] : null;
+            $data = [
+                'name' => $data,
+                'description' => $description,
+                'category' => $category,
+            ];
+            trigger_error('The create method is with name and description is deprecated. Use the array form.', E_USER_DEPRECATED);
+        }
 
-        return $this->post('/', [
-            'name' => $name,
-            'description' => $description,
-            'category' => $category,
-        ]);
+        return $this->post('/', $data);
     }
 
     public function createCategory(string | array $data, string $description = '')

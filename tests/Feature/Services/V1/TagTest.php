@@ -28,7 +28,10 @@ test('createCategory makes a POST request', function () {
 });
 
 test('create makes a POST request', function () {
-    Keap::tag()->create('::name::', '::description::');
+    Keap::tag()->create([
+        'name' => '::name::',
+        'description' => '::description::',
+    ]);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags' &&

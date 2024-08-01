@@ -34,6 +34,8 @@ class Tag extends Service
             trigger_error('The create method is with name and description is deprecated. Use the array form.', E_USER_DEPRECATED);
         }
 
+        $this->switch('category_id', 'category', $data);
+
         return $this->post('/', $data);
     }
 

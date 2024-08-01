@@ -32,20 +32,14 @@ class Tag extends Service
 
     public function update(int $tag_id, array $data)
     {
-        if (array_key_exists('category_id', $data)) {
-            $data['category'] = ['id' => (int) $data['category_id']];
-            unset($data['category_id']);
-        }
+        $this->switch('category_id', 'category', $data);
 
         return $this->patch("/$tag_id", $data);
     }
 
     public function create(array $data)
     {
-        if (array_key_exists('category_id', $data)) {
-            $data['category'] = ['id' => (int) $data['category_id']];
-            unset($data['category_id']);
-        }
+        $this->switch('category_id', 'category', $data);
 
         return $this->post('/', $data);
     }

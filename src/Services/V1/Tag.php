@@ -33,12 +33,16 @@ class Tag extends Service
         ]);
     }
 
-    public function createCategory(string $name, string $description = '')
+    public function createCategory(string | array $data, string $description = '')
     {
-        return $this->post('/categories', [
-            'name' => $name,
+        if(is_string($data)) {
+            $data = [
+            'name' => $data,
             'description' => $description,
-        ]);
+            ];
+            trigger_error('The createCategory method is with name and description is deprecated. Use the array form.', E_USER_DEPRECATED);
+        }
+        return $this->post('/categories', $data);
     }
 
     public function find(int $tag_id)

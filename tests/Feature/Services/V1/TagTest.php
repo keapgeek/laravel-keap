@@ -16,7 +16,10 @@ test('facade returns a Tag Service', function () {
 });
 
 test('createCategory makes a POST request', function () {
-    Keap::tag()->createCategory('::name::', '::description::');
+    Keap::tag()->createCategory([
+        'name' => '::name::',
+        'description' => '::description::',
+    ]);
 
     Http::assertSent(function ($request) {
         return $request->url() === 'https://api.infusionsoft.com/crm/rest/v1/tags/categories' &&

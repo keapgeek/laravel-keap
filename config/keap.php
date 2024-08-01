@@ -59,12 +59,4 @@ return [
      */
     'opt_in_reason' => 'Opted In via App Webform.',
 
-    /**
-     * Logout Notification
-     * In case of expired token the following user
-     */
-    'logout' => [
-        'user' => 1,
-        'via' => ['mail'],
-    ],
 ];

@@ -7,8 +7,8 @@ use KeapGeek\Keap\Notifications\KeapLogoutNotification;
 
 class InvalidTokenException extends KeapException
 {
-    public function report(): void
-    {
-        User::find(config('keap.logout.user'))->notify(new KeapLogoutNotification);
-    }
+    // public function report(): void
+    // {
+    //     User::find(config('keap.logout.user'))->notify(new KeapLogoutNotification);
+    // }
 }

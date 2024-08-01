@@ -41,19 +41,6 @@ return [
     'app_name' => null,
 
     /**
-     * Contact Data
-     * This array matches Keap contact attributes with your Contact Model attributes.
-     * The key are keap attributes, the values your contact attributes.
-     * KeapTrait must be included. All the other attributes can be found here
-     *  https://developer.keap.com/docs/rest/#tag/Contact/operation/createOrUpdateContactUsingPUT
-     */
-    'contact_data' => [
-        'email' => 'email',
-        'given_name' => 'name',
-        // include all other firles
-    ],
-
-    /**
      * Opt In Reason
      * Needed to have marketable emails in Keap. It is a personalizable string field.
      */

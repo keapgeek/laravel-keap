@@ -32,7 +32,7 @@ return [
     /**
      * When not specified, the achieve goal is going to call this default integration
      */
-    'default_integration' => env('KEAP_DEFAULT_INTEGRATION'),
+    'default_integration' => 'Laravel App',
 
     /**
      * This configuration apply to the submit form service.

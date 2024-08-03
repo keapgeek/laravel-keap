@@ -22,7 +22,7 @@ return [
     /**
      * The middleware that protects the keap/auth and callback routes.
      */
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['web'],
 
     /**
      * The duration in SECONDS for the get requests

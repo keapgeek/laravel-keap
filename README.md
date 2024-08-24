@@ -7,7 +7,7 @@ I jump in to ensure a Laravel 10+ support for this package that completely ignor
 
 This package uses OAuth 2 with the REST API v1 or v2 of Keap, **WITHOUT** relying on the SDK of infusionsoft.
 
-You can find a whole website with the documentation for this package at [in the wikia](https://github.com/keapgeek/laravel-keap/wiki))
+You can find a whole website with the documentation for this package at [in the wiki](https://github.com/keapgeek/laravel-keap/wiki).
 
 ## Installation
 

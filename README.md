@@ -7,7 +7,7 @@ I jump in to ensure a Laravel 10+ support for this package that completely ignor
 
 This package uses OAuth 2 with the REST API v1 or v2 of Keap, **WITHOUT** relying on the SDK of infusionsoft.
 
-You can find a whole website with the documentation for this package at [https://www.laravelkeap.com/](https://www.laravelkeap.com?utm_source=github&utm_medium=repository&utm_campaign=readme)
+You can find a whole website with the documentation for this package at [in the wikia](https://github.com/keapgeek/laravel-keap/wiki))
 
 ## Installation
 
@@ -39,7 +39,7 @@ KEAP_CLIENT_SECRET="Secret from the developer account"
 
 Before we start installing the package, we need to create a Keap developer account and get our API credentials.
 
-For more information look at the Keap documentation: [visit the Laravel Keap Docs](https://www.laravelkeap.com/get-started?utm_source=github&utm_medium=repository&utm_campaign=readme)
+For more information look at the Keap documentation: [visit the complete Installation Guide](https://github.com/keapgeek/laravel-keap/wiki/Installation-Guide)
 
 In shorts the steps are repeated here below:
 
@@ -93,7 +93,7 @@ Keap::tag()->create(...);
 
 The methods of the Keap Facade allow you to automatically call the API endpoints.
 
-A list of all the available methods are can be found in the [Laravel Keap API Docs](https://www.laravelkeap.com/docs?utm_source=github&utm_medium=repository&utm_campaign=readme)
+A list of all the available methods are can be found in the [API Docs](https://github.com/keapgeek/laravel-keap/wiki/Api-Endpoints)
 
 ## Testing
 

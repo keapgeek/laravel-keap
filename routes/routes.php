@@ -7,6 +7,6 @@ Route::group([
     'middleware' => config('keap.middleware', []),
     'controller' => KeapController::class,
 ], function () {
-    Route::get('/keap/auth', 'auth');
-    Route::get('/keap/callback', 'callback');
+    Route::get('/keap/auth', [KeapController::class, 'auth']);
+    Route::get('/keap/callback', [KeapController::class, 'callback']);
 });
